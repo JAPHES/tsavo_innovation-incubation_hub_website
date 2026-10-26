@@ -1,0 +1,5 @@
+{% load static %}
+<article class="project-card">
+  <a class="project-image" href="{{ project.get_absolute_url }}"><img src="{% if project.cover_image %}{{ project.cover_image.url }}{% else %}{% static 'images/placeholders/project_default.jpg' %}{% endif %}" alt="{% if project.cover_image %}{{ project.title }}{% else %}Temporary project image placeholder{% endif %}" loading="lazy"><span class="stage-badge">{{ project.get_development_stage_display }}</span></a>
+  <div class="project-body"><span class="project-category">{{ project.get_category_display }}</span><h3><a href="{{ project.get_absolute_url }}">{{ project.title }}</a></h3><p>{{ project.short_description }}</p><a class="text-link" href="{{ project.get_absolute_url }}">View project <i class="bi bi-arrow-right" aria-hidden="true"></i></a></div>
+</article>
