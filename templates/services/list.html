@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block title %}Our Services | Tsavo Innovation & Incubation Hub{% endblock %}
+{% block meta_description %}Explore TIIH services supporting innovators and entrepreneurs from early ideas to sustainable ventures.{% endblock %}
+{% block content %}
+{% include "partials/page_banner.html" %}
+<section class="section"><div class="container">{% include "partials/section_heading.html" with centered=True eyebrow="Seven service areas" heading="Practical support across the innovation journey" text="Each service can be adapted to the stage, context and needs of an innovator or venture." %}<div class="card-grid services-grid full">{% for service in services %}{% include "partials/service_card.html" %}{% empty %}{% include "partials/empty_state.html" with title="Services are being prepared" text="Please check back after the site's initial content has been published." %}{% endfor %}</div></div></section>
+<section class="cta-section compact"><div class="container cta-inner"><div><span class="eyebrow light">Need guidance?</span><h2>Tell us where you are in your journey.</h2><p>We’ll help you identify the most relevant place to begin.</p></div><a class="btn btn-light" href="{% url 'contact:contact' %}">Contact the Hub <i class="bi bi-arrow-right" aria-hidden="true"></i></a></div></section>
+{% endblock %}
