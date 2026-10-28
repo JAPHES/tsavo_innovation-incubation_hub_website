@@ -8,10 +8,10 @@
   </div>
   <nav class="main-nav" aria-label="Primary navigation">
     <div class="container nav-shell">
-      <a class="brand" href="{% url 'core:home' %}" aria-label="TIIH home">
+      <div class="brand" aria-label="Tsavo Innovation and Incubation Hub">
         <img src="{% static 'images/branding/tiih_logo.png' %}" alt="Tsavo Innovation and Incubation Hub logo" width="70" height="78">
-        <span><b>Tsavo Innovation &amp;<br>Incubation Hub</b><small>Cultivating Entrepreneurs</small></span>
-      </a>
+        <span><b>Tsavo Innovation &amp;<br>Incubation Hub</b></span>
+      </div>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" data-nav-toggle><span class="visually-hidden">Toggle navigation</span><i class="bi bi-list" aria-hidden="true"></i></button>
       <div class="nav-menu" id="site-menu" data-nav-menu>
         <a class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'core:home' %}">Home</a>
@@ -19,7 +19,7 @@
         <a class="{% if request.resolver_match.namespace == 'services' %}active{% endif %}" href="{% url 'services:list' %}">Our Services</a>
         <a class="{% if request.resolver_match.namespace == 'projects' %}active{% endif %}" href="{% url 'projects:list' %}">Innovation Projects</a>
         <a class="{% if request.resolver_match.namespace == 'team' %}active{% endif %}" href="{% url 'team:list' %}">Our Team</a>
-        <a class="nav-contact {% if request.resolver_match.namespace == 'contact' %}active{% endif %}" href="{% url 'contact:contact' %}">Contact Us</a>
+        <a class="{% if request.resolver_match.namespace == 'contact' %}active{% endif %}" href="{% url 'contact:contact' %}">Contact Us</a>
       </div>
     </div>
   </nav>

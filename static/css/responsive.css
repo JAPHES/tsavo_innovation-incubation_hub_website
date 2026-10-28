@@ -3,12 +3,8 @@
   .nav-menu.open { transform: translateX(0); }
   .nav-menu > a { padding: 1rem .35rem; border-bottom: 1px solid var(--color-line); }
   .nav-menu > a::after { display: none; }
-  .nav-menu .nav-contact { margin-top: .5rem; text-align: center; }
   .nav-toggle { display: grid; place-items: center; }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
-  .program-list { grid-template-columns: repeat(3, 1fr); }
-  .program-list article { min-height: 300px; border-bottom: 1px solid var(--color-line); }
-  .program-list article:nth-child(4) { border-left: 1px solid var(--color-line); }
   .focus-strip { grid-template-columns: repeat(3, 1fr); }
   .filter-bar { grid-template-columns: 1.4fr 1fr 1fr auto; }
   .filter-bar .clear-filter { grid-column: 1 / -1; }
@@ -25,8 +21,6 @@
   .image-panel { max-width: 650px; }
   .image-accent { left: 1rem; }
   .chair-photo, .chair-profile img { max-width: 470px; }
-  .program-list { grid-template-columns: repeat(2, 1fr); }
-  .program-list article:nth-child(odd) { border-left: 1px solid var(--color-line); }
   .project-grid, .event-list, .focus-grid, .team-grid, .achievement-grid { grid-template-columns: repeat(2, 1fr); }
   .values-grid { grid-template-columns: repeat(2, 1fr); }
   .vision-grid { grid-template-columns: 1fr; }
@@ -48,7 +42,6 @@
   .brand { min-width: 0; gap: .6rem; }
   .brand img { width: 52px; height: 60px; }
   .brand b { font-size: .78rem; }
-  .brand small { font-size: .56rem; }
   .nav-menu { top: var(--header-height); width: 100%; }
   .page-banner { min-height: 360px; }
   .page-banner.home-hero { min-height: calc(100svh - var(--header-height)); }
@@ -59,9 +52,6 @@
   .section-top { align-items: flex-start; flex-direction: column; }
   .section-top .btn { width: 100%; }
   .image-accent { bottom: 2.5rem; width: 120px; padding: .85rem; }
-  .program-list { grid-template-columns: 1fr; }
-  .program-list article { min-height: auto; border-left: 1px solid var(--color-line); }
-  .program-icon { margin-bottom: 2.5rem; }
   .focus-strip { grid-template-columns: repeat(2, 1fr); }
   .filter-bar { grid-template-columns: 1fr; }
   .filter-bar > *, .search-field { grid-column: auto; }

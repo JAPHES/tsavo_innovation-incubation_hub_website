@@ -1,7 +1,7 @@
 {% load static %}
 <section class="page-banner {% if banner_page == 'home' %}home-hero{% endif %}" style="--banner-image:url('{% if banner and banner.background_image %}{{ banner.background_image.url }}{% else %}{% static banner_fallback %}{% endif %}')" aria-label="{{ banner.image_alt_text|default:'Page introduction' }}">
   <div class="container banner-content">
-    {% if banner_page == 'home' %}<span class="eyebrow light">Taita Taveta University &bull; Tsavo Innovation Hub</span>{% else %}{% include "partials/breadcrumbs.html" %}{% endif %}
+    {% if banner_page == 'home' %}<span class="eyebrow hero-kicker">Tsavo Innovation &amp; Incubation Hub</span>{% else %}{% include "partials/breadcrumbs.html" %}{% endif %}
     <h1>{{ banner.heading|default:"Tsavo Innovation & Incubation Hub" }}</h1>
     <p>{{ banner.supporting_text }}</p>
     {% if banner_page == 'home' %}<div class="hero-actions"><a class="btn btn-brand" href="{% url 'projects:list' %}">Explore Innovations <i class="bi bi-arrow-right" aria-hidden="true"></i></a><a class="btn btn-outline-light" href="{% url 'services:list' %}">Our Services</a></div>{% endif %}
