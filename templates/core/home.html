@@ -4,19 +4,100 @@
 {% block content %}
 {% include "partials/page_banner.html" %}
 
-<section class="section about-intro" id="about-hub"><div class="container split-layout align-items-center"><div class="reveal">{% include "partials/section_heading.html" with eyebrow="Who we are" heading="Where ideas meet enterprise" text="Tsavo Innovation & Incubation Hub supports innovation, business incubation, entrepreneurship, mentoring, training and the commercialization of innovations under Taita Taveta University." %}<p>We create practical pathways for students, staff and community innovators to refine ideas, strengthen ventures and connect with relevant knowledge and networks.</p><a class="btn btn-brand" href="{% url 'core:about' %}">Discover our purpose <i class="bi bi-arrow-right" aria-hidden="true"></i></a></div><figure class="image-panel reveal"><img src="{% static 'images/home/about_hub.jpg' %}" alt="Temporary image of students collaborating in an innovation workshop" loading="lazy"><figcaption>Temporary non-institutional image — replace with approved TIIH photography.</figcaption><span class="image-accent"><b>Ideas</b> to impact</span></figure></div></section>
+<section class="section about-intro" id="about-hub">
+  <div class="container split-layout align-items-center">
+    <div class="reveal">
+      {% include "partials/section_heading.html" with eyebrow="About TIIH" heading="Where ideas meet enterprise" text="Tsavo Innovation & Incubation Hub supports innovation, business incubation, entrepreneurship, mentoring, training and the commercialization of innovations under Taita Taveta University." %}
+      <p>We create practical pathways for students, staff and community innovators to refine ideas, strengthen ventures and connect with relevant knowledge and networks.</p>
+      <a class="btn btn-brand" href="{% url 'core:about' %}">Discover our purpose <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+    </div>
+    <figure class="image-panel reveal">
+      <img src="{% static 'images/home/about_hub.jpg' %}" alt="Students collaborating in an innovation workshop" loading="lazy">
+      <span class="image-accent"><b>Ideas</b> to impact</span>
+    </figure>
+  </div>
+</section>
 
-<section class="section soft-section chair-section" id="chair-message"><div class="container chair-layout"><div class="chair-photo reveal"><img src="{% if chair_message.photograph %}{{ chair_message.photograph.url }}{% else %}{% static 'images/team/chair_photo.jpg' %}{% endif %}" alt="{% if chair_message.photograph %}Portrait of {{ chair_message.chair_name }}{% else %}Chair's photograph placeholder{% endif %}" loading="lazy"><span>Chair's Photograph</span></div><div class="chair-copy reveal"><span class="quote-mark" aria-hidden="true">“</span>{% include "partials/section_heading.html" with eyebrow="Welcome" heading="Message from the Chair" %}<blockquote>{{ chair_message.message|default:"An official welcome message from the Chair of the Tsavo Innovation & Incubation Hub will appear here."|linebreaksbr }}</blockquote><div class="chair-credit"><b>{{ chair_message.chair_name|default:"Name to be confirmed" }}</b><span>{{ chair_message.official_position|default:"Hub Chair" }}</span></div></div></div></section>
+<section class="section soft-section chair-section" id="chair-message">
+  <div class="container chair-layout">
+    <div class="chair-photo reveal">
+      <img src="{% if chair_message.photograph %}{{ chair_message.photograph.url }}{% else %}{% static 'images/team/chair_placeholder_generated.jpg' %}{% endif %}" alt="{% if chair_message.photograph %}Portrait of {{ chair_message.chair_name }}{% else %}Temporary professional portrait placeholder for the chair's message{% endif %}" loading="lazy">
+      <span>{% if chair_message.photograph %}Chair's photograph{% else %}Temporary portrait{% endif %}</span>
+    </div>
+    <div class="chair-copy reveal">
+      <span class="quote-mark" aria-hidden="true">“</span>
+      {% include "partials/section_heading.html" with eyebrow="Welcome" heading="Message from the Chair" %}
+      <blockquote>{% if chair_message %}{{ chair_message.message|linebreaksbr }}{% else %}Welcome to the Tsavo Innovation & Incubation Hub—a place where promising ideas are nurtured into practical solutions and sustainable ventures. We bring together students, researchers, entrepreneurs, industry partners and communities to learn, experiment and build with purpose. Whether you are developing a new idea, strengthening an enterprise or seeking a meaningful partnership, we invite you to engage with TIIH and help shape an innovative, inclusive and enterprising future.{% endif %}</blockquote>
+      <div class="chair-credit">
+        <b>{{ chair_message.chair_name|default:"Dr. Mwakio Mwagandi" }}</b>
+        <span>{{ chair_message.official_position|default:"Chair, Tsavo Innovation & Incubation Hub" }}</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-<section class="section" id="services"><div class="container">{% include "partials/section_heading.html" with centered=True eyebrow="What we do" heading="Support built around the innovator" text="From a first idea to a stronger venture, our services connect practical skills, informed guidance and collaborative networks." %}<div class="card-grid services-grid">{% for service in services %}{% include "partials/service_card.html" %}{% endfor %}</div><div class="section-action"><a class="btn btn-outline-brand" href="{% url 'services:list' %}">View all services <i class="bi bi-arrow-right" aria-hidden="true"></i></a></div></div></section>
+<section class="section" id="services">
+  <div class="container">
+    {% include "partials/section_heading.html" with centered=True heading="What TIIH Does" text="TIIH helps innovators move from early ideas to stronger ventures through practical skills, informed guidance, shared resources and collaborative networks." %}
+    <div class="card-grid services-grid">
+      {% for service in services %}{% include "partials/service_card.html" %}{% endfor %}
+    </div>
+    <div class="section-action"><a class="btn btn-outline-brand" href="{% url 'services:list' %}">View all services <i class="bi bi-arrow-right" aria-hidden="true"></i></a></div>
+  </div>
+</section>
 
-<section class="section dark-section" id="innovations"><div class="container"><div class="section-top"><div class="section-heading light"><span class="eyebrow light">Innovation showcase</span><h2>Ideas with potential for real-world impact</h2><p>Published projects associated with the hub will appear here after review and approval.</p></div><a class="btn btn-outline-light" href="{% url 'projects:list' %}">View all innovations</a></div>{% if featured_projects %}<div class="card-grid project-grid">{% for project in featured_projects %}{% include "partials/project_card.html" %}{% endfor %}</div>{% else %}{% url 'contact:contact' as contact_url %}{% include "partials/empty_state.html" with icon="bi-stars" title="Featured innovations are being prepared" text="Approved project stories will be published here. If you have an innovation to discuss, connect with the hub." action_url=contact_url action_label="Contact the Hub" %}{% endif %}</div></section>
+<section class="section dark-section" id="innovations">
+  <div class="container">
+    <div class="section-top">
+      <div class="section-heading light">
+        <span class="eyebrow light">Innovation showcase</span>
+        <h2>Ideas with potential for real-world impact</h2>
+        {% if innovations_are_examples %}<p>These illustrative concepts show how featured innovations will appear here and can be replaced with approved TIIH projects.</p>{% else %}<p>Explore selected projects being developed by innovators connected to the hub.</p>{% endif %}
+      </div>
+      <a class="btn btn-outline-light" href="{% url 'projects:list' %}">View all innovations</a>
+    </div>
+    <div class="card-grid project-grid">
+      {% for project in featured_projects %}
+        {% if project.preview_only %}{% include "partials/innovation_preview_card.html" %}{% else %}{% include "partials/project_card.html" %}{% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
 
-<section class="section programs-section" id="programs"><div class="container split-heading"><div>{% include "partials/section_heading.html" with eyebrow="Programs & opportunities" heading="Ways the hub can support your journey" %}</div><p class="lead-copy">These are the hub's service and program areas. Any time-bound opportunity will include verified dates and details when officially published.</p></div><div class="container program-list">{% for program in programs %}<article><span class="program-icon"><i class="bi {{ program.icon }}" aria-hidden="true"></i></span><div><h3>{{ program.title }}</h3><p>{{ program.description }}</p>{% if program.application_url %}<a class="text-link" href="{{ program.application_url }}" target="_blank" rel="noopener">Official application details <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>{% endif %}</div></article>{% endfor %}</div></section>
+<section class="section programs-section" id="programs">
+  <div class="container">
+    {% include "partials/section_heading.html" with centered=True eyebrow="Programs & opportunities" heading="Ways the hub can support your journey" text="Explore focused support designed to help innovators build capability, refine ideas and prepare ventures for sustainable growth." %}
+    <div class="card-grid services-grid programs-grid">
+      {% for program in programs %}
+      <article class="service-card program-card">
+        <span class="icon-box"><i class="bi {{ program.icon }}" aria-hidden="true"></i></span>
+        <span class="card-number">0{{ forloop.counter }}</span>
+        <h3>{{ program.title }}</h3>
+        <p>{{ program.description }}</p>
+        {% if program.application_url %}<a class="text-link" href="{{ program.application_url }}" target="_blank" rel="noopener">Official application details <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>{% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
 
-<section class="section soft-section" id="events"><div class="container">{% include "partials/section_heading.html" with centered=True eyebrow="What’s ahead" heading="Upcoming events" text="Verified workshops, forums and hub activities will be announced here." %}{% if upcoming_events %}<div class="event-list">{% for event in upcoming_events %}{% include "partials/event_card.html" %}{% endfor %}</div>{% else %}{% include "partials/empty_state.html" with icon="bi-calendar2-event" title="No upcoming events announced" text="No upcoming events have been announced. Please check back for updates." %}{% endif %}</div></section>
+<section class="section soft-section" id="events">
+  <div class="container">
+    {% if events_are_examples %}
+      {% include "partials/section_heading.html" with centered=True eyebrow="What's ahead" heading="Upcoming events" text="Two draft events are shown as layout examples and can be replaced with confirmed TIIH activities." %}
+    {% else %}
+      {% include "partials/section_heading.html" with centered=True eyebrow="What's ahead" heading="Upcoming events" text="Join upcoming workshops, forums and hub activities." %}
+    {% endif %}
+    <div class="event-list event-list-two">
+      {% for event in upcoming_events %}{% include "partials/event_card.html" %}{% endfor %}
+    </div>
+  </div>
+</section>
 
-<section class="section highlights-section" id="highlights"><div class="container">{% include "partials/section_heading.html" with eyebrow="Highlights & achievements" heading="Progress worth sharing" text="Verified milestones and achievement stories will be published here as they are approved." %}{% if achievements %}<div class="card-grid achievement-grid">{% for achievement in achievements %}<article class="achievement-card"><span class="icon-box"><i class="bi bi-trophy" aria-hidden="true"></i></span>{% if achievement.achievement_date %}<time>{{ achievement.achievement_date|date:"F Y" }}</time>{% endif %}<h3>{{ achievement.title }}</h3><p>{{ achievement.description }}</p></article>{% endfor %}</div>{% else %}<div class="focus-strip">{% for area in focus_areas %}<article><i class="bi {{ area.icon }}" aria-hidden="true"></i><h3>{{ area.name }}</h3></article>{% endfor %}</div><p class="subtle-note">Until verified achievements are added, these cards show TIIH's documented areas of focus.</p>{% endif %}</div></section>
-
-<section class="cta-section"><div class="container cta-inner"><div><span class="eyebrow light">Start a conversation</span><h2>Have an innovative idea? Let’s connect.</h2><p>Tell the hub what you are working on and where you need support.</p></div><a class="btn btn-light btn-lg" href="{% url 'contact:contact' %}">Contact the Hub <i class="bi bi-arrow-right" aria-hidden="true"></i></a></div></section>
+<section class="cta-section">
+  <div class="container cta-inner">
+    <div><span class="eyebrow light">Start a conversation</span><h2>Have an innovative idea? Let’s connect.</h2><p>Tell the hub what you are working on and where you need support.</p></div>
+    <a class="btn btn-light btn-lg" href="{% url 'contact:contact' %}">Contact the Hub <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+  </div>
+</section>
 {% endblock %}

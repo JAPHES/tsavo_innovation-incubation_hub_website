@@ -16,6 +16,33 @@ BANNER_DEFAULTS = {
     "contact": ("Contact Us", "Connect with the Tsavo Innovation & Incubation Hub."),
 }
 
+SAMPLE_INNOVATIONS = (
+    SimpleNamespace(
+        preview_only=True,
+        title="SolarSmart Irrigation Kit",
+        short_description="A solar-powered soil-moisture monitoring concept designed to help smallholder farmers use water more efficiently.",
+        category_label="Agriculture",
+        stage_label="Prototype concept",
+        icon="bi-droplet-half",
+    ),
+    SimpleNamespace(
+        preview_only=True,
+        title="EcoBrick Circular Build Lab",
+        short_description="A circular-economy concept exploring how recovered plastic can become durable modular materials for local construction.",
+        category_label="Sustainable materials",
+        stage_label="Testing concept",
+        icon="bi-recycle",
+    ),
+    SimpleNamespace(
+        preview_only=True,
+        title="Jirani Market Link",
+        short_description="A mobile marketplace concept connecting local producers with buyers, logistics support and practical market information.",
+        category_label="ICT & enterprise",
+        stage_label="Incubation concept",
+        icon="bi-phone",
+    ),
+)
+
 
 def banner_context(page):
     banner = PageBanner.objects.filter(page=page).first()

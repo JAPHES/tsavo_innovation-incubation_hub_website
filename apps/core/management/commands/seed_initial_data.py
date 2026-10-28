@@ -80,8 +80,18 @@ class Command(BaseCommand):
             self._seed(Program, {"title": title}, {"description": description, "icon": icon, "display_order": order, "is_published": True}, reset)
 
         self._seed(ChairMessage, {"pk": 1}, {
-            "chair_name": "", "official_position": "Hub Chair",
-            "message": "An official welcome message from the Chair of the Tsavo Innovation & Incubation Hub will appear here.",
+            "chair_name": "Dr. Mwakio Mwagandi",
+            "official_position": "Chair, Tsavo Innovation & Incubation Hub",
+            "message": (
+                "Welcome to the Tsavo Innovation & Incubation Hub—a place where promising ideas "
+                "are nurtured into practical solutions and sustainable ventures. Our hub brings "
+                "together students, researchers, entrepreneurs, industry partners and communities "
+                "to learn, experiment and build with purpose. We are committed to providing the "
+                "mentorship, skills, networks and collaborative environment innovators need to move "
+                "confidently from concept to impact. Whether you are developing a new idea, "
+                "strengthening an existing enterprise or seeking a meaningful partnership, we invite "
+                "you to engage with TIIH and help shape an innovative, inclusive and enterprising future."
+            ),
             "is_published": True,
         }, reset)
         self.stdout.write(self.style.SUCCESS("Initial TIIH content is ready."))
