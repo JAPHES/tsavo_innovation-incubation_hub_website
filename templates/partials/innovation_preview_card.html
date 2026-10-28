@@ -1,12 +1,12 @@
+{% load static %}
 <article class="project-card preview-project-card">
-  <div class="sample-innovation-visual" aria-hidden="true">
-    <i class="bi {{ project.icon }}"></i>
+  <div class="project-image">
+    <img src="{% static project.image %}" alt="{{ project.image_alt }}" loading="lazy">
     <span class="stage-badge">{{ project.stage_label }}</span>
   </div>
   <div class="project-body">
     <span class="project-category">{{ project.category_label }}</span>
     <h3>{{ project.title }}</h3>
     <p>{{ project.short_description }}</p>
-    <span class="preview-note"><i class="bi bi-pencil-square" aria-hidden="true"></i> Replaceable homepage example</span>
   </div>
 </article>

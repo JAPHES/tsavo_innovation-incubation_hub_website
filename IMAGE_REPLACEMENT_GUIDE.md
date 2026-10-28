@@ -16,7 +16,9 @@ Replace a file with an approved image using the same filename to avoid changing 
 | `static/images/team/chair_placeholder_generated.jpg` | 900 × 1125 | Homepage Chair message fallback | AI-generated, non-identifying placeholder. Replace with the approved portrait of Dr. Mwakio Mwagandi. Admin upload takes priority. |
 | `static/images/placeholders/project_default.jpg` | 1200 × 800 | Project cards and details without uploads | Keep as a neutral fallback or replace with an approved generic innovation image. |
 | `static/images/placeholders/team_member_default.jpg` | 800 × 1000 | Team profiles without uploads | Keep neutral; individual admin uploads take priority. |
-| `static/images/branding/tiih_logo.png` | Up to 1000 × 1000 PNG | Header, footer, and browser icon | Supplied TIIH logo, optimized without distortion. Replace only with a newly approved official version. |
+| `static/images/branding/tiih_logo.png` | Up to 1000 × 1000 PNG | Header and browser icon | Supplied TIIH logo, optimized without distortion. Replace only with a newly approved official version. |
+| `static/images/branding/tiih_logo_round.png` | 420 × 420 transparent PNG | Circular footer logo | Cropped from the supplied official logo for clear display in the footer. |
+| `static/images/innovations/*.jpg` | 1200 × 800 | Homepage innovation showcase | Generated concept photography for the three homepage innovation features. Replace with approved project photography when available. |
 | `static/images/branding/ttu_logo.png` | 600 × 600 transparent PNG | Reserved institutional asset | Replace with the authentic TTU logo when supplied and approved for this site. |
 
 ## Admin-uploaded images
