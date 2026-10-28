@@ -37,6 +37,9 @@ p { margin-top: 0; }
 .soft-section { background: var(--color-soft); }
 .dark-section { color: rgba(255,255,255,.76); background: radial-gradient(circle at 80% 20%, rgba(0,169,58,.18), transparent 30%), #0d2d20; }
 .dark-section h2, .dark-section h3 { color: #fff; }
+.innovation-section { background: radial-gradient(circle at 88% 12%, rgba(255,213,74,.24), transparent 28%), linear-gradient(135deg, #f8fbf4 0%, #edf6ef 56%, #f8f3e7 100%); border-block: 1px solid #dfeadd; }
+.innovation-section .section-heading p { color: var(--color-muted); }
+.innovation-section .project-card { border: 1px solid rgba(8,120,50,.12); box-shadow: 0 16px 42px rgba(16,61,38,.1); }
 .skip-link { position: fixed; top: -5rem; left: 1rem; z-index: 9999; padding: .75rem 1rem; color: #fff; background: var(--color-primary-deep); border-radius: 0 0 .5rem .5rem; }
 .skip-link:focus { top: 0; }
 :focus-visible { outline: 3px solid #f4b942; outline-offset: 3px; }

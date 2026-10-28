@@ -45,10 +45,10 @@
   </div>
 </section>
 
-<section class="section dark-section" id="innovations">
+<section class="section innovation-section" id="innovations">
   <div class="container">
-    <div class="section-heading light">
-      <span class="eyebrow light">Innovation showcase</span>
+    <div class="section-heading">
+      <span class="eyebrow">Innovation showcase</span>
       <h2>Ideas with potential for real-world impact</h2>
       <p>Explore selected projects being developed by innovators connected to the hub.</p>
     </div>
@@ -57,7 +57,7 @@
         {% if project.preview_only %}{% include "partials/innovation_preview_card.html" %}{% else %}{% include "partials/project_card.html" %}{% endif %}
       {% endfor %}
     </div>
-    <div class="section-action"><a class="btn btn-outline-light" href="{% url 'projects:list' %}">View all innovations <i class="bi bi-arrow-right" aria-hidden="true"></i></a></div>
+    <div class="section-action"><a class="btn btn-outline-brand" href="{% url 'projects:list' %}">View all innovations <i class="bi bi-arrow-right" aria-hidden="true"></i></a></div>
   </div>
 </section>
 

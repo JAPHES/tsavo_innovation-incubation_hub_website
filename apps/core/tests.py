@@ -32,6 +32,8 @@ class CorePageTests(TestCase):
         self.assertIn("Dr. Mwakio Mwagandi", html)
         self.assertIn("SolarSmart Irrigation Kit", html)
         self.assertIn("Innovation Pitch &amp; Partnership Forum", html)
+        self.assertIn('class="section innovation-section" id="innovations"', html)
+        self.assertNotIn('class="section dark-section" id="innovations"', html)
         self.assertNotIn("Draft event", html)
         self.assertLess(html.index("Jirani Market Link"), html.index("View all innovations"))
         self.assertNotIn("Temporary non-institutional image", html)
