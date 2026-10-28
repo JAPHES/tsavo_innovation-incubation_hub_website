@@ -93,7 +93,7 @@ Sign in at `/admin/` with a Django superuser.
 - **Innovation projects:** add project information, cover, gallery, stage, category, approved public team information, and publishing/featured flags.
 - **Team members:** add only approved profiles and contact links, then control ordering and active state.
 - **Programmes, events, and achievements:** only published records appear publicly.
-- **Homepage preview content:** when no featured innovations or future events are published, the homepage shows three clearly labelled illustrative innovation concepts and two clearly labelled draft events so the layout remains complete. Published admin records replace these examples automatically.
+- **Homepage fallback content:** when no featured innovations or future events are published, the homepage shows three sample innovation features with dedicated imagery and three upcoming activities so the layout remains complete. Published admin records replace this fallback content automatically.
 - **Chair portrait:** the bundled chair image is an AI-generated, non-identifying placeholder and must be replaced with an approved photograph of Dr. Mwakio Mwagandi before formal launch.
 - **Contact messages:** inquiries are private to authorized Django administrators. Mark them read from the list.
 

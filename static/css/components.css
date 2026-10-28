@@ -24,12 +24,6 @@
 .project-body h3 a { color: var(--color-heading); }
 .project-body p { color: var(--color-muted); font-size: .9rem; }
 .project-body .text-link { font-size: .85rem; }
-.sample-innovation-visual { position: relative; display: grid; min-height: 210px; place-items: center; color: #9de5b0; background: radial-gradient(circle at 65% 25%, rgba(0,169,58,.3), transparent 32%), linear-gradient(145deg, #173c2a, #071e15); }
-.sample-innovation-visual > i { font-size: 4rem; filter: drop-shadow(0 10px 25px rgba(0,0,0,.2)); }
-.sample-innovation-visual .stage-badge { position: absolute; right: 1rem; bottom: 1rem; }
-.preview-project-card { display: flex; flex-direction: column; }
-.preview-project-card .project-body { display: flex; flex: 1; flex-direction: column; }
-.preview-project-card .preview-note { display: inline-flex; align-items: center; gap: .4rem; margin-top: auto; padding-top: .8rem; color: var(--color-muted); border-top: 1px solid var(--color-line); font-size: .75rem; font-weight: 700; }
 
 .empty-state { max-width: 760px; margin: 1rem auto 0; padding: clamp(2rem, 5vw, 4rem); text-align: center; background: rgba(255,255,255,.06); border: 1px dashed rgba(255,255,255,.2); border-radius: var(--radius); }
 .empty-state .icon-box { margin: 0 auto 1rem; }
@@ -39,7 +33,6 @@
 .section:not(.dark-section) .empty-state h3 { color: var(--color-heading); }
 
 .event-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-.event-list-two { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 950px; margin-inline: auto; }
 .event-card { display: grid; grid-template-columns: 70px 1fr; gap: 1rem; padding: 1.5rem; background: #fff; border: 1px solid var(--color-line); border-radius: var(--radius); }
 .event-card time { display: flex; flex-direction: column; align-items: center; align-self: start; padding: .8rem .35rem; color: #fff; background: var(--color-primary-deep); border-radius: .7rem; }
 .event-card time b { font-size: 1.5rem; line-height: 1; }
@@ -47,7 +40,6 @@
 .event-card h3 { margin: .4rem 0 .65rem; }
 .event-card p { color: var(--color-muted); font-size: .88rem; }
 .event-venue { color: var(--color-primary-dark); font-size: .75rem; font-weight: 750; }
-.event-draft { display: block; margin-bottom: .35rem; color: #8b6412; font-size: .65rem; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
 
 .achievement-grid { grid-template-columns: repeat(3, 1fr); }
 .achievement-card { padding: 2rem; background: #fff; border: 1px solid var(--color-line); border-radius: var(--radius); }

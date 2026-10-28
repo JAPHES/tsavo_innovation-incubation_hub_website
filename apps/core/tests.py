@@ -31,7 +31,9 @@ class CorePageTests(TestCase):
         self.assertIn("What TIIH Does", html)
         self.assertIn("Dr. Mwakio Mwagandi", html)
         self.assertIn("SolarSmart Irrigation Kit", html)
-        self.assertEqual(html.count("Draft event"), 2)
+        self.assertIn("Innovation Pitch &amp; Partnership Forum", html)
+        self.assertNotIn("Draft event", html)
+        self.assertLess(html.index("Jirani Market Link"), html.index("View all innovations"))
         self.assertNotIn("Temporary non-institutional image", html)
         self.assertNotIn('class="nav-contact', html)
         self.assertNotIn('class="brand" href=', html)
@@ -48,7 +50,17 @@ class CorePageTests(TestCase):
         self.assertNotContains(response, "Past approved event")
 
     def test_required_static_assets_resolve(self):
-        for asset in ["css/main.css", "js/main.js", "images/banners/home_hero.jpg", "images/placeholders/project_default.jpg", "images/team/chair_placeholder_generated.jpg"]:
+        for asset in [
+            "css/main.css",
+            "js/main.js",
+            "images/banners/home_hero.jpg",
+            "images/placeholders/project_default.jpg",
+            "images/team/chair_placeholder_generated.jpg",
+            "images/branding/tiih_logo_round.png",
+            "images/innovations/solarsmart-irrigation.jpg",
+            "images/innovations/ecobrick-build-lab.jpg",
+            "images/innovations/jirani-market-link.jpg",
+        ]:
             self.assertIsNotNone(finders.find(asset), asset)
 
     def test_robots_and_sitemap_load(self):

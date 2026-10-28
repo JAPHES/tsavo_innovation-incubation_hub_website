@@ -18,13 +18,11 @@ def home(request):
         InnovationProject.objects.filter(is_published=True, is_featured=True)[:3]
     )
     upcoming_events = list(
-        Event.objects.filter(is_published=True, start_datetime__gte=timezone.now())[:2]
+        Event.objects.filter(is_published=True, start_datetime__gte=timezone.now())[:3]
     )
-    events_are_examples = not upcoming_events
-    if events_are_examples:
+    if not upcoming_events:
         upcoming_events = [
             SimpleNamespace(
-                preview_only=True,
                 title="Innovation Ideation & Design Sprint",
                 description="A practical session for students and emerging entrepreneurs to define problems, test ideas and shape early solution concepts.",
                 venue="TIIH, Taita Taveta University",
@@ -32,11 +30,17 @@ def home(request):
                 registration_url="",
             ),
             SimpleNamespace(
-                preview_only=True,
                 title="Startup Readiness & Business Model Clinic",
                 description="An interactive clinic focused on customer discovery, business-model refinement and preparing a clear venture pitch.",
                 venue="TIIH, Taita Taveta University",
                 start_datetime=timezone.now() + timedelta(days=49),
+                registration_url="",
+            ),
+            SimpleNamespace(
+                title="Innovation Pitch & Partnership Forum",
+                description="A showcase connecting emerging innovators with mentors, university partners and enterprise-support networks.",
+                venue="University Auditorium, Taita Taveta University",
+                start_datetime=timezone.now() + timedelta(days=77),
                 registration_url="",
             ),
         ]
@@ -46,10 +50,8 @@ def home(request):
         "chair_message": ChairMessage.objects.filter(is_published=True).first(),
         "services": Service.objects.filter(is_published=True)[:4],
         "featured_projects": featured_projects or SAMPLE_INNOVATIONS,
-        "innovations_are_examples": not featured_projects,
         "programs": Program.objects.filter(is_published=True)[:4],
         "upcoming_events": upcoming_events,
-        "events_are_examples": events_are_examples,
     })
     return render(request, "core/home.html", context)
 

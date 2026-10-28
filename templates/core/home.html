@@ -22,12 +22,11 @@
   <div class="container chair-layout">
     <div class="chair-photo reveal">
       <img src="{% if chair_message.photograph %}{{ chair_message.photograph.url }}{% else %}{% static 'images/team/chair_placeholder_generated.jpg' %}{% endif %}" alt="{% if chair_message.photograph %}Portrait of {{ chair_message.chair_name }}{% else %}Temporary professional portrait placeholder for the chair's message{% endif %}" loading="lazy">
-      <span>{% if chair_message.photograph %}Chair's photograph{% else %}Temporary portrait{% endif %}</span>
     </div>
     <div class="chair-copy reveal">
       <span class="quote-mark" aria-hidden="true">“</span>
       {% include "partials/section_heading.html" with eyebrow="Welcome" heading="Message from the Chair" %}
-      <blockquote>{% if chair_message %}{{ chair_message.message|linebreaksbr }}{% else %}Welcome to the Tsavo Innovation & Incubation Hub—a place where promising ideas are nurtured into practical solutions and sustainable ventures. We bring together students, researchers, entrepreneurs, industry partners and communities to learn, experiment and build with purpose. Whether you are developing a new idea, strengthening an enterprise or seeking a meaningful partnership, we invite you to engage with TIIH and help shape an innovative, inclusive and enterprising future.{% endif %}</blockquote>
+      <blockquote>{% if chair_message %}{{ chair_message.message|linebreaksbr }}{% else %}Welcome to the Tsavo Innovation & Incubation Hub, where ideas are nurtured into practical solutions and sustainable ventures. TIIH brings together students, researchers, entrepreneurs, industry partners and communities to learn, experiment and build with purpose. Through mentorship, skills development and collaborative networks, we help innovators move confidently from concept to impact. Whether you are shaping a new idea, strengthening an enterprise or seeking partnership, we invite you to engage with TIIH and help build an innovative, inclusive and enterprising future.{% endif %}</blockquote>
       <div class="chair-credit">
         <b>{{ chair_message.chair_name|default:"Dr. Mwakio Mwagandi" }}</b>
         <span>{{ chair_message.official_position|default:"Chair, Tsavo Innovation & Incubation Hub" }}</span>
@@ -48,19 +47,17 @@
 
 <section class="section dark-section" id="innovations">
   <div class="container">
-    <div class="section-top">
-      <div class="section-heading light">
-        <span class="eyebrow light">Innovation showcase</span>
-        <h2>Ideas with potential for real-world impact</h2>
-        {% if innovations_are_examples %}<p>These illustrative concepts show how featured innovations will appear here and can be replaced with approved TIIH projects.</p>{% else %}<p>Explore selected projects being developed by innovators connected to the hub.</p>{% endif %}
-      </div>
-      <a class="btn btn-outline-light" href="{% url 'projects:list' %}">View all innovations</a>
+    <div class="section-heading light">
+      <span class="eyebrow light">Innovation showcase</span>
+      <h2>Ideas with potential for real-world impact</h2>
+      <p>Explore selected projects being developed by innovators connected to the hub.</p>
     </div>
     <div class="card-grid project-grid">
       {% for project in featured_projects %}
         {% if project.preview_only %}{% include "partials/innovation_preview_card.html" %}{% else %}{% include "partials/project_card.html" %}{% endif %}
       {% endfor %}
     </div>
+    <div class="section-action"><a class="btn btn-outline-light" href="{% url 'projects:list' %}">View all innovations <i class="bi bi-arrow-right" aria-hidden="true"></i></a></div>
   </div>
 </section>
 
@@ -83,12 +80,8 @@
 
 <section class="section soft-section" id="events">
   <div class="container">
-    {% if events_are_examples %}
-      {% include "partials/section_heading.html" with centered=True eyebrow="What's ahead" heading="Upcoming events" text="Two draft events are shown as layout examples and can be replaced with confirmed TIIH activities." %}
-    {% else %}
-      {% include "partials/section_heading.html" with centered=True eyebrow="What's ahead" heading="Upcoming events" text="Join upcoming workshops, forums and hub activities." %}
-    {% endif %}
-    <div class="event-list event-list-two">
+    {% include "partials/section_heading.html" with centered=True eyebrow="What's ahead" heading="Upcoming events" text="Join upcoming workshops, forums and hub activities." %}
+    <div class="event-list">
       {% for event in upcoming_events %}{% include "partials/event_card.html" %}{% endfor %}
     </div>
   </div>

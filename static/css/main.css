@@ -108,10 +108,9 @@ p { margin-top: 0; }
 .chair-layout { display: grid; grid-template-columns: minmax(280px, .62fr) 1.38fr; gap: clamp(3rem, 7vw, 7rem); align-items: center; }
 .chair-photo { position: relative; }
 .chair-photo img { width: 100%; aspect-ratio: .82; object-fit: cover; object-position: center 42%; background: #dce9df; border-radius: var(--radius-lg); }
-.chair-photo span { position: absolute; right: 1rem; bottom: 1rem; padding: .45rem .7rem; color: #fff; background: rgba(6, 77, 41, .88); border-radius: .4rem; font-size: .72rem; font-weight: 700; }
 .chair-copy { position: relative; }
 .quote-mark { position: absolute; top: -2.5rem; right: 0; color: rgba(0, 169, 58, .13); font-family: Georgia, serif; font-size: 10rem; line-height: 1; }
-.chair-copy blockquote { max-width: 740px; color: var(--color-heading); font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.2rem, 2vw, 1.55rem); line-height: 1.75; }
+.chair-copy blockquote { max-width: 740px; color: var(--color-heading); font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.05rem, 1.55vw, 1.3rem); line-height: 1.68; }
 .chair-credit { display: flex; flex-direction: column; margin-top: 1.5rem; padding-left: 1rem; border-left: 3px solid var(--color-primary); }
 .chair-credit b { color: var(--color-heading); }
 .chair-credit span { color: var(--color-muted); font-size: .9rem; }
@@ -209,8 +208,8 @@ p { margin-top: 0; }
 .site-footer h2, .site-footer h3 { color: #fff; }
 .site-footer h2 { margin: .8rem 0 .2rem; font-size: 1.3rem; }
 .site-footer h3 { margin-bottom: 1.2rem; font-size: .92rem; letter-spacing: .08em; text-transform: uppercase; }
-.footer-logo { display: inline-grid; width: 72px; height: 72px; padding: .3rem; place-items: center; overflow: hidden; background: #fff; border: 2px solid rgba(255,255,255,.18); border-radius: 50%; }
-.footer-logo img { width: 100%; height: 100%; object-fit: contain; }
+.footer-logo { display: inline-grid; width: 106px; height: 106px; padding: .22rem; place-items: center; overflow: hidden; background: #fff; border: 3px solid rgba(135,229,162,.5); border-radius: 50%; box-shadow: 0 10px 30px rgba(0,0,0,.18); }
+.footer-logo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 .footer-motto { color: #87e5a2; font-size: .78rem; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; }
 .footer-links { display: grid; gap: .6rem; margin: 0; padding: 0; list-style: none; }
 .footer-links a, .footer-university-link { color: rgba(255,255,255,.72); }

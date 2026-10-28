@@ -83,14 +83,13 @@ class Command(BaseCommand):
             "chair_name": "Dr. Mwakio Mwagandi",
             "official_position": "Chair, Tsavo Innovation & Incubation Hub",
             "message": (
-                "Welcome to the Tsavo Innovation & Incubation Hub—a place where promising ideas "
-                "are nurtured into practical solutions and sustainable ventures. Our hub brings "
-                "together students, researchers, entrepreneurs, industry partners and communities "
-                "to learn, experiment and build with purpose. We are committed to providing the "
-                "mentorship, skills, networks and collaborative environment innovators need to move "
-                "confidently from concept to impact. Whether you are developing a new idea, "
-                "strengthening an existing enterprise or seeking a meaningful partnership, we invite "
-                "you to engage with TIIH and help shape an innovative, inclusive and enterprising future."
+                "Welcome to the Tsavo Innovation & Incubation Hub, where ideas are nurtured into "
+                "practical solutions and sustainable ventures. TIIH brings together students, "
+                "researchers, entrepreneurs, industry partners and communities to learn, experiment "
+                "and build with purpose. Through mentorship, skills development and collaborative "
+                "networks, we help innovators move confidently from concept to impact. Whether you "
+                "are shaping a new idea, strengthening an enterprise or seeking partnership, we invite "
+                "you to engage with TIIH and help build an innovative, inclusive and enterprising future."
             ),
             "is_published": True,
         }, reset)
