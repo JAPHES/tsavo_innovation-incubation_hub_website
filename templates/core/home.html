@@ -21,7 +21,7 @@
 <section class="section soft-section chair-section" id="chair-message">
   <div class="container chair-layout">
     <div class="chair-photo reveal">
-      <img src="{% if chair_message.photograph %}{{ chair_message.photograph.url }}{% else %}{% static 'images/team/chair_placeholder_generated.jpg' %}{% endif %}" alt="{% if chair_message.photograph %}Portrait of {{ chair_message.chair_name }}{% else %}Temporary professional portrait placeholder for the chair's message{% endif %}" loading="lazy">
+      <img src="{% if chair_message.photograph %}{{ chair_message.photograph.url }}{% else %}{% static 'images/team/chair_dr_mwakio_mwagandi.jpg' %}{% endif %}" alt="Portrait of {{ chair_message.chair_name|default:'Dr. Mwakio Mwagandi' }}" loading="lazy">
     </div>
     <div class="chair-copy reveal">
       <span class="quote-mark" aria-hidden="true">“</span>

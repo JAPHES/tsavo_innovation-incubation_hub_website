@@ -55,7 +55,7 @@ class CorePageTests(TestCase):
             "js/main.js",
             "images/banners/home_hero.jpg",
             "images/placeholders/project_default.jpg",
-            "images/team/chair_placeholder_generated.jpg",
+            "images/team/chair_dr_mwakio_mwagandi.jpg",
             "images/branding/tiih_logo_round.png",
             "images/innovations/solarsmart-irrigation.jpg",
             "images/innovations/ecobrick-build-lab.jpg",

@@ -13,7 +13,7 @@ Replace a file with an approved image using the same filename to avoid changing 
 | `static/images/banners/team_banner.jpg` | 1920 × 650 | Team banner | Approved group photograph, with consent from everyone shown. |
 | `static/images/banners/contact_banner.jpg` | 1920 × 650 | Contact banner | Approved TIIH or TTU location photograph. |
 | `static/images/home/about_hub.jpg` | 1400 × 1050 | Homepage About the Hub section | Approved photograph of the hub, students, or facility. |
-| `static/images/team/chair_placeholder_generated.jpg` | 900 × 1125 | Homepage Chair message fallback | AI-generated, non-identifying placeholder. Replace with the approved portrait of Dr. Mwakio Mwagandi. Admin upload takes priority. |
+| `static/images/team/chair_dr_mwakio_mwagandi.jpg` | 900 × 1125 | Homepage Chair message fallback | Supplied photograph of Dr. Mwakio Mwagandi, cropped for the homepage. Admin upload takes priority. |
 | `static/images/placeholders/project_default.jpg` | 1200 × 800 | Project cards and details without uploads | Keep as a neutral fallback or replace with an approved generic innovation image. |
 | `static/images/placeholders/team_member_default.jpg` | 800 × 1000 | Team profiles without uploads | Keep neutral; individual admin uploads take priority. |
 | `static/images/branding/tiih_logo.png` | Up to 1000 × 1000 PNG | Header and browser icon | Supplied TIIH logo, optimized without distortion. Replace only with a newly approved official version. |
