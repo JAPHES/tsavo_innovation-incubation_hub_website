@@ -47,9 +47,12 @@
 .achievement-card h3 { margin: .7rem 0; }
 
 .values-grid { grid-template-columns: repeat(4, 1fr); }
-.value-card { padding: 2rem; color: rgba(255,255,255,.72); background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius); }
+.value-card { position: relative; min-height: 280px; padding: 2rem; overflow: hidden; color: var(--color-text); background: rgba(255,255,255,.94); border: 1px solid #cfe1ec; border-radius: var(--radius); box-shadow: 0 14px 36px rgba(35,91,126,.08); transition: transform .25s ease, box-shadow .25s ease; }
+.value-card::before { position: absolute; top: 0; right: 0; bottom: 0; width: 3px; background: var(--color-secondary); content: ""; }
+.value-card:hover { box-shadow: 0 20px 44px rgba(35,91,126,.13); transform: translateY(-4px); }
+.value-card .icon-box { color: #1769aa; background: #e7f3fb; }
 .value-card h3 { margin: 2rem 0 .65rem; }
-.value-card p { margin: 0; font-size: .9rem; }
+.value-card p { margin: 0; color: var(--color-muted); font-size: .9rem; }
 .focus-grid { grid-template-columns: repeat(3, 1fr); }
 .focus-card { padding: 2rem; background: #fff; border: 1px solid var(--color-line); border-radius: var(--radius); }
 .focus-card h3 { margin: 2rem 0 .65rem; }

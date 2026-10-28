@@ -43,6 +43,14 @@ class CorePageTests(TestCase):
     def test_banner_static_fallback_renders(self):
         response = self.client.get(reverse("core:about"))
         self.assertContains(response, "images/banners/about_banner.jpg")
+        self.assertContains(response, "TIIH: Where Innovation Takes Root")
+
+    def test_about_foundation_and_values_layout(self):
+        html = self.client.get(reverse("core:about")).content.decode()
+        self.assertIn('class="section pillars-section"', html)
+        self.assertEqual(html.count('class="vision-card"'), 3)
+        self.assertIn('class="section values-section"', html)
+        self.assertNotIn('class="section dark-section"', html)
 
     def test_upcoming_event_is_shown_and_past_event_is_hidden(self):
         Event.objects.create(title="Future approved event", slug="future-event", description="Future", venue="Online", start_datetime=timezone.now() + timedelta(days=3), is_published=True)

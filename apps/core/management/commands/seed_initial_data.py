@@ -28,7 +28,7 @@ class Command(BaseCommand):
 
         banners = {
             "home": ("Cultivating Entrepreneurs", "Empowering innovators, nurturing entrepreneurship, and transforming ideas into sustainable ventures.", "Students collaborating in a university innovation workspace"),
-            "about": ("About Tsavo Innovation & Incubation Hub", "Creating an environment where innovation and entrepreneurship can flourish.", "Entrepreneurs collaborating during a mentoring session"),
+            "about": ("TIIH: Where Innovation Takes Root", "Discover the purpose, vision and values guiding a hub built to turn ideas into meaningful enterprise and impact.", "Entrepreneurs collaborating during a mentoring session"),
             "services": ("Our Services", "Supporting innovators and entrepreneurs from ideas to sustainable ventures.", "Students taking part in a practical innovation workshop"),
             "projects": ("Innovation Projects", "Discovering ideas and innovations with the potential to create real-world impact.", "An agritech prototype being tested in the field"),
             "team": ("Meet Our Team", "The people supporting innovation, entrepreneurship and incubation at TIIH.", "A collaborative university innovation team"),

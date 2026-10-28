@@ -3,10 +3,82 @@
 {% block meta_description %}Learn about TIIH's purpose, mission, vision, objectives, values and focus areas at Taita Taveta University.{% endblock %}
 {% block content %}
 {% include "partials/page_banner.html" %}
-<section class="section"><div class="container narrow-copy">{% include "partials/section_heading.html" with eyebrow="Who we are" heading="A place for ideas to become useful ventures" %}<p class="lead">TIIH operates under Taita Taveta University to support innovation, business incubation, entrepreneurship, mentoring, training and the commercialization of innovations.</p><p>The hub's purpose is to help students, staff and community members move thoughtfully from problem discovery and ideation toward product development, stronger venture models and appropriate market connections.</p></div></section>
-<section class="section soft-section"><div class="container vision-grid"><article class="vision-card featured"><span class="icon-box"><i class="bi bi-eye" aria-hidden="true"></i></span><span class="eyebrow">Our vision</span><h2>“{{ settings_record.vision|default:"A flourishing society powered by innovation and entrepreneurship" }}”</h2></article><article class="vision-card"><span class="icon-box"><i class="bi bi-compass" aria-hidden="true"></i></span><span class="eyebrow">Our mission</span><p>{{ settings_record.mission|default:"To create an environment that nurtures the spawning of a dynamic community of entrepreneurs who produce sustainable ventures that positively impact livelihoods" }}</p></article><article class="vision-card"><span class="icon-box"><i class="bi bi-bullseye" aria-hidden="true"></i></span><span class="eyebrow">Main objective</span><p>{{ settings_record.main_objective|default:"To create entrepreneurs through innovation, business incubation, and development." }}</p></article></div></section>
-<section class="section"><div class="container objectives-layout"><div>{% include "partials/section_heading.html" with eyebrow="What guides us" heading="Specific objectives" text="A practical mandate connecting innovation, enterprise development and positive impact." %}</div><ol class="objective-list"><li>Encourage and support innovations from students, staff and community members through ideation, product development, mentoring, coaching, training and commercialization.</li><li>Provide linkages for access to funds, markets and value chain players.</li><li>Leverage intellectual property from the University and research institutions.</li><li>Contribute to the acceleration of businesses.</li><li>Support startup development, job creation, technological advancement and solutions to societal needs.</li><li>Promote an innovation culture through workshops, events and hackathons.</li></ol></div></section>
-<section class="section dark-section"><div class="container">{% include "partials/section_heading.html" with centered=True eyebrow="How we work" heading="Our core values" text="The principles shaping how we learn, collaborate and serve." %}<div class="card-grid values-grid">{% for value in core_values %}<article class="value-card"><span class="icon-box"><i class="bi {{ value.icon }}" aria-hidden="true"></i></span><h3>{{ value.name }}</h3><p>{{ value.description }}</p></article>{% endfor %}</div></div></section>
-<section class="section"><div class="container">{% include "partials/section_heading.html" with centered=True eyebrow="Where we focus" heading="Innovation grounded in regional opportunity" text="Six documented focus areas connect university knowledge with enterprise and societal needs." %}<div class="card-grid focus-grid">{% for area in focus_areas %}<article class="focus-card"><span class="icon-box"><i class="bi {{ area.icon }}" aria-hidden="true"></i></span><h3>{{ area.name }}</h3><p>{{ area.description }}</p></article>{% endfor %}</div></div></section>
-<section class="association-section"><div class="container association-inner"><div><span class="eyebrow">Institutional association</span><h2>Part of Taita Taveta University</h2><p>TIIH advances innovation and entrepreneurship within the University's wider teaching, research and outreach environment.</p></div><a class="btn btn-brand" href="https://ttu.ac.ke/" target="_blank" rel="noopener">Visit the official TTU website <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a></div></section>
+
+<section class="section">
+  <div class="container narrow-copy">
+    {% include "partials/section_heading.html" with eyebrow="About TIIH" heading="The hub behind bold ideas and stronger ventures" %}
+    <p class="lead">TIIH operates under Taita Taveta University to support innovation, business incubation, entrepreneurship, mentoring, training and the commercialization of innovations.</p>
+    <p>The hub's purpose is to help students, staff and community members move thoughtfully from problem discovery and ideation toward product development, stronger venture models and appropriate market connections.</p>
+  </div>
+</section>
+
+<section class="section pillars-section" id="tiih-foundation">
+  <div class="container">
+    {% include "partials/section_heading.html" with centered=True eyebrow="The TIIH foundation" heading="One purpose, three guiding commitments" text="Our vision, mission and main objective keep every programme focused on responsible innovation, enterprise and impact." %}
+    <div class="vision-grid">
+      <article class="vision-card">
+        <span class="icon-box"><i class="bi bi-eye" aria-hidden="true"></i></span>
+        <span class="eyebrow">Our vision</span>
+        <h3>{{ settings_record.vision|default:"A flourishing society powered by innovation and entrepreneurship" }}</h3>
+      </article>
+      <article class="vision-card">
+        <span class="icon-box"><i class="bi bi-compass" aria-hidden="true"></i></span>
+        <span class="eyebrow">Our mission</span>
+        <h3>{{ settings_record.mission|default:"To create an environment that nurtures the spawning of a dynamic community of entrepreneurs who produce sustainable ventures that positively impact livelihoods" }}</h3>
+      </article>
+      <article class="vision-card">
+        <span class="icon-box"><i class="bi bi-bullseye" aria-hidden="true"></i></span>
+        <span class="eyebrow">Main objective</span>
+        <h3>{{ settings_record.main_objective|default:"To create entrepreneurs through innovation, business incubation, and development." }}</h3>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container objectives-layout">
+    <div>{% include "partials/section_heading.html" with eyebrow="What guides us" heading="Specific objectives" text="A practical mandate connecting innovation, enterprise development and positive impact." %}</div>
+    <ol class="objective-list">
+      <li>Encourage and support innovations from students, staff and community members through ideation, product development, mentoring, coaching, training and commercialization.</li>
+      <li>Provide linkages for access to funds, markets and value chain players.</li>
+      <li>Leverage intellectual property from the University and research institutions.</li>
+      <li>Contribute to the acceleration of businesses.</li>
+      <li>Support startup development, job creation, technological advancement and solutions to societal needs.</li>
+      <li>Promote an innovation culture through workshops, events and hackathons.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="section values-section" id="core-values">
+  <div class="container">
+    {% include "partials/section_heading.html" with centered=True eyebrow="How we work" heading="Our core values" text="The principles shaping how we learn, collaborate and serve." %}
+    <div class="card-grid values-grid">
+      {% for value in core_values %}
+      <article class="value-card">
+        <span class="icon-box"><i class="bi {{ value.icon }}" aria-hidden="true"></i></span>
+        <h3>{{ value.name }}</h3>
+        <p>{{ value.description }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {% include "partials/section_heading.html" with centered=True eyebrow="Where we focus" heading="Innovation grounded in regional opportunity" text="Six documented focus areas connect university knowledge with enterprise and societal needs." %}
+    <div class="card-grid focus-grid">
+      {% for area in focus_areas %}
+      <article class="focus-card"><span class="icon-box"><i class="bi {{ area.icon }}" aria-hidden="true"></i></span><h3>{{ area.name }}</h3><p>{{ area.description }}</p></article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="association-section">
+  <div class="container association-inner">
+    <div><span class="eyebrow">Institutional association</span><h2>Part of Taita Taveta University</h2><p>TIIH advances innovation and entrepreneurship within the University's wider teaching, research and outreach environment.</p></div>
+    <a class="btn btn-brand" href="https://ttu.ac.ke/" target="_blank" rel="noopener">Visit the official TTU website <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+  </div>
+</section>
 {% endblock %}

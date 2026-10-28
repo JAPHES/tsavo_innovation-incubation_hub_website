@@ -9,7 +9,7 @@ BANNER_FALLBACKS = {
 }
 BANNER_DEFAULTS = {
     "home": ("Cultivating Entrepreneurs", "Empowering innovators, nurturing entrepreneurship, and transforming ideas into sustainable ventures."),
-    "about": ("About Tsavo Innovation & Incubation Hub", "Creating an environment where innovation and entrepreneurship can flourish."),
+    "about": ("TIIH: Where Innovation Takes Root", "Discover the purpose, vision and values guiding a hub built to turn ideas into meaningful enterprise and impact."),
     "services": ("Our Services", "Supporting innovators and entrepreneurs from ideas to sustainable ventures."),
     "projects": ("Innovation Projects", "Discovering ideas and innovations with the potential to create real-world impact."),
     "team": ("Meet Our Team", "The people supporting innovation, entrepreneurship and incubation at TIIH."),

@@ -24,7 +24,7 @@
   .project-grid, .event-list, .focus-grid, .team-grid, .achievement-grid { grid-template-columns: repeat(2, 1fr); }
   .values-grid { grid-template-columns: repeat(2, 1fr); }
   .vision-grid { grid-template-columns: 1fr; }
-  .vision-card.featured { grid-row: auto; }
+  .vision-card { min-height: auto; }
   .filter-bar { grid-template-columns: 1fr 1fr; }
   .search-field { grid-column: 1 / -1; }
   .cta-inner, .association-inner { align-items: flex-start; flex-direction: column; }

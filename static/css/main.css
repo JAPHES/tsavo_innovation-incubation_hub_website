@@ -132,12 +132,17 @@ p { margin-top: 0; }
 .cta-inner h2 { max-width: 750px; margin: .45rem 0 .7rem; color: #fff; }
 .cta-inner p { margin: 0; color: rgba(255,255,255,.75); }
 
-.vision-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.25rem; }
-.vision-card { min-height: 280px; padding: clamp(2rem, 4vw, 3.5rem); background: #fff; border: 1px solid var(--color-line); border-radius: var(--radius); }
-.vision-card.featured { grid-row: span 2; display: flex; flex-direction: column; justify-content: center; color: #fff; background: var(--color-primary-deep); border: 0; }
-.vision-card.featured h2 { max-width: 570px; color: #fff; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2rem, 3.5vw, 3.1rem); font-weight: 500; line-height: 1.35; }
-.vision-card.featured .eyebrow { color: #8ce6a5; }
-.vision-card p { margin: 1.2rem 0 0; color: var(--color-heading); font-size: 1.12rem; }
+.pillars-section { background: linear-gradient(145deg, #f7faf6, #eef6ef); border-block: 1px solid #dfeadf; }
+.vision-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+.vision-card { position: relative; min-height: 340px; padding: clamp(2rem, 3vw, 2.75rem); overflow: hidden; background: rgba(255,255,255,.94); border: 1px solid #d8e6dc; border-radius: var(--radius); box-shadow: 0 16px 42px rgba(16,61,38,.07); }
+.vision-card::before { position: absolute; top: 0; right: 0; left: 0; height: 4px; background: var(--color-primary); content: ""; }
+.vision-card:nth-child(2)::before { background: var(--color-secondary); }
+.vision-card:nth-child(3)::before { background: #e4ad2d; }
+.vision-card .icon-box { margin-bottom: 2.5rem; }
+.vision-card:nth-child(2) .icon-box { color: #1769aa; background: #e7f3fb; }
+.vision-card:nth-child(3) .icon-box { color: #8a6518; background: #fff5d6; }
+.vision-card h3 { margin: .8rem 0 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.25rem, 1.75vw, 1.65rem); font-weight: 600; line-height: 1.48; }
+.values-section { background: radial-gradient(circle at 12% 18%, rgba(25,118,210,.1), transparent 30%), linear-gradient(135deg, #edf6fc, #f7fbfe); border-block: 1px solid #d4e5f0; }
 .objectives-layout { display: grid; grid-template-columns: .7fr 1.3fr; gap: clamp(3rem, 8vw, 8rem); align-items: start; }
 .objective-list { margin: 0; padding: 0; list-style: none; counter-reset: objective; }
 .objective-list li { position: relative; min-height: 66px; padding: 0 0 1.35rem 4.4rem; color: var(--color-heading); border-bottom: 1px solid var(--color-line); counter-increment: objective; }
