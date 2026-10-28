@@ -20,9 +20,21 @@ class CorePageTests(TestCase):
 
     def test_homepage_section_order(self):
         html = self.client.get(reverse("core:home")).content.decode()
-        section_ids = ["about-hub", "chair-message", "services", "innovations", "programs", "events", "highlights"]
+        section_ids = ["about-hub", "chair-message", "services", "innovations", "programs", "events"]
         positions = [html.index(f'id="{section_id}"') for section_id in section_ids]
         self.assertEqual(positions, sorted(positions))
+        self.assertNotIn('id="highlights"', html)
+
+    def test_homepage_requested_content_and_navigation_updates(self):
+        html = self.client.get(reverse("core:home")).content.decode()
+        self.assertIn("About TIIH", html)
+        self.assertIn("What TIIH Does", html)
+        self.assertIn("Dr. Mwakio Mwagandi", html)
+        self.assertIn("SolarSmart Irrigation Kit", html)
+        self.assertEqual(html.count("Draft event"), 2)
+        self.assertNotIn("Temporary non-institutional image", html)
+        self.assertNotIn('class="nav-contact', html)
+        self.assertNotIn('class="brand" href=', html)
 
     def test_banner_static_fallback_renders(self):
         response = self.client.get(reverse("core:about"))
@@ -36,7 +48,7 @@ class CorePageTests(TestCase):
         self.assertNotContains(response, "Past approved event")
 
     def test_required_static_assets_resolve(self):
-        for asset in ["css/main.css", "js/main.js", "images/banners/home_hero.jpg", "images/placeholders/project_default.jpg"]:
+        for asset in ["css/main.css", "js/main.js", "images/banners/home_hero.jpg", "images/placeholders/project_default.jpg", "images/team/chair_placeholder_generated.jpg"]:
             self.assertIsNotNone(finders.find(asset), asset)
 
     def test_robots_and_sitemap_load(self):
