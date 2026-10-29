@@ -1,9 +1,8 @@
 {% load static %}
 <header class="site-header" data-header>
   <div class="institution-bar">
-    <div class="container d-flex justify-content-between align-items-center gap-3">
+    <div class="container d-flex align-items-center">
       <span><i class="bi bi-mortarboard-fill" aria-hidden="true"></i> An innovation hub of Taita Taveta University</span>
-      <a href="https://ttu.ac.ke/" target="_blank" rel="noopener">Visit TTU <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a>
     </div>
   </div>
   <nav class="main-nav" aria-label="Primary navigation">
@@ -20,6 +19,7 @@
         <a class="{% if request.resolver_match.namespace == 'projects' %}active{% endif %}" href="{% url 'projects:list' %}">Innovation Projects</a>
         <a class="{% if request.resolver_match.namespace == 'team' %}active{% endif %}" href="{% url 'team:list' %}">Our Team</a>
         <a class="{% if request.resolver_match.namespace == 'contact' %}active{% endif %}" href="{% url 'contact:contact' %}">Contact Us</a>
+        <a href="https://ttu.ac.ke/" target="_blank" rel="noopener" aria-label="Visit Taita Taveta University (opens in a new tab)">Visit TTU</a>
       </div>
     </div>
   </nav>
