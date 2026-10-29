@@ -43,12 +43,17 @@ class CorePageTests(TestCase):
     def test_banner_static_fallback_renders(self):
         response = self.client.get(reverse("core:about"))
         self.assertContains(response, "images/banners/about_banner.jpg")
-        self.assertContains(response, "TIIH: Where Innovation Takes Root")
+        self.assertContains(response, "Where Innovation Takes Root")
+        self.assertNotContains(response, "TIIH: Where Innovation Takes Root")
 
     def test_about_foundation_and_values_layout(self):
         html = self.client.get(reverse("core:about")).content.decode()
         self.assertIn('class="section pillars-section"', html)
         self.assertEqual(html.count('class="vision-card"'), 3)
+        self.assertIn('<span class="eyebrow">Vision</span>', html)
+        self.assertIn('<span class="eyebrow">Mission</span>', html)
+        self.assertNotIn('<span class="eyebrow">Our vision</span>', html)
+        self.assertNotIn('<span class="eyebrow">Our mission</span>', html)
         self.assertIn('class="section values-section"', html)
         self.assertNotIn('class="section dark-section"', html)
 
