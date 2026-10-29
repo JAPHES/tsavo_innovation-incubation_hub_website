@@ -11,7 +11,7 @@ class Event(models.Model):
     venue = models.CharField(max_length=220)
     start_datetime = models.DateTimeField(db_index=True)
     end_datetime = models.DateTimeField(blank=True, null=True)
-    image = models.ImageField(upload_to="events/", blank=True, validators=[validate_image_upload])
+    image = models.ImageField(upload_to="events/", blank=True, max_length=500, validators=[validate_image_upload])
     registration_url = models.URLField(blank=True)
     is_published = models.BooleanField(default=False, db_index=True)
 

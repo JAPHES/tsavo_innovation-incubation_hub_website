@@ -15,16 +15,19 @@ def env_bool(name: str, default: bool = False) -> bool:
     return os.getenv(name, str(default)).strip().lower() in {"1", "true", "yes", "on"}
 
 
-DEBUG = env_bool("DJANGO_DEBUG", True)
-SECRET_KEY = os.getenv("SECRET_KEY")
+IS_VERCEL = env_bool("VERCEL", False)
+DEBUG = env_bool("DJANGO_DEBUG", not IS_VERCEL)
+SECRET_KEY = os.getenv("SECRET_KEY") or os.getenv("DJANGO_SECRET_KEY")
 if not SECRET_KEY:
     if DEBUG:
         SECRET_KEY = "django-insecure-local-development-only-change-me"
     else:
         raise ImproperlyConfigured("SECRET_KEY must be set when DEBUG=False.")
 
-ALLOWED_HOSTS = [host.strip() for host in os.getenv("ALLOWED_HOSTS", "127.0.0.1,localhost").split(",") if host.strip()]
-CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in os.getenv("CSRF_TRUSTED_ORIGINS", "").split(",") if origin.strip()]
+default_hosts = "127.0.0.1,localhost,.vercel.app" if IS_VERCEL else "127.0.0.1,localhost"
+default_csrf_origins = "https://*.vercel.app" if IS_VERCEL else ""
+ALLOWED_HOSTS = [host.strip() for host in os.getenv("ALLOWED_HOSTS", default_hosts).split(",") if host.strip()]
+CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in os.getenv("CSRF_TRUSTED_ORIGINS", default_csrf_origins).split(",") if origin.strip()]
 
 INSTALLED_APPS = [
     "django.contrib.admin", "django.contrib.auth", "django.contrib.contenttypes",
@@ -56,6 +59,7 @@ DATABASES = {"default": dj_database_url.config(
     default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}", conn_max_age=600 if not DEBUG else 0,
     conn_health_checks=not DEBUG,
 )}
+DATABASES["default"]["DISABLE_SERVER_SIDE_CURSORS"] = env_bool("DISABLE_SERVER_SIDE_CURSORS", IS_VERCEL)
 
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
@@ -69,11 +73,18 @@ TIME_ZONE = "Africa/Nairobi"
 USE_I18N = True
 USE_TZ = True
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
-MEDIA_URL = "media/"
+MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+STORAGES = {
+    "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
+    "staticfiles": {"BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"},
+}
+BLOB_READ_WRITE_TOKEN = os.getenv("BLOB_READ_WRITE_TOKEN", "")
+if BLOB_READ_WRITE_TOKEN:
+    STORAGES["default"] = {"BACKEND": "tsavo_hub.storage.VercelBlobStorage"}
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 EMAIL_BACKEND = os.getenv("EMAIL_BACKEND", "django.core.mail.backends.console.EmailBackend" if DEBUG else "django.core.mail.backends.smtp.EmailBackend")
@@ -85,7 +96,8 @@ EMAIL_USE_TLS = env_bool("EMAIL_USE_TLS", True)
 DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL", "web@localhost")
 CONTACT_NOTIFICATION_EMAIL = os.getenv("CONTACT_NOTIFICATION_EMAIL", "tiih@ttu.ac.ke")
 
-SITE_ORIGIN = os.getenv("SITE_ORIGIN", "").rstrip("/")
+vercel_origin_host = os.getenv("VERCEL_PROJECT_PRODUCTION_URL") or os.getenv("VERCEL_URL", "")
+SITE_ORIGIN = os.getenv("SITE_ORIGIN", f"https://{vercel_origin_host}" if vercel_origin_host else "").rstrip("/")
 CONTACT_RATE_LIMIT = int(os.getenv("CONTACT_RATE_LIMIT", "5"))
 MAX_IMAGE_UPLOAD_SIZE = int(os.getenv("MAX_IMAGE_UPLOAD_SIZE", str(5 * 1024 * 1024)))
 

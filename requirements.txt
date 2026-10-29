@@ -3,3 +3,4 @@ Pillow>=11,<13
 python-dotenv>=1,<2
 dj-database-url>=2,<4
 psycopg[binary]>=3.2,<4
+vercel>=0.12,<1

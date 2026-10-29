@@ -47,7 +47,7 @@ class PageBanner(models.Model):
     page = models.CharField(max_length=20, choices=PAGE_CHOICES, unique=True)
     heading = models.CharField(max_length=160)
     supporting_text = models.CharField(max_length=280)
-    background_image = models.ImageField(upload_to="banners/", blank=True, validators=[validate_image_upload])
+    background_image = models.ImageField(upload_to="banners/", blank=True, max_length=500, validators=[validate_image_upload])
     image_alt_text = models.CharField(max_length=180)
 
     class Meta:
@@ -60,7 +60,7 @@ class PageBanner(models.Model):
 class ChairMessage(SingletonModel):
     chair_name = models.CharField(max_length=160, blank=True)
     official_position = models.CharField(max_length=160, default="Hub Chair")
-    photograph = models.ImageField(upload_to="team/", blank=True, validators=[validate_image_upload])
+    photograph = models.ImageField(upload_to="team/", blank=True, max_length=500, validators=[validate_image_upload])
     message = models.TextField()
     is_published = models.BooleanField(default=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -102,7 +102,7 @@ class FocusArea(models.Model):
 class Program(models.Model):
     title = models.CharField(max_length=160, unique=True)
     description = models.TextField(max_length=800)
-    image = models.ImageField(upload_to="programs/", blank=True, validators=[validate_image_upload])
+    image = models.ImageField(upload_to="programs/", blank=True, max_length=500, validators=[validate_image_upload])
     icon = models.CharField(max_length=60, default="bi-rocket-takeoff")
     is_published = models.BooleanField(default=False, db_index=True)
     application_url = models.URLField(blank=True)
@@ -124,7 +124,7 @@ class Program(models.Model):
 class Achievement(models.Model):
     title = models.CharField(max_length=180)
     description = models.TextField(max_length=1000)
-    image = models.ImageField(upload_to="achievements/", blank=True, validators=[validate_image_upload])
+    image = models.ImageField(upload_to="achievements/", blank=True, max_length=500, validators=[validate_image_upload])
     achievement_date = models.DateField(blank=True, null=True)
     is_published = models.BooleanField(default=False, db_index=True)
     display_order = models.PositiveSmallIntegerField(default=0)

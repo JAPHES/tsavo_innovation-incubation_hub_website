@@ -35,7 +35,7 @@ class InnovationProject(models.Model):
     key_features = models.TextField(blank=True, help_text="Enter one feature per line.")
     team_information = models.TextField(blank=True, help_text="Only include approved public information.")
     external_url = models.URLField(blank=True)
-    cover_image = models.ImageField(upload_to="projects/", blank=True, validators=[validate_image_upload])
+    cover_image = models.ImageField(upload_to="projects/", blank=True, max_length=500, validators=[validate_image_upload])
     is_featured = models.BooleanField(default=False, db_index=True)
     is_published = models.BooleanField(default=False, db_index=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -58,7 +58,7 @@ class InnovationProject(models.Model):
 
 class ProjectImage(models.Model):
     project = models.ForeignKey(InnovationProject, on_delete=models.CASCADE, related_name="gallery")
-    image = models.ImageField(upload_to="projects/gallery/", validators=[validate_image_upload])
+    image = models.ImageField(upload_to="projects/gallery/", max_length=500, validators=[validate_image_upload])
     alt_text = models.CharField(max_length=180)
     display_order = models.PositiveSmallIntegerField(default=0)
 

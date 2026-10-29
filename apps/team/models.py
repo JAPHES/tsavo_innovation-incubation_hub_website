@@ -7,7 +7,7 @@ class TeamMember(models.Model):
     full_name = models.CharField(max_length=160)
     role = models.CharField(max_length=140)
     biography = models.TextField(max_length=1200)
-    photograph = models.ImageField(upload_to="team/", blank=True, validators=[validate_image_upload])
+    photograph = models.ImageField(upload_to="team/", blank=True, max_length=500, validators=[validate_image_upload])
     display_order = models.PositiveSmallIntegerField(default=0)
     is_chair = models.BooleanField(default=False, db_index=True)
     is_active = models.BooleanField(default=True, db_index=True)
