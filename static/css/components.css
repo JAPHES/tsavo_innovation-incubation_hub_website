@@ -52,7 +52,7 @@
 .value-card:hover { box-shadow: 0 20px 44px rgba(35,91,126,.13); transform: translateY(-4px); }
 .value-card .icon-box { margin-inline: auto; color: #1769aa; background: #e7f3fb; }
 .value-card h3 { margin: 2rem 0 .65rem; }
-.value-card p { margin: 0; color: var(--color-muted); font-size: .9rem; }
+.value-card p, .vision-card .foundation-copy { margin-bottom: 0; color: var(--color-muted); font-family: inherit; font-size: .9rem; font-weight: 400; letter-spacing: normal; line-height: 1.7; }
 .focus-grid { grid-template-columns: repeat(3, 1fr); }
 .focus-card { padding: 2rem; background: #fff; border: 1px solid var(--color-line); border-radius: var(--radius); }
 .focus-card h3 { margin: 2rem 0 .65rem; }

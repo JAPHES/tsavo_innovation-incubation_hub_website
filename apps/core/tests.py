@@ -54,6 +54,8 @@ class CorePageTests(TestCase):
         self.assertIn('<span class="eyebrow">Mission</span>', html)
         self.assertNotIn('<span class="eyebrow">Our vision</span>', html)
         self.assertNotIn('<span class="eyebrow">Our mission</span>', html)
+        self.assertEqual(html.count('class="foundation-copy"'), 3)
+        self.assertNotIn('<h3>A flourishing society powered by innovation and entrepreneurship</h3>', html)
         self.assertIn('class="section values-section"', html)
         self.assertNotIn('class="section dark-section"', html)
 

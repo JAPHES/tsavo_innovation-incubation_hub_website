@@ -141,7 +141,7 @@ p { margin-top: 0; }
 .vision-card .icon-box { margin-bottom: 1.5rem; }
 .vision-card:nth-child(2) .icon-box { color: #1769aa; background: #e7f3fb; }
 .vision-card:nth-child(3) .icon-box { color: #8a6518; background: #fff5d6; }
-.vision-card h3 { margin: .65rem 0 0; color: var(--color-muted); font-family: inherit; font-size: .9rem; font-weight: 400; letter-spacing: normal; line-height: 1.7; }
+.vision-card .foundation-copy { margin-top: .65rem; }
 .values-section { background: radial-gradient(circle at 12% 18%, rgba(25,118,210,.1), transparent 30%), linear-gradient(135deg, #edf6fc, #f7fbfe); border-block: 1px solid #d4e5f0; }
 .objectives-layout { display: grid; grid-template-columns: .7fr 1.3fr; gap: clamp(3rem, 8vw, 8rem); align-items: start; }
 .objective-list { margin: 0; padding: 0; list-style: none; counter-reset: objective; }
