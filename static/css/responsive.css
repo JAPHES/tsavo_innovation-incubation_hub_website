@@ -26,6 +26,7 @@
   .vision-grid { grid-template-columns: 1fr; }
   .vision-card { min-height: auto; }
   .pillars-section .section-heading h2 { white-space: normal; }
+  .pillars-section .section-heading p { white-space: normal; }
   .filter-bar { grid-template-columns: 1fr 1fr; }
   .search-field { grid-column: 1 / -1; }
   .cta-inner, .association-inner { align-items: flex-start; flex-direction: column; }
