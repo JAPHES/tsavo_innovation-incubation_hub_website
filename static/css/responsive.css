@@ -50,10 +50,6 @@
   .page-banner,
   .project-hero {
     background-color: #123c28;
-    background-image: linear-gradient(rgba(18, 60, 40, .68), rgba(7, 37, 23, .82)), var(--banner-image);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
   }
   .page-banner::before,
   .project-hero::before {
@@ -68,9 +64,9 @@
   .project-hero::after {
     background: linear-gradient(
       90deg,
-      rgba(4, 26, 15, .9) 0,
-      rgba(5, 43, 24, .68) 58%,
-      rgba(4, 26, 15, .48) 100%
+      rgba(4, 26, 15, .82) 0,
+      rgba(5, 43, 24, .58) 58%,
+      rgba(4, 26, 15, .36) 100%
     );
   }
   .banner-content { padding-block: 3.5rem; }
