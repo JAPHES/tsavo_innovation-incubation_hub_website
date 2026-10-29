@@ -133,6 +133,8 @@ p { margin-top: 0; }
 .cta-inner p { margin: 0; color: rgba(255,255,255,.75); }
 
 .pillars-section { background: linear-gradient(145deg, #f7faf6, #eef6ef); border-block: 1px solid #dfeadf; }
+.pillars-section .section-heading { max-width: 980px; }
+.pillars-section .section-heading h2 { white-space: nowrap; }
 .vision-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
 .vision-card { position: relative; min-height: 270px; padding: clamp(1.5rem, 2.25vw, 2rem); overflow: hidden; background: rgba(255,255,255,.94); border: 1px solid #d8e6dc; border-radius: var(--radius); box-shadow: 0 16px 42px rgba(16,61,38,.07); }
 .vision-card::before { position: absolute; top: 0; right: 0; left: 0; height: 4px; background: var(--color-primary); content: ""; }
