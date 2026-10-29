@@ -45,20 +45,21 @@
   .brand img { width: 52px; height: 60px; }
   .brand b { font-size: .78rem; }
   .nav-menu { top: var(--header-height); width: 100%; }
-  .page-banner {
-    --mobile-banner-image-height: min(33.854vw, 196px);
-    min-height: max(380px, calc(var(--mobile-banner-image-height) + 220px));
+  .page-banner { min-height: 390px; }
+  .page-banner.home-hero { min-height: max(610px, calc(100svh - var(--header-height))); }
+  .page-banner,
+  .project-hero {
     background-color: #123c28;
-  }
-  .page-banner.home-hero {
-    --mobile-banner-image-height: min(46.875vw, 272px);
-    min-height: max(650px, calc(100svh - var(--header-height)));
+    background-image: linear-gradient(rgba(18, 60, 40, .68), rgba(7, 37, 23, .82)), var(--banner-image);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
   }
   .page-banner::before,
   .project-hero::before {
-    inset: 0 0 auto;
-    height: var(--mobile-banner-image-height);
-    background-position: center top;
+    inset: 0;
+    height: auto;
+    background-position: center;
     background-size: contain;
     transform: none;
   }
@@ -66,22 +67,16 @@
   .page-banner.home-hero::after,
   .project-hero::after {
     background: linear-gradient(
-      180deg,
-      rgba(4, 26, 15, .04) 0,
-      rgba(4, 26, 15, .18) var(--mobile-banner-image-height),
-      rgba(18, 60, 40, .98) calc(var(--mobile-banner-image-height) + 2.5rem),
-      #123c28 100%
+      90deg,
+      rgba(4, 26, 15, .9) 0,
+      rgba(5, 43, 24, .68) 58%,
+      rgba(4, 26, 15, .48) 100%
     );
   }
-  .banner-content {
-    justify-content: flex-end;
-    padding-block: calc(var(--mobile-banner-image-height) + 2.75rem) 3.5rem;
-  }
+  .banner-content { padding-block: 3.5rem; }
   .project-hero {
-    --mobile-banner-image-height: min(62vw, 320px);
-    min-height: max(590px, calc(var(--mobile-banner-image-height) + 290px));
-    padding: calc(var(--mobile-banner-image-height) + 3rem) 0 3.5rem;
-    background-color: #123c28;
+    min-height: 540px;
+    padding: 5rem 0 3.5rem;
   }
   .project-hero h1 { font-size: clamp(2.2rem, 10vw, 3.2rem); }
   .hero-actions { width: 100%; }
