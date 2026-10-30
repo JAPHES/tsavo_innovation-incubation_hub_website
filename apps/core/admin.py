@@ -1,3 +1,5 @@
+from django import forms
+from django.conf import settings
 from django.contrib import admin
 from django.contrib.admin.forms import AdminAuthenticationForm
 from django.utils.html import format_html
@@ -6,11 +8,19 @@ from .models import Achievement, ChairMessage, CoreValue, FocusArea, PageBanner,
 
 
 class TIIHAdminAuthenticationForm(AdminAuthenticationForm):
-    """Keep mobile browsers at the top of the branded login experience."""
+    """Admin authentication with explicit session persistence control."""
+
+    remember_me = forms.BooleanField(required=False, label="Remember me")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["username"].widget.attrs.pop("autofocus", None)
+
+    def confirm_login_allowed(self, user):
+        super().confirm_login_allowed(user)
+        if self.request is not None:
+            expiry = settings.SESSION_COOKIE_AGE if self.cleaned_data.get("remember_me") else 0
+            self.request.session.set_expiry(expiry)
 
 
 admin.site.login_form = TIIHAdminAuthenticationForm

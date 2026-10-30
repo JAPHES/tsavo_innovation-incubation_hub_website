@@ -12,29 +12,12 @@
 {% block footer %}{% endblock %}
 
 {% block content %}
-<div class="tiih-login-shell">
-  <section class="tiih-login-intro" aria-labelledby="admin-welcome-title">
-    <div class="tiih-login-brand">
-      <span class="tiih-login-logo"><img src="{% static 'images/branding/tiih_logo_round.png' %}" alt="Tsavo Innovation and Incubation Hub logo" width="88" height="88"></span>
-      <span><small>Taita Taveta University</small><strong>Tsavo Innovation &amp;<br>Incubation Hub</strong></span>
-    </div>
-    <div>
-      <span class="tiih-admin-kicker">Website management</span>
-      <h1 id="admin-welcome-title">Keep TIIH content accurate, current and useful.</h1>
-      <p>Use this secure workspace to publish innovations, update programmes and events, manage approved profiles, and respond to enquiries.</p>
-    </div>
-    <ul class="tiih-login-points" aria-label="Administration capabilities">
-      <li><span aria-hidden="true">01</span> Update approved website content</li>
-      <li><span aria-hidden="true">02</span> Publish images, projects and events</li>
-      <li><span aria-hidden="true">03</span> Review private contact enquiries</li>
-    </ul>
-  </section>
-
-  <section class="tiih-login-panel" aria-labelledby="admin-sign-in-title">
-    <div class="tiih-login-heading">
-      <span class="tiih-admin-kicker">Authorized access</span>
-      <h2 id="admin-sign-in-title">Sign in to the dashboard</h2>
-      <p>Enter the administrator credentials created for you.</p>
+<div class="tiih-login-page">
+  <section class="tiih-login-card" aria-labelledby="admin-portal-title">
+    <div class="tiih-login-card-brand">
+      <span class="tiih-login-logo"><img src="{% static 'images/branding/tiih_logo_round.png' %}" alt="Tsavo Innovation and Incubation Hub logo" width="96" height="96"></span>
+      <h1 id="admin-portal-title">Admin Portal</h1>
+      <p>Tsavo Innovation &amp; Incubation Hub</p>
     </div>
 
     {% if form.errors and not form.non_field_errors %}
@@ -60,16 +43,16 @@
         {{ form.password }}
         <input type="hidden" name="next" value="{{ next }}">
       </div>
-      {% url 'admin_password_reset' as password_reset_url %}
-      {% if password_reset_url %}<a class="tiih-password-link" href="{{ password_reset_url }}">Forgot your login credentials?</a>{% endif %}
-      <button class="tiih-login-button" type="submit">Sign in securely <span aria-hidden="true">→</span></button>
+      <div class="tiih-login-options">
+        <label class="tiih-remember-me" for="{{ form.remember_me.id_for_label }}">{{ form.remember_me }} <span>Remember me</span></label>
+        {% url 'admin_password_reset' as password_reset_url %}
+        {% if password_reset_url %}<a class="tiih-password-link" href="{{ password_reset_url }}">Forgot password?</a>{% endif %}
+      </div>
+      <button class="tiih-login-button" type="submit">Sign in <span aria-hidden="true">&rarr;</span></button>
     </form>
 
-    <div class="tiih-login-help">
-      <strong>Need access?</strong>
-      <p>Contact the website super administrator. Do not share passwords or administrator accounts.</p>
-    </div>
-    <a class="tiih-back-link" href="/">← Return to the public website</a>
+    <p class="tiih-login-security">Authorized personnel only. All access is logged.</p>
   </section>
+  <p class="tiih-login-copyright">&copy; {% now "Y" %} Tsavo Innovation &amp; Incubation Hub</p>
 </div>
 {% endblock %}
