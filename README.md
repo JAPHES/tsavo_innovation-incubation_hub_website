@@ -72,7 +72,7 @@ Run:
 python manage.py seed_initial_data
 ```
 
-The command is idempotent and does not overwrite administrator edits. It creates the database-backed site settings and six page banners. The Chair's message, values, focus areas, programmes, achievements, and services are intentionally fixed in source code rather than stored in database tables. Use `--reset` only when you intentionally want to restore the seeded settings and banners.
+The command is idempotent and does not overwrite administrator edits. It creates the database-backed site settings and six page banners. The Chair's message, values, focus areas, programmes, and services are intentionally fixed in source code rather than stored in database tables. The unused achievement storage model is also absent, and the website does not invent unverified achievements. Use `--reset` only when you intentionally want to restore the seeded settings and banners.
 
 Optional layout-only project records can be created with:
 
@@ -92,7 +92,7 @@ Sign in at `/admin/` with a Django superuser.
 - **Team members:** add only approved profiles and contact links, then control ordering and active state.
 - **Events:** add upcoming activities and control their publication status.
 - **Homepage fallback content:** when no featured innovations or future events are published, the homepage shows three sample innovation features with dedicated imagery and three upcoming activities so the layout remains complete. Published admin records replace this fallback content automatically.
-- **Fixed institutional content:** the Chair's message, services, programmes, values, focus areas, and achievements are code-managed and do not appear in `/admin/` or the database.
+- **Fixed institutional content:** the Chair's message, services, programmes, values, and focus areas are code-managed and do not appear in `/admin/` or the database. Achievements also have no database model; add only approved achievement content directly to the website if it is supplied later.
 - **Chair portrait:** the supplied photograph of Dr. Mwakio Mwagandi is bundled with the website.
 - **Contact messages:** inquiries are private to authorized Django administrators. Mark them read from the list.
 
