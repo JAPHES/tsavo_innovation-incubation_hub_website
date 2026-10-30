@@ -1,0 +1,75 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block title %}{% if form.errors %}Sign-in error | {% endif %}TIIH Administration{% endblock %}
+{% block bodyclass %}{{ block.super }} login tiih-login{% endblock %}
+{% block header %}{% endblock %}
+{% block usertools %}{% endblock %}
+{% block nav-global %}{% endblock %}
+{% block nav-sidebar %}{% endblock %}
+{% block content_title %}{% endblock %}
+{% block nav-breadcrumbs %}{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block content %}
+<div class="tiih-login-shell">
+  <section class="tiih-login-intro" aria-labelledby="admin-welcome-title">
+    <div class="tiih-login-brand">
+      <span class="tiih-login-logo"><img src="{% static 'images/branding/tiih_logo_round.png' %}" alt="Tsavo Innovation and Incubation Hub logo" width="88" height="88"></span>
+      <span><small>Taita Taveta University</small><strong>Tsavo Innovation &amp;<br>Incubation Hub</strong></span>
+    </div>
+    <div>
+      <span class="tiih-admin-kicker">Website management</span>
+      <h1 id="admin-welcome-title">Keep TIIH content accurate, current and useful.</h1>
+      <p>Use this secure workspace to publish innovations, update programmes and events, manage approved profiles, and respond to enquiries.</p>
+    </div>
+    <ul class="tiih-login-points" aria-label="Administration capabilities">
+      <li><span aria-hidden="true">01</span> Update approved website content</li>
+      <li><span aria-hidden="true">02</span> Publish images, projects and events</li>
+      <li><span aria-hidden="true">03</span> Review private contact enquiries</li>
+    </ul>
+  </section>
+
+  <section class="tiih-login-panel" aria-labelledby="admin-sign-in-title">
+    <div class="tiih-login-heading">
+      <span class="tiih-admin-kicker">Authorized access</span>
+      <h2 id="admin-sign-in-title">Sign in to the dashboard</h2>
+      <p>Enter the administrator credentials created for you.</p>
+    </div>
+
+    {% if form.errors and not form.non_field_errors %}
+      <p class="errornote">Please correct the highlighted field below.</p>
+    {% endif %}
+    {% if form.non_field_errors %}
+      {% for error in form.non_field_errors %}<p class="errornote">{{ error }}</p>{% endfor %}
+    {% endif %}
+    {% if user.is_authenticated %}
+      <p class="errornote">You are signed in as {{ username }}, but this account is not permitted to access the administration area.</p>
+    {% endif %}
+
+    <form action="{{ app_path }}" method="post" id="login-form" novalidate>
+      {% csrf_token %}
+      <div class="form-row">
+        {{ form.username.errors }}
+        <label for="{{ form.username.id_for_label }}">Username</label>
+        {{ form.username }}
+      </div>
+      <div class="form-row">
+        {{ form.password.errors }}
+        <label for="{{ form.password.id_for_label }}">Password</label>
+        {{ form.password }}
+        <input type="hidden" name="next" value="{{ next }}">
+      </div>
+      {% url 'admin_password_reset' as password_reset_url %}
+      {% if password_reset_url %}<a class="tiih-password-link" href="{{ password_reset_url }}">Forgot your login credentials?</a>{% endif %}
+      <button class="tiih-login-button" type="submit">Sign in securely <span aria-hidden="true">→</span></button>
+    </form>
+
+    <div class="tiih-login-help">
+      <strong>Need access?</strong>
+      <p>Contact the website super administrator. Do not share passwords or administrator accounts.</p>
+    </div>
+    <a class="tiih-back-link" href="/">← Return to the public website</a>
+  </section>
+</div>
+{% endblock %}

@@ -1,7 +1,19 @@
 from django.contrib import admin
+from django.contrib.admin.forms import AdminAuthenticationForm
 from django.utils.html import format_html
 
 from .models import Achievement, ChairMessage, CoreValue, FocusArea, PageBanner, Program, SiteSettings
+
+
+class TIIHAdminAuthenticationForm(AdminAuthenticationForm):
+    """Keep mobile browsers at the top of the branded login experience."""
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["username"].widget.attrs.pop("autofocus", None)
+
+
+admin.site.login_form = TIIHAdminAuthenticationForm
 
 
 class SingletonAdmin(admin.ModelAdmin):

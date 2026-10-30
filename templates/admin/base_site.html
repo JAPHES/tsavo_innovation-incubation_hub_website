@@ -1,0 +1,27 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | TIIH Administration{% endblock %}
+
+{% block dark-mode-vars %}{% endblock %}
+
+{% block responsive %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'css/tiih-admin.css' %}?v=20261030-1">
+{% endblock %}
+
+{% block branding %}
+  <a class="tiih-admin-brand" href="{% url 'admin:index' %}" aria-label="TIIH administration dashboard">
+    <img src="{% static 'images/branding/tiih_logo_round.png' %}" alt="" width="48" height="48">
+    <span><small>Tsavo Innovation &amp; Incubation Hub</small><strong>Website Administration</strong></span>
+  </a>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block footer %}
+  <div class="tiih-admin-footer">
+    <span>Tsavo Innovation &amp; Incubation Hub</span>
+    <span>Authorized administrators only</span>
+  </div>
+{% endblock %}
