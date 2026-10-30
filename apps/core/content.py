@@ -16,6 +16,55 @@ BANNER_DEFAULTS = {
     "contact": ("Contact Us", "Connect with the Tsavo Innovation & Incubation Hub."),
 }
 
+CHAIR_MESSAGE = SimpleNamespace(
+    chair_name="Dr. Mwakio Mwagandi",
+    official_position="Chair, Tsavo Innovation & Incubation Hub",
+    photograph=None,
+    message=(
+        "Welcome to the Tsavo Innovation & Incubation Hub, where ideas are nurtured into "
+        "practical solutions and sustainable ventures. TIIH brings together students, "
+        "researchers, entrepreneurs, industry partners and communities to learn, experiment "
+        "and build with purpose. Through mentorship, skills development and collaborative "
+        "networks, we help innovators move confidently from concept to impact. Whether you "
+        "are shaping a new idea, strengthening an enterprise or seeking partnership, we invite "
+        "you to engage with TIIH and help build an innovative, inclusive and enterprising future."
+    ),
+)
+
+SERVICES = (
+    SimpleNamespace(name="Shared Infrastructure", slug="shared-infrastructure", description="Access to appropriate shared facilities and infrastructure that support innovation, collaboration and entrepreneurship.", icon="bi-building-gear"),
+    SimpleNamespace(name="Business Advisory Services", slug="business-advisory-services", description="Practical advisory support for business planning, venture development, market understanding and sustainable growth.", icon="bi-briefcase"),
+    SimpleNamespace(name="Financial Services", slug="financial-services", description="Financial guidance and linkages to relevant funding opportunities. Funding, grants and loans are not guaranteed.", icon="bi-graph-up-arrow"),
+    SimpleNamespace(name="People Connectivity", slug="people-connectivity", description="Mentorship, coaching, peer exchange, entrepreneurial networks and connections to relevant markets and value-chain participants.", icon="bi-people"),
+    SimpleNamespace(name="Customized Training", slug="customized-training", description="Targeted technical, business-management and personal entrepreneurial skills development for innovators and venture teams.", icon="bi-mortarboard"),
+    SimpleNamespace(name="Ideation and Business Modeling", slug="ideation-and-business-modeling", description="Structured support for problem discovery, idea development, business-model refinement and venture planning.", icon="bi-diagram-3"),
+    SimpleNamespace(name="Research and Development", slug="research-and-development", description="Research-driven innovation, responsible prototyping and product-development support at an appropriate stage.", icon="bi-flask"),
+)
+
+CORE_VALUES = (
+    SimpleNamespace(name="Innovativeness", description="We approach challenges with curiosity, creativity and a commitment to useful new ideas.", icon="bi-lightbulb"),
+    SimpleNamespace(name="Excellence", description="We pursue high standards in learning, service, collaboration and the ventures we support.", icon="bi-award"),
+    SimpleNamespace(name="Entrepreneurship", description="We nurture initiative, resilience and responsible value creation.", icon="bi-rocket-takeoff"),
+    SimpleNamespace(name="Professionalism", description="We work with integrity, respect, accountability and care.", icon="bi-shield-check"),
+)
+
+FOCUS_AREAS = (
+    SimpleNamespace(name="Agriculture", description="Ideas that strengthen productivity, resilience, value addition and market access.", icon="bi-flower1"),
+    SimpleNamespace(name="Mining", description="Responsible technologies and enterprise models relevant to mineral resources and value chains.", icon="bi-gem"),
+    SimpleNamespace(name="Tourism", description="Innovations that enrich visitor experiences and support sustainable local enterprise.", icon="bi-compass"),
+    SimpleNamespace(name="Blue Economy", description="Solutions connected to sustainable water-based resources, livelihoods and ecosystems.", icon="bi-water"),
+    SimpleNamespace(name="Health", description="Practical ideas that contribute to accessible, responsive and resilient health solutions.", icon="bi-heart-pulse"),
+    SimpleNamespace(name="Cross-cutting Areas", description="Business development, ICT and education solutions that enable progress across sectors.", icon="bi-grid"),
+)
+
+PROGRAMS = (
+    SimpleNamespace(title="Innovation Incubation", description="Structured support that helps innovators develop ideas into responsible and sustainable ventures.", icon="bi-boxes", application_url=""),
+    SimpleNamespace(title="Mentorship and Coaching", description="Guidance and reflective support for innovators navigating technical and entrepreneurial decisions.", icon="bi-people", application_url=""),
+    SimpleNamespace(title="Entrepreneurial Skills Training", description="Practical learning in venture planning, management and personal entrepreneurial capability.", icon="bi-mortarboard", application_url=""),
+    SimpleNamespace(title="Ideation and Business Modeling", description="Tools for understanding problems, testing assumptions and shaping viable business models.", icon="bi-bezier2", application_url=""),
+    SimpleNamespace(title="Commercialization Support", description="General guidance for preparing appropriate innovations for markets and value-chain connections.", icon="bi-shop-window", application_url=""),
+)
+
 SAMPLE_INNOVATIONS = (
     SimpleNamespace(
         preview_only=True,

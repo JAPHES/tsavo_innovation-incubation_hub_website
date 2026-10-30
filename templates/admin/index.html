@@ -12,13 +12,13 @@
   <div>
     <span class="tiih-admin-kicker">Content control centre</span>
     <h1>Welcome, {% firstof user.get_short_name user.get_username %}.</h1>
-    <p>Manage the information visitors see across the TIIH website. Changes to published records appear on the live site without a code deployment.</p>
+    <p>Manage changing information such as innovations, events, team profiles, banners and enquiries. Saved published records appear on the live site without a code deployment.</p>
   </div>
   <a class="tiih-view-site" href="{{ site_url|default:'/' }}" target="_blank" rel="noopener">View live website <span aria-hidden="true">↗</span></a>
 </section>
 
 <section class="tiih-dashboard-guides" aria-label="Administration guidance">
-  <article><span>01</span><div><strong>Keep information current</strong><p>Review dates, contacts and programme details before publishing.</p></div></article>
+  <article><span>01</span><div><strong>Keep information current</strong><p>Review dates, contacts and project details before publishing.</p></div></article>
   <article><span>02</span><div><strong>Use approved media</strong><p>Add clear image descriptions and upload only authorized photographs.</p></div></article>
   <article><span>03</span><div><strong>Control visibility</strong><p>Use published and active switches to decide what appears publicly.</p></div></article>
 </section>
@@ -39,8 +39,7 @@
               <div>
                 <h3><a href="{{ app.app_url }}">{{ app.name }}</a></h3>
                 <p>
-                  {% if app.app_label == 'core' %}Site identity, banners, homepage messaging and supporting content.
-                  {% elif app.app_label == 'services' %}Services offered to innovators and entrepreneurs.
+                  {% if app.app_label == 'core' %}Site identity, contact settings and page banners.
                   {% elif app.app_label == 'projects' %}Innovation profiles, project media and publication status.
                   {% elif app.app_label == 'team' %}Approved team profiles, roles and display order.
                   {% elif app.app_label == 'events' %}Upcoming workshops, forums and hub activities.

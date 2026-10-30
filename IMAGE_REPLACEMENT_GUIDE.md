@@ -13,7 +13,7 @@ Replace a file with an approved image using the same filename to avoid changing 
 | `static/images/banners/team_banner.jpg` | 1920 × 650 | Team banner | Approved group photograph, with consent from everyone shown. |
 | `static/images/banners/contact_banner.jpg` | 1920 × 650 | Contact banner | Approved TIIH or TTU location photograph. |
 | `static/images/home/about_hub.jpg` | 1400 × 1050 | Homepage About the Hub section | Approved photograph of the hub, students, or facility. |
-| `static/images/team/chair_dr_mwakio_mwagandi.jpg` | 900 × 1125 | Homepage Chair message fallback | Supplied photograph of Dr. Mwakio Mwagandi, cropped for the homepage. Admin upload takes priority. |
+| `static/images/team/chair_dr_mwakio_mwagandi.jpg` | 900 × 1125 | Homepage Chair message | Supplied photograph of Dr. Mwakio Mwagandi, cropped for the homepage. |
 | `static/images/placeholders/project_default.jpg` | 1200 × 800 | Project cards and details without uploads | Keep as a neutral fallback or replace with an approved generic innovation image. |
 | `static/images/placeholders/team_member_default.jpg` | 800 × 1000 | Team profiles without uploads | Keep neutral; individual admin uploads take priority. |
 | `static/images/branding/tiih_logo.png` | Up to 1000 × 1000 PNG | Header and browser icon | Supplied TIIH logo, optimized without distortion. Replace only with a newly approved official version. |
@@ -28,10 +28,10 @@ Uploaded images belong under `media/`, never `static/`:
 - Page banners: `media/banners/`
 - Projects: `media/projects/`
 - Project galleries: `media/projects/gallery/`
-- Team and Chair portraits: `media/team/`
-- Programmes, events, and achievements: their matching `media/` folders
+- Team portraits: `media/team/`
+- Events: `media/events/`
 
-The website accepts JPG, PNG, and WebP uploads up to 5 MB by default. An uploaded page banner, Chair photo, project cover, or team portrait automatically overrides its static fallback.
+The website accepts JPG, PNG, and WebP uploads up to 5 MB by default. An uploaded page banner, project cover, or team portrait automatically overrides its static fallback.
 
 ## Image safety checklist
 

@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.contrib.admin.forms import AdminAuthenticationForm
 from django.utils.html import format_html
 
-from .models import Achievement, ChairMessage, CoreValue, FocusArea, PageBanner, Program, SiteSettings
+from .models import PageBanner, SiteSettings
 
 
 class TIIHAdminAuthenticationForm(AdminAuthenticationForm):
@@ -55,39 +55,3 @@ class PageBannerAdmin(admin.ModelAdmin):
         if obj.background_image:
             return format_html('<img src="{}" style="height:48px;width:90px;object-fit:cover;border-radius:4px">', obj.background_image.url)
         return "Static fallback"
-
-
-@admin.register(ChairMessage)
-class ChairMessageAdmin(SingletonAdmin):
-    list_display = ("__str__", "official_position", "is_published", "updated_at")
-    readonly_fields = ("updated_at",)
-
-
-@admin.register(CoreValue)
-class CoreValueAdmin(admin.ModelAdmin):
-    list_display = ("name", "display_order", "icon")
-    list_editable = ("display_order",)
-    search_fields = ("name", "description")
-
-
-@admin.register(FocusArea)
-class FocusAreaAdmin(admin.ModelAdmin):
-    list_display = ("name", "display_order", "icon")
-    list_editable = ("display_order",)
-    search_fields = ("name", "description")
-
-
-@admin.register(Program)
-class ProgramAdmin(admin.ModelAdmin):
-    list_display = ("title", "is_published", "opening_date", "closing_date", "display_order")
-    list_editable = ("is_published", "display_order")
-    list_filter = ("is_published", "opening_date", "closing_date")
-    search_fields = ("title", "description")
-
-
-@admin.register(Achievement)
-class AchievementAdmin(admin.ModelAdmin):
-    list_display = ("title", "achievement_date", "is_published", "display_order")
-    list_editable = ("is_published", "display_order")
-    list_filter = ("is_published", "achievement_date")
-    search_fields = ("title", "description")

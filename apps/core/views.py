@@ -7,10 +7,17 @@ from django.utils import timezone
 
 from apps.events.models import Event
 from apps.projects.models import InnovationProject
-from apps.services.models import Service
 
-from .content import SAMPLE_INNOVATIONS, banner_context
-from .models import ChairMessage, CoreValue, FocusArea, Program, SiteSettings
+from .content import (
+    CHAIR_MESSAGE,
+    CORE_VALUES,
+    FOCUS_AREAS,
+    PROGRAMS,
+    SAMPLE_INNOVATIONS,
+    SERVICES,
+    banner_context,
+)
+from .models import SiteSettings
 
 
 def home(request):
@@ -47,10 +54,10 @@ def home(request):
 
     context = banner_context("home")
     context.update({
-        "chair_message": ChairMessage.objects.filter(is_published=True).first(),
-        "services": Service.objects.filter(is_published=True)[:4],
+        "chair_message": CHAIR_MESSAGE,
+        "services": SERVICES[:4],
         "featured_projects": featured_projects or SAMPLE_INNOVATIONS,
-        "programs": Program.objects.filter(is_published=True)[:4],
+        "programs": PROGRAMS[:4],
         "upcoming_events": upcoming_events,
     })
     return render(request, "core/home.html", context)
@@ -60,8 +67,8 @@ def about(request):
     context = banner_context("about")
     context.update({
         "settings_record": SiteSettings.objects.first(),
-        "core_values": CoreValue.objects.all(),
-        "focus_areas": FocusArea.objects.all(),
+        "core_values": CORE_VALUES,
+        "focus_areas": FOCUS_AREAS,
     })
     return render(request, "core/about.html", context)
 

@@ -1,11 +1,9 @@
 from django.shortcuts import render
 
-from apps.core.content import banner_context
-
-from .models import Service
+from apps.core.content import SERVICES, banner_context
 
 
 def service_list(request):
     context = banner_context("services")
-    context["services"] = Service.objects.filter(is_published=True)
+    context["services"] = SERVICES
     return render(request, "services/list.html", context)

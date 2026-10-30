@@ -1,7 +1,10 @@
 from datetime import timedelta
 
+from django.apps import apps
+from django.contrib.contenttypes.models import ContentType
 from django.contrib.staticfiles import finders
 from django.core.management import call_command
+from django.db import connection
 from django.test import TestCase
 from django.urls import reverse
 from django.utils import timezone
@@ -58,6 +61,35 @@ class CorePageTests(TestCase):
         self.assertNotIn('<h3>A flourishing society powered by innovation and entrepreneurship</h3>', html)
         self.assertIn('class="section values-section"', html)
         self.assertNotIn('class="section dark-section"', html)
+
+    def test_fixed_content_uses_no_database_tables(self):
+        removed_models = ("ChairMessage", "CoreValue", "FocusArea", "Program", "Achievement")
+        for model_name in removed_models:
+            with self.assertRaises(LookupError):
+                apps.get_model("core", model_name)
+
+        table_names = connection.introspection.table_names()
+        for table_name in (
+            "core_chairmessage",
+            "core_corevalue",
+            "core_focusarea",
+            "core_program",
+            "core_achievement",
+        ):
+            self.assertNotIn(table_name, table_names)
+        self.assertFalse(
+            ContentType.objects.filter(
+                app_label="core",
+                model__in=("achievement", "chairmessage", "corevalue", "focusarea", "program"),
+            ).exists()
+        )
+
+        home = self.client.get(reverse("core:home"))
+        about = self.client.get(reverse("core:about"))
+        self.assertContains(home, "Dr. Mwakio Mwagandi")
+        self.assertContains(home, "Innovation Incubation")
+        self.assertContains(about, "Innovativeness")
+        self.assertContains(about, "Cross-cutting Areas")
 
     def test_upcoming_event_is_shown_and_past_event_is_hidden(self):
         Event.objects.create(title="Future approved event", slug="future-event", description="Future", venue="Online", start_datetime=timezone.now() + timedelta(days=3), is_published=True)

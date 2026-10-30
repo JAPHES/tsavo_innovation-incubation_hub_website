@@ -1,6 +1,6 @@
 # Tsavo Innovation & Incubation Hub Website
 
-A complete Django 5.2 institutional website for the Tsavo Innovation & Incubation Hub (TIIH), operating under Taita Taveta University. The public site has six principal pages, an admin-managed homepage, a searchable project showcase, a secure inquiry form, SEO basics, and responsive local imagery.
+A complete Django 5.2 institutional website for the Tsavo Innovation & Incubation Hub (TIIH), operating under Taita Taveta University. The public site has six principal pages, a searchable project showcase, a secure inquiry form, SEO basics, and responsive local imagery.
 
 The design uses the project brief's preliminary green and blue palette. It is visually connected to TTU's current public website but does not claim these colours or the bundled system font stack are certified brand standards. The supplied TIIH logo is integrated in the header, footer, and browser icon; replace the remaining temporary photography and TTU placeholder with approved institutional assets before launch.
 
@@ -16,8 +16,8 @@ The design uses the project brief's preliminary green and blue palette. It is vi
 
 ```text
 apps/
-  core/       Site settings, banners, Chair message, programmes, values, focus areas, achievements
-  services/   Seven official service categories
+  core/       Site settings, banners, and fixed institutional website content
+  services/   Fixed presentation of the seven official service categories
   projects/   Project catalogue, filtering, details, gallery
   team/       Approved team profiles
   events/     Admin-managed events used on the homepage
@@ -72,7 +72,7 @@ Run:
 python manage.py seed_initial_data
 ```
 
-The command is idempotent and does not overwrite administrator edits. It creates the verified/general site settings, exact supplied vision and mission, six banners, seven services, four values, six focus areas, five general programme areas, and the clearly marked Chair placeholder. Use `--reset` only when you intentionally want to restore these seeded records.
+The command is idempotent and does not overwrite administrator edits. It creates the database-backed site settings and six page banners. The Chair's message, values, focus areas, programmes, achievements, and services are intentionally fixed in source code rather than stored in database tables. Use `--reset` only when you intentionally want to restore the seeded settings and banners.
 
 Optional layout-only project records can be created with:
 
@@ -88,13 +88,12 @@ Sign in at `/admin/` with a Django superuser.
 
 - **Site settings:** contact details, vision, mission, location, verified social links, and optional verified map URL.
 - **Page banners:** text, alt text, and optional uploaded image. Uploads override named static fallbacks.
-- **Chair's message:** enter the approved name, title, message, portrait, and published state. Until then, the public site clearly labels the content as awaiting official information.
-- **Services:** edit copy, icons, order, and publication.
 - **Innovation projects:** add project information, cover, gallery, stage, category, approved public team information, and publishing/featured flags.
 - **Team members:** add only approved profiles and contact links, then control ordering and active state.
-- **Programmes, events, and achievements:** only published records appear publicly.
+- **Events:** add upcoming activities and control their publication status.
 - **Homepage fallback content:** when no featured innovations or future events are published, the homepage shows three sample innovation features with dedicated imagery and three upcoming activities so the layout remains complete. Published admin records replace this fallback content automatically.
-- **Chair portrait:** the supplied photograph of Dr. Mwakio Mwagandi is bundled as the homepage fallback; an approved admin upload takes priority when present.
+- **Fixed institutional content:** the Chair's message, services, programmes, values, focus areas, and achievements are code-managed and do not appear in `/admin/` or the database.
+- **Chair portrait:** the supplied photograph of Dr. Mwakio Mwagandi is bundled with the website.
 - **Contact messages:** inquiries are private to authorized Django administrators. Mark them read from the list.
 
 ## Images
@@ -110,7 +109,7 @@ python manage.py test
 python manage.py check --deploy
 ```
 
-The tests cover public pages, homepage order, fallbacks, service publishing, project search/filtering/pagination/detail permissions, team ordering, event date handling, inquiry validation/CSRF/PRG duplicate protection/privacy, static assets, sitemap, and robots instructions.
+The tests cover public pages, homepage order, fallbacks, fixed-content schema removal, project search/filtering/pagination/detail permissions, team ordering, event date handling, inquiry validation/CSRF/PRG duplicate protection/privacy, static assets, sitemap, and robots instructions.
 
 ## Deploying to Vercel
 
@@ -134,7 +133,7 @@ Open the Vercel project, go to **Storage/Marketplace**, add **Neon Postgres**, a
 
 ### 3. Create persistent image storage
 
-From the project's **Storage** tab, create a **Blob** store with **Public** access and connect it to Production and Preview. Public access is intentional because these uploads are website banners, team portraits, programme images, event images, and innovation-gallery images. Vercel injects `BLOB_READ_WRITE_TOKEN`; when that variable is present, Django automatically uses `VercelBlobStorage`. Local development continues to use `media/`.
+From the project's **Storage** tab, create a **Blob** store with **Public** access and connect it to Production and Preview. Public access is intentional because these uploads are website banners, team portraits, event images, and innovation-gallery images. Vercel injects `BLOB_READ_WRITE_TOKEN`; when that variable is present, Django automatically uses `VercelBlobStorage`. Local development continues to use `media/`.
 
 ### 4. Add production environment variables
 
