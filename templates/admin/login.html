@@ -20,38 +20,40 @@
       <p>Tsavo Innovation &amp; Incubation Hub</p>
     </div>
 
-    {% if form.errors and not form.non_field_errors %}
-      <p class="errornote">Please correct the highlighted field below.</p>
-    {% endif %}
-    {% if form.non_field_errors %}
-      {% for error in form.non_field_errors %}<p class="errornote">{{ error }}</p>{% endfor %}
-    {% endif %}
-    {% if user.is_authenticated %}
-      <p class="errornote">You are signed in as {{ username }}, but this account is not permitted to access the administration area.</p>
-    {% endif %}
+    <div class="tiih-login-card-body">
+      {% if form.errors and not form.non_field_errors %}
+        <p class="errornote">Please correct the highlighted field below.</p>
+      {% endif %}
+      {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}<p class="errornote">{{ error }}</p>{% endfor %}
+      {% endif %}
+      {% if user.is_authenticated %}
+        <p class="errornote">You are signed in as {{ username }}, but this account is not permitted to access the administration area.</p>
+      {% endif %}
 
-    <form action="{{ app_path }}" method="post" id="login-form" novalidate>
-      {% csrf_token %}
-      <div class="form-row">
-        {{ form.username.errors }}
-        <label for="{{ form.username.id_for_label }}">Username</label>
-        {{ form.username }}
-      </div>
-      <div class="form-row">
-        {{ form.password.errors }}
-        <label for="{{ form.password.id_for_label }}">Password</label>
-        {{ form.password }}
-        <input type="hidden" name="next" value="{{ next }}">
-      </div>
-      <div class="tiih-login-options">
-        <label class="tiih-remember-me" for="{{ form.remember_me.id_for_label }}">{{ form.remember_me }} <span>Remember me</span></label>
-        {% url 'admin_password_reset' as password_reset_url %}
-        {% if password_reset_url %}<a class="tiih-password-link" href="{{ password_reset_url }}">Forgot password?</a>{% endif %}
-      </div>
-      <button class="tiih-login-button" type="submit">Sign in <span aria-hidden="true">&rarr;</span></button>
-    </form>
+      <form action="{{ app_path }}" method="post" id="login-form" novalidate>
+        {% csrf_token %}
+        <div class="form-row">
+          {{ form.username.errors }}
+          <label for="{{ form.username.id_for_label }}">Username</label>
+          {{ form.username }}
+        </div>
+        <div class="form-row">
+          {{ form.password.errors }}
+          <label for="{{ form.password.id_for_label }}">Password</label>
+          {{ form.password }}
+          <input type="hidden" name="next" value="{{ next }}">
+        </div>
+        <div class="tiih-login-options">
+          <label class="tiih-remember-me" for="{{ form.remember_me.id_for_label }}">{{ form.remember_me }} <span>Remember me</span></label>
+          {% url 'admin_password_reset' as password_reset_url %}
+          {% if password_reset_url %}<a class="tiih-password-link" href="{{ password_reset_url }}">Forgot password?</a>{% endif %}
+        </div>
+        <button class="tiih-login-button" type="submit">Sign in <span aria-hidden="true">&rarr;</span></button>
+      </form>
 
-    <p class="tiih-login-security">Authorized personnel only. All access is logged.</p>
+      <p class="tiih-login-security">Authorized personnel only. All access is logged.</p>
+    </div>
   </section>
   <p class="tiih-login-copyright">&copy; {% now "Y" %} Tsavo Innovation &amp; Incubation Hub</p>
 </div>
