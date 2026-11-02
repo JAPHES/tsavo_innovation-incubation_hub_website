@@ -15,7 +15,10 @@ class TeamPageTests(TestCase):
         response = self.client.get(reverse("team:list"))
         self.assertEqual(response.status_code, 200)
         self.assertNotContains(response, "Inactive Person")
+        self.assertEqual(len(response.context["members"]), 3)
+        self.assertEqual(response.context["members"][0].full_name, "Dr. Mwakio Mwagandi")
         html = response.content.decode()
+        self.assertEqual(html.count('<article class="team-card'), 3)
         self.assertLess(html.index("First Active"), html.index("Second Active"))
 
     def test_chair_is_first_and_uses_supplied_portrait(self):

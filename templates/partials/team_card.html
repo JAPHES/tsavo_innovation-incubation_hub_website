@@ -1,2 +1,19 @@
 {% load static %}
-<article class="team-card"><div class="team-photo"><img src="{% if member.photograph %}{{ member.photograph.url }}{% else %}{% static 'images/placeholders/team_member_default.jpg' %}{% endif %}" alt="{% if member.photograph %}Portrait of {{ member.full_name }}{% else %}Team member photograph placeholder{% endif %}" loading="lazy"></div><div class="team-copy"><span>{{ member.role }}</span><h3>{{ member.full_name }}</h3><p>{{ member.biography }}</p>{% if member.linkedin_url %}<a href="{{ member.linkedin_url }}" target="_blank" rel="noopener" aria-label="{{ member.full_name }} on LinkedIn"><i class="bi bi-linkedin" aria-hidden="true"></i></a>{% endif %}</div></article>
+<article class="team-card{% if member.is_chair %} team-card-chair{% endif %}" aria-labelledby="team-member-{{ member.pk }}">
+  <div class="team-photo">
+    {% if member.photograph %}
+    <img src="{{ member.photograph.url }}" alt="Portrait of {{ member.full_name }}" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"{% if forloop.first %} fetchpriority="high"{% endif %}>
+    {% elif member.full_name == "Dr. Mwakio Mwagandi" %}
+    <img src="{% static 'images/team/chair_dr_mwakio_mwagandi.jpg' %}" alt="Portrait of Dr. Mwakio Mwagandi" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"{% if forloop.first %} fetchpriority="high"{% endif %}>
+    {% else %}
+    <img src="{% static 'images/placeholders/team_member_default.jpg' %}" alt="Team member photograph placeholder" loading="lazy">
+    {% endif %}
+    {% if member.is_chair %}<span class="team-leadership-badge">Hub Chair</span>{% endif %}
+  </div>
+  <div class="team-copy">
+    <h3 id="team-member-{{ member.pk }}">{{ member.full_name }}</h3>
+    <span class="team-role">{{ member.role }}</span>
+    <p>{{ member.biography }}</p>
+    {% if member.linkedin_url %}<a class="team-linkedin" href="{{ member.linkedin_url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ member.full_name }} on LinkedIn"><i class="bi bi-linkedin" aria-hidden="true"></i> LinkedIn profile <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>{% endif %}
+  </div>
+</article>

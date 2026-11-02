@@ -16,12 +16,13 @@
   .section { padding: 4.5rem 0; }
   .page-banner.home-hero { min-height: 610px; }
   .page-banner::after { background: linear-gradient(90deg, rgba(4,26,15,.94), rgba(5,43,24,.7)); }
-  .split-layout, .chair-layout, .objectives-layout, .chair-profile, .contact-layout, .project-detail-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .split-layout, .chair-layout, .objectives-layout, .contact-layout, .project-detail-grid { grid-template-columns: 1fr; gap: 3rem; }
   .split-heading { grid-template-columns: 1fr; gap: 0; }
   .image-panel { max-width: 650px; }
   .image-accent { left: 1rem; }
-  .chair-photo, .chair-profile img { max-width: 470px; }
+  .chair-photo { max-width: 470px; }
   .project-grid, .event-list, .focus-grid, .team-grid, .achievement-grid { grid-template-columns: repeat(2, 1fr); }
+  .team-grid-single { grid-template-columns: minmax(0, 390px); }
   .values-grid { grid-template-columns: repeat(2, 1fr); }
   .vision-grid { grid-template-columns: 1fr; }
   .vision-card { min-height: auto; }
