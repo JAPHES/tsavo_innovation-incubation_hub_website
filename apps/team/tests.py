@@ -17,3 +17,19 @@ class TeamPageTests(TestCase):
         self.assertNotContains(response, "Inactive Person")
         html = response.content.decode()
         self.assertLess(html.index("First Active"), html.index("Second Active"))
+
+    def test_chair_is_first_and_uses_supplied_portrait(self):
+        response = self.client.get(reverse("team:list"))
+        html = response.content.decode()
+        self.assertLess(html.index("Dr. Mwakio Mwagandi"), html.index("First Active"))
+        self.assertContains(response, "Chair, Tsavo Innovation &amp; Incubation Hub")
+        self.assertContains(response, "images/team/chair_dr_mwakio_mwagandi.jpg")
+
+    def test_chair_linkedin_profile_appears_when_set(self):
+        chair = TeamMember.objects.get(full_name="Dr. Mwakio Mwagandi")
+        self.assertNotContains(self.client.get(reverse("team:list")), "LinkedIn profile")
+        chair.linkedin_url = "https://www.linkedin.com/in/example-chair/"
+        chair.save(update_fields=["linkedin_url"])
+        response = self.client.get(reverse("team:list"))
+        self.assertContains(response, 'href="https://www.linkedin.com/in/example-chair/"')
+        self.assertContains(response, "LinkedIn profile")

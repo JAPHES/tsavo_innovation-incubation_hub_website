@@ -89,7 +89,7 @@ Sign in at `/admin/` with a Django superuser.
 - **Site settings:** contact details, vision, mission, location, verified social links, and optional verified map URL.
 - **Page banners:** text, alt text, and optional uploaded image. Uploads override named static fallbacks.
 - **Innovation projects:** add project information, cover, gallery, stage, category, approved public team information, and publishing/featured flags.
-- **Team members:** add only approved profiles and contact links, then control ordering and active state.
+- **Team members:** add approved profiles and contact links, including an optional LinkedIn URL. Dr. Mwakio Mwagandi's chair profile appears first, using the bundled portrait until a team photo is uploaded.
 - **Events:** add upcoming activities and control their publication status.
 - **Homepage fallback content:** when no featured innovations or future events are published, the homepage shows three sample innovation features with dedicated imagery and three upcoming activities so the layout remains complete. Published admin records replace this fallback content automatically.
 - **Fixed institutional content:** the Chair's message, services, programmes, values, and focus areas are code-managed and do not appear in `/admin/` or the database. Achievements also have no database model; add only approved achievement content directly to the website if it is supplied later.
