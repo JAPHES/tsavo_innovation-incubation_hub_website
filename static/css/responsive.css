@@ -38,7 +38,6 @@
   :root { --header-height: 76px; }
   body { font-size: .97rem; }
   .container { width: min(calc(100% - 2rem), var(--container)); }
-  .institution-bar { display: none; }
   .main-nav, .nav-shell { min-height: 76px; }
   .brand { min-width: 0; gap: .6rem; }
   .brand img { width: 52px; height: 60px; }
@@ -90,5 +89,4 @@
   .footer-grid { grid-template-columns: 1fr; }
   .footer-grid > :last-child { grid-column: auto; }
   .footer-bottom { flex-direction: column; gap: .2rem; }
-  .message-stack { top: 115px; }
 }

@@ -17,11 +17,11 @@
   --radius: 1.25rem;
   --radius-lg: 2rem;
   --container: 1200px;
-  --header-height: 116px;
+  --header-height: 82px;
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 130px; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-height) + 14px); }
 body { margin: 0; color: var(--color-text); background: #fff; font-family: Inter, Aptos, "Segoe UI", Arial, sans-serif; font-size: 1rem; line-height: 1.7; -webkit-font-smoothing: antialiased; }
 body.nav-open { overflow: hidden; }
 img { display: block; max-width: 100%; }
@@ -44,9 +44,6 @@ p { margin-top: 0; }
 .skip-link:focus { top: 0; }
 :focus-visible { outline: 3px solid #f4b942; outline-offset: 3px; }
 
-.institution-bar { min-height: 34px; color: rgba(255,255,255,.84); background: var(--color-primary-deep); font-size: .75rem; letter-spacing: .015em; }
-.institution-bar .container { min-height: 34px; }
-.institution-bar a { color: #fff; font-weight: 650; }
 .site-header { position: sticky; top: 0; z-index: 1000; background: #fff; transition: box-shadow .25s ease; }
 .site-header.scrolled { box-shadow: var(--shadow-nav); }
 .main-nav { min-height: 82px; border-bottom: 1px solid rgba(13, 78, 41, .08); }
@@ -106,7 +103,7 @@ p { margin-top: 0; }
 .image-panel figcaption { margin-top: .65rem; color: var(--color-muted); font-size: .74rem; }
 .image-accent { position: absolute; bottom: 3rem; left: -2.5rem; display: flex; flex-direction: column; width: 148px; padding: 1.25rem; color: #fff; background: var(--color-primary-deep); border-radius: var(--radius); box-shadow: var(--shadow-card); }
 .image-accent b { color: #8ce6a5; font-size: 1.4rem; }
-.message-stack { position: fixed; top: 130px; right: 1.25rem; z-index: 1100; width: min(400px, calc(100% - 2.5rem)); }
+.message-stack { position: fixed; top: calc(var(--header-height) + 14px); right: 1.25rem; z-index: 1100; width: min(400px, calc(100% - 2.5rem)); }
 
 .chair-layout { display: grid; grid-template-columns: minmax(280px, .62fr) 1.38fr; gap: clamp(3rem, 7vw, 7rem); align-items: center; }
 .chair-photo { position: relative; }
