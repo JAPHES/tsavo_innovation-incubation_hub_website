@@ -74,6 +74,8 @@ python manage.py seed_initial_data
 
 The command is idempotent and does not overwrite administrator edits. It creates the database-backed site settings and six page banners. The Chair's message, values, focus areas, programmes, and services are intentionally fixed in source code rather than stored in database tables. The unused achievement storage model is also absent, and the website does not invent unverified achievements. Use `--reset` only when you intentionally want to restore the seeded settings and banners.
 
+Database migrations also add the three innovation projects identified in the supplied TIIH presentation. They are published and featured on the homepage and Innovations page. Their stage is left unset because the presentation does not state one; Blue Bin also has no stated focus area or technical description. Later administrator edits are preserved.
+
 Optional layout-only project records can be created with:
 
 ```powershell
@@ -88,10 +90,10 @@ Sign in at `/admin/` with a Django superuser.
 
 - **Site settings:** contact details, vision, mission, location, verified social links, and optional verified map URL.
 - **Page banners:** text, alt text, and optional uploaded image. Uploads override named static fallbacks.
-- **Innovation projects:** add project information, cover, gallery, stage, category, approved public team information, and publishing/featured flags.
+- **Innovation projects:** review the three presentation projects and add project information, cover, gallery, stage, category, approved public team information, and publishing/featured flags. Uploaded covers replace the bundled project images.
 - **Team members:** add approved profiles and contact links, including an optional LinkedIn URL. Dr. Mwakio Mwagandi's chair profile appears first, using the bundled portrait until a team photo is uploaded.
 - **Events:** add upcoming activities and control their publication status.
-- **Homepage fallback content:** when no featured innovations or future events are published, the homepage shows three sample innovation features with dedicated imagery and three upcoming activities so the layout remains complete. Published admin records replace this fallback content automatically.
+- **Homepage content:** published, featured innovation projects appear on the homepage. If none are available, the showcase has an empty state. When no future events are published, three illustrative upcoming activities fill the events layout.
 - **Fixed institutional content:** the Chair's message, services, programmes, values, and focus areas are code-managed and do not appear in `/admin/` or the database. Achievements also have no database model; add only approved achievement content directly to the website if it is supplied later.
 - **Chair portrait:** the supplied photograph of Dr. Mwakio Mwagandi is bundled with the website.
 - **Contact messages:** inquiries are private to authorized Django administrators. Mark them read from the list.

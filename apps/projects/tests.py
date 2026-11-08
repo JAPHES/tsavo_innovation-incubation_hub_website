@@ -42,3 +42,29 @@ class ProjectPageTests(TestCase):
     def test_unpublished_project_is_not_public(self):
         response = self.client.get(reverse("projects:detail", kwargs={"slug": "private-draft"}))
         self.assertEqual(response.status_code, 404)
+
+
+class PresentationProjectTests(TestCase):
+    def test_presentation_projects_are_published_and_have_detail_pages(self):
+        for slug, title in (
+            ("upcycled-cotton-hydro-pellets", "Upcycled Cotton Hydro-Pellets"),
+            ("ai-multilingual-learning-platform", "AI-Powered Multilingual Learning Platform"),
+            ("blue-bin", "Blue Bin"),
+        ):
+            with self.subTest(slug=slug):
+                project = InnovationProject.objects.get(slug=slug)
+                self.assertTrue(project.is_published)
+                self.assertTrue(project.is_featured)
+                self.assertEqual(project.development_stage, "")
+                self.assertContains(self.client.get(project.get_absolute_url()), title)
+
+    def test_blue_bin_shows_only_confirmed_information(self):
+        project = InnovationProject.objects.get(slug="blue-bin")
+        self.assertEqual(project.category, "")
+        self.assertEqual(project.problem_statement, "")
+        self.assertEqual(project.proposed_solution, "")
+        response = self.client.get(project.get_absolute_url())
+        self.assertContains(response, "Pwani Innovation Week 2025")
+        self.assertContains(response, "Pwani Innovation Week 2025 online pitch competition")
+        self.assertNotContains(response, "Further information")
+        self.assertNotContains(response, "Development stage")

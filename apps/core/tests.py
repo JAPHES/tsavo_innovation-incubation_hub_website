@@ -33,12 +33,17 @@ class CorePageTests(TestCase):
         self.assertIn("About TIIH", html)
         self.assertIn("What TIIH Does", html)
         self.assertIn("Dr. Mwakio Mwagandi", html)
-        self.assertIn("SolarSmart Irrigation Kit", html)
+        self.assertIn("Upcycled Cotton Hydro-Pellets", html)
+        self.assertIn("AI-Powered Multilingual Learning Platform", html)
+        self.assertIn("Blue Bin", html)
         self.assertIn("Innovation Pitch &amp; Partnership Forum", html)
         self.assertIn('class="section innovation-section" id="innovations"', html)
         self.assertNotIn('class="section dark-section" id="innovations"', html)
         self.assertNotIn("Draft event", html)
-        self.assertLess(html.index("Jirani Market Link"), html.index("View all innovations"))
+        self.assertLess(html.index("Blue Bin"), html.index("View all innovations"))
+        self.assertNotIn("SolarSmart Irrigation Kit", html)
+        self.assertNotIn("EcoBrick Circular Build Lab", html)
+        self.assertNotIn("Jirani Market Link", html)
         self.assertNotIn("Temporary non-institutional image", html)
         self.assertNotIn('class="nav-contact', html)
         self.assertNotIn('class="brand" href=', html)
@@ -106,9 +111,9 @@ class CorePageTests(TestCase):
             "images/placeholders/project_default.jpg",
             "images/team/chair_dr_mwakio_mwagandi.jpg",
             "images/branding/tiih_logo_round.png",
-            "images/innovations/solarsmart-irrigation.jpg",
-            "images/innovations/ecobrick-build-lab.jpg",
-            "images/innovations/jirani-market-link.jpg",
+            "images/innovations/upcycled-cotton-hydro-pellets.png",
+            "images/innovations/multilingual-learning-platform.svg",
+            "images/innovations/blue-bin-pwani-innovation-week.png",
         ]:
             self.assertIsNotNone(finders.find(asset), asset)
 

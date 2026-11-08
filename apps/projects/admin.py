@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 
 from .models import InnovationProject, ProjectImage
+from .static_covers import PROJECT_COVERS
 
 
 class ProjectImageInline(admin.TabularInline):
@@ -32,4 +33,6 @@ class InnovationProjectAdmin(admin.ModelAdmin):
     def cover_preview(self, obj):
         if obj.cover_image:
             return format_html('<img src="{}" style="max-height:160px;max-width:300px;object-fit:cover">', obj.cover_image.url)
+        if obj.slug in PROJECT_COVERS:
+            return format_html('<img src="{}" alt="{}" style="max-height:160px;max-width:300px;object-fit:contain">', obj.cover_url, obj.cover_alt)
         return "No uploaded cover"

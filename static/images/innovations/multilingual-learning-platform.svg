@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title description">
+  <title id="title">Multilingual digital learning concept</title>
+  <desc id="description">A learning screen connects books, speech bubbles, and language symbols across a network.</desc>
+  <defs>
+    <linearGradient id="sky" x2="1" y2="1">
+      <stop stop-color="#092f54"/>
+      <stop offset=".52" stop-color="#176694"/>
+      <stop offset="1" stop-color="#168262"/>
+    </linearGradient>
+    <linearGradient id="screen" x2="1" y2="1">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#eaf8f4"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#061f33" flood-opacity=".28"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="800" fill="url(#sky)"/>
+  <circle cx="93" cy="108" r="178" fill="#68c9b0" opacity=".11"/>
+  <circle cx="1070" cy="708" r="240" fill="#ffd46b" opacity=".12"/>
+  <path d="M0 652c152-105 306-83 435-16 150 78 288 89 407 9 118-78 241-71 358-16v171H0Z" fill="#073f58" opacity=".3"/>
+  <g fill="none" stroke="#b7f4db" stroke-width="3" opacity=".28">
+    <path d="M78 208c121-95 243-83 334-10M851 94c118 2 207 64 262 162M78 533c90 58 196 64 276 25M859 555c109 20 196-15 267-94"/>
+    <circle cx="78" cy="208" r="7" fill="#b7f4db"/><circle cx="412" cy="198" r="7" fill="#b7f4db"/>
+    <circle cx="851" cy="94" r="7" fill="#b7f4db"/><circle cx="1113" cy="256" r="7" fill="#b7f4db"/>
+    <circle cx="78" cy="533" r="7" fill="#b7f4db"/><circle cx="354" cy="558" r="7" fill="#b7f4db"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="286" y="124" width="628" height="488" rx="36" fill="#0a3351"/>
+    <rect x="306" y="144" width="588" height="448" rx="24" fill="url(#screen)"/>
+    <rect x="306" y="144" width="588" height="62" rx="24" fill="#e7f3f4"/>
+    <path d="M306 184h588v22H306Z" fill="#e7f3f4"/>
+    <circle cx="343" cy="175" r="7" fill="#ffbe73"/><circle cx="366" cy="175" r="7" fill="#7ccfb0"/><circle cx="389" cy="175" r="7" fill="#6ba9d4"/>
+    <rect x="424" y="167" width="220" height="15" rx="7" fill="#c4dfe2"/>
+    <rect x="348" y="242" width="286" height="308" rx="24" fill="#fff" stroke="#d6e9e7" stroke-width="3"/>
+    <path d="M394 314c51-18 92-16 119 2v137c-29-19-70-20-119-3ZM513 316c27-18 68-20 119-2v136c-49-17-90-16-119 3Z" fill="#d9f0e7" stroke="#128965" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M513 316v137M417 366h67M417 392h67M541 365h64M541 392h64" stroke="#399e80" stroke-width="8" stroke-linecap="round"/>
+    <rect x="668" y="246" width="183" height="88" rx="22" fill="#126b91"/>
+    <circle cx="706" cy="289" r="17" fill="#ffd36f"/>
+    <path d="M741 272h74M741 292h58" stroke="#e9f7f5" stroke-width="10" stroke-linecap="round"/>
+    <rect x="668" y="352" width="183" height="88" rx="22" fill="#15956e"/>
+    <circle cx="706" cy="395" r="17" fill="#e4f8ef"/>
+    <path d="M741 378h74M741 398h51" stroke="#e9f7f5" stroke-width="10" stroke-linecap="round"/>
+    <rect x="668" y="458" width="183" height="88" rx="22" fill="#e4af42"/>
+    <circle cx="706" cy="501" r="17" fill="#fff9df"/>
+    <path d="M741 484h74M741 504h63" stroke="#fff9df" stroke-width="10" stroke-linecap="round"/>
+    <path d="M240 612h720l-50 41H290Z" fill="#c9e0df"/>
+    <path d="M290 653h620l-16 15H306Z" fill="#8ab4b8"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="76" y="262" width="192" height="100" rx="26" fill="#fff"/>
+    <path d="m197 361 25 29-4-35" fill="#fff"/>
+    <circle cx="116" cy="310" r="13" fill="#11936e"/><circle cx="160" cy="310" r="13" fill="#e3ae43"/><circle cx="204" cy="310" r="13" fill="#318dba"/>
+    <rect x="930" y="368" width="190" height="110" rx="27" fill="#fff"/>
+    <path d="m968 470-31 31 4-41" fill="#fff"/>
+    <path d="M969 403h104M969 426h72" stroke="#168b71" stroke-width="13" stroke-linecap="round"/>
+  </g>
+  <circle cx="1035" cy="142" r="10" fill="#ffd36f"/><circle cx="210" cy="682" r="9" fill="#8de2c3"/>
+</svg>

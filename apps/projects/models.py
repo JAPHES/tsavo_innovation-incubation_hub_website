@@ -1,7 +1,10 @@
 from django.db import models
+from django.templatetags.static import static
 from django.urls import reverse
 
 from apps.core.validators import validate_image_upload
+
+from .static_covers import PROJECT_COVERS
 
 
 class InnovationProject(models.Model):
@@ -30,8 +33,8 @@ class InnovationProject(models.Model):
     full_description = models.TextField()
     problem_statement = models.TextField(blank=True)
     proposed_solution = models.TextField(blank=True)
-    category = models.CharField(max_length=40, choices=Category.choices, db_index=True)
-    development_stage = models.CharField(max_length=30, choices=Stage.choices, db_index=True)
+    category = models.CharField(max_length=40, choices=Category.choices, blank=True, default="", db_index=True)
+    development_stage = models.CharField(max_length=30, choices=Stage.choices, blank=True, default="", db_index=True)
     key_features = models.TextField(blank=True, help_text="Enter one feature per line.")
     team_information = models.TextField(blank=True, help_text="Only include approved public information.")
     external_url = models.URLField(blank=True)
@@ -50,6 +53,32 @@ class InnovationProject(models.Model):
 
     def get_absolute_url(self):
         return reverse("projects:detail", kwargs={"slug": self.slug})
+
+    @property
+    def cover_url(self):
+        if self.cover_image:
+            return self.cover_image.url
+        path, _, _, _ = PROJECT_COVERS.get(self.slug, ("images/placeholders/project_default.jpg", "", "", "cover"))
+        return static(path)
+
+    @property
+    def cover_alt(self):
+        if self.cover_image:
+            return f"Image for {self.title}"
+        _, alt, _, _ = PROJECT_COVERS.get(self.slug, ("", "Generic innovation project image", "", "cover"))
+        return alt
+
+    @property
+    def cover_label(self):
+        if self.cover_image:
+            return ""
+        return PROJECT_COVERS.get(self.slug, ("", "", "", "cover"))[2]
+
+    @property
+    def cover_fit(self):
+        if self.cover_image:
+            return "cover"
+        return PROJECT_COVERS.get(self.slug, ("", "", "", "cover"))[3]
 
     @property
     def feature_list(self):

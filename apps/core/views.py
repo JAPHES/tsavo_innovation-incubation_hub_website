@@ -13,7 +13,6 @@ from .content import (
     CORE_VALUES,
     FOCUS_AREAS,
     PROGRAMS,
-    SAMPLE_INNOVATIONS,
     SERVICES,
     banner_context,
 )
@@ -56,7 +55,7 @@ def home(request):
     context.update({
         "chair_message": CHAIR_MESSAGE,
         "services": SERVICES[:4],
-        "featured_projects": featured_projects or SAMPLE_INNOVATIONS,
+        "featured_projects": featured_projects,
         "programs": PROGRAMS[:4],
         "upcoming_events": upcoming_events,
     })

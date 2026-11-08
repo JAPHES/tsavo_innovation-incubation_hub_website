@@ -65,37 +65,6 @@ PROGRAMS = (
     SimpleNamespace(title="Commercialization Support", description="General guidance for preparing appropriate innovations for markets and value-chain connections.", icon="bi-shop-window", application_url=""),
 )
 
-SAMPLE_INNOVATIONS = (
-    SimpleNamespace(
-        preview_only=True,
-        title="SolarSmart Irrigation Kit",
-        short_description="A solar-powered soil-moisture monitoring system designed to help smallholder farmers use water more efficiently.",
-        category_label="Agriculture",
-        stage_label="Prototype",
-        image="images/innovations/solarsmart-irrigation.jpg",
-        image_alt="A university innovation team testing a solar-powered smart irrigation system",
-    ),
-    SimpleNamespace(
-        preview_only=True,
-        title="EcoBrick Circular Build Lab",
-        short_description="A circular-economy initiative transforming recovered plastic into durable modular materials for local construction.",
-        category_label="Sustainable materials",
-        stage_label="Pilot testing",
-        image="images/innovations/ecobrick-build-lab.jpg",
-        image_alt="A university innovation team producing construction bricks from recovered plastic",
-    ),
-    SimpleNamespace(
-        preview_only=True,
-        title="Jirani Market Link",
-        short_description="A mobile marketplace platform connecting local producers with buyers, logistics support and practical market information.",
-        category_label="ICT & enterprise",
-        stage_label="Incubation",
-        image="images/innovations/jirani-market-link.jpg",
-        image_alt="A digital innovation team demonstrating a mobile market platform to a produce entrepreneur",
-    ),
-)
-
-
 def banner_context(page):
     banner = PageBanner.objects.filter(page=page).first()
     if banner is None:

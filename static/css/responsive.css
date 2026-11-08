@@ -22,6 +22,7 @@
   .image-accent { left: 1rem; }
   .chair-photo { max-width: 470px; }
   .project-grid, .event-list, .focus-grid, .team-grid, .achievement-grid { grid-template-columns: repeat(2, 1fr); }
+  .project-grid-single { grid-template-columns: minmax(0, 470px); }
   .team-grid-single { grid-template-columns: minmax(0, 390px); }
   .values-grid { grid-template-columns: repeat(2, 1fr); }
   .vision-grid { grid-template-columns: 1fr; }
@@ -73,6 +74,7 @@
     padding: 5rem 0 3.5rem;
   }
   .project-hero h1 { font-size: clamp(2.2rem, 10vw, 3.2rem); }
+  .project-hero-contain::before { background-size: contain; background-position: center top; opacity: .3; }
   .hero-actions { width: 100%; }
   .hero-actions .btn { width: 100%; }
   .services-grid, .services-grid.full, .project-grid, .event-list, .focus-grid, .team-grid, .achievement-grid, .values-grid { grid-template-columns: 1fr; }

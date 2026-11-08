@@ -11,19 +11,23 @@
 .service-card p { margin: 0; color: var(--color-muted); font-size: .93rem; }
 
 .project-grid { grid-template-columns: repeat(3, 1fr); }
-.project-card { overflow: hidden; background: #fff; border-radius: var(--radius); box-shadow: 0 14px 38px rgba(3, 27, 16, .16); }
+.project-grid-pair { grid-template-columns: repeat(2, minmax(0, 470px)); justify-content: center; }
+.project-grid-single { grid-template-columns: minmax(0, 470px); justify-content: center; }
+.project-card { display: flex; flex-direction: column; overflow: hidden; background: #fff; border-radius: var(--radius); box-shadow: 0 14px 38px rgba(3, 27, 16, .16); }
 .project-grid.light .project-card { border: 1px solid var(--color-line); box-shadow: 0 10px 35px rgba(16,61,38,.07); }
 .project-image { position: relative; display: block; overflow: hidden; }
 .project-image img { width: 100%; aspect-ratio: 1.5; object-fit: cover; transition: transform .4s ease; }
+.project-image-contain img { padding: .6rem; object-fit: contain; background: #e9f2ee; }
 .project-card:hover .project-image img { transform: scale(1.035); }
+.project-image-caption { position: absolute; top: .8rem; left: .8rem; padding: .3rem .65rem; color: #17472f; background: rgba(255,255,255,.94); border-radius: 999px; font-size: .68rem; font-weight: 800; }
 .stage-badge { display: inline-flex; align-items: center; padding: .35rem .65rem; color: var(--color-primary-deep); background: #dff6e4; border-radius: 999px; font-size: .7rem; font-weight: 800; }
 .project-image .stage-badge { position: absolute; right: 1rem; bottom: 1rem; }
-.project-body { padding: 1.5rem; }
+.project-body { display: flex; flex: 1; flex-direction: column; padding: 1.5rem; }
 .project-category { color: var(--color-primary-dark); font-size: .7rem; font-weight: 820; letter-spacing: .12em; text-transform: uppercase; }
 .project-body h3 { margin: .55rem 0 .75rem; }
 .project-body h3 a { color: var(--color-heading); }
 .project-body p { color: var(--color-muted); font-size: .9rem; }
-.project-body .text-link { font-size: .85rem; }
+.project-body .text-link { margin-top: auto; padding-top: .5rem; font-size: .85rem; }
 
 .empty-state { max-width: 760px; margin: 1rem auto 0; padding: clamp(2rem, 5vw, 4rem); text-align: center; background: rgba(255,255,255,.06); border: 1px dashed rgba(255,255,255,.2); border-radius: var(--radius); }
 .empty-state .icon-box { margin: 0 auto 1rem; }

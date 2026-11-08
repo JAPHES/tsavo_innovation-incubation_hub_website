@@ -50,13 +50,17 @@
     <div class="section-heading">
       <span class="eyebrow">Innovation showcase</span>
       <h2>Ideas with potential for real-world impact</h2>
-      <p>Explore selected projects being developed by innovators connected to the hub.</p>
+      <p>Explore selected projects and innovators highlighted by the hub.</p>
     </div>
-    <div class="card-grid project-grid">
+    {% if featured_projects %}
+    <div class="card-grid project-grid{% if featured_projects|length == 2 %} project-grid-pair{% elif featured_projects|length == 1 %} project-grid-single{% endif %}">
       {% for project in featured_projects %}
-        {% if project.preview_only %}{% include "partials/innovation_preview_card.html" %}{% else %}{% include "partials/project_card.html" %}{% endif %}
+        {% include "partials/project_card.html" %}
       {% endfor %}
     </div>
+    {% else %}
+      {% include "partials/empty_state.html" with icon="bi-lightbulb" title="Innovation projects are being prepared" text="Published project profiles will appear here as they become available." %}
+    {% endif %}
     <div class="section-action"><a class="btn btn-outline-brand" href="{% url 'projects:list' %}">View all innovations <i class="bi bi-arrow-right" aria-hidden="true"></i></a></div>
   </div>
 </section>
