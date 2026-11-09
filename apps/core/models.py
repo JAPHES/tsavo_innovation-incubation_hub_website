@@ -1,4 +1,5 @@
 from django.core.exceptions import ValidationError
+from django.core.validators import RegexValidator
 from django.db import models
 
 from .validators import validate_image_upload
@@ -22,6 +23,13 @@ class SiteSettings(SingletonModel):
     tagline = models.CharField(max_length=120, default="Cultivating Entrepreneurs")
     contact_email = models.EmailField(default="tiih@ttu.ac.ke")
     contact_phone = models.CharField(max_length=40, default="+254 722 274257")
+    chair_whatsapp_number = models.CharField(
+        max_length=16,
+        blank=True,
+        default="+254722274257",
+        validators=[RegexValidator(r"^\+[1-9]\d{6,14}$", "Use international format, such as +254722274257.")],
+        help_text="Public WhatsApp number for the hub chair. Clear it to hide the floating button.",
+    )
     description = models.TextField(max_length=500)
     vision = models.TextField()
     mission = models.TextField()

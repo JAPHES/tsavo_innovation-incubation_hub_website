@@ -39,7 +39,7 @@ class SiteSettingsAdmin(SingletonAdmin):
     fieldsets = (
         ("Identity", {"fields": ("website_name", "abbreviation", "tagline", "description")}),
         ("Official content", {"fields": ("vision", "mission", "main_objective")}),
-        ("Contact", {"fields": ("contact_email", "contact_phone", "location", "map_embed_url")}),
+        ("Contact", {"fields": ("contact_email", "contact_phone", "chair_whatsapp_number", "location", "map_embed_url")}),
         ("Verified social profiles", {"fields": ("facebook_url", "linkedin_url", "x_url", "youtube_url")}),
     )
 

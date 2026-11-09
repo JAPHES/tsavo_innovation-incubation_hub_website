@@ -18,6 +18,7 @@ class Command(BaseCommand):
             "tagline": "Cultivating Entrepreneurs",
             "contact_email": "tiih@ttu.ac.ke",
             "contact_phone": "+254 722 274257",
+            "chair_whatsapp_number": "+254722274257",
             "description": "TIIH operates under Taita Taveta University and supports innovation, business incubation, entrepreneurship, mentoring, training and the commercialization of innovations.",
             "vision": "A flourishing society powered by innovation and entrepreneurship",
             "mission": "To create an environment that nurtures the spawning of a dynamic community of entrepreneurs who produce sustainable ventures that positively impact livelihoods",
