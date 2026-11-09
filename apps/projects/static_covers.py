@@ -4,6 +4,12 @@ An administrator-uploaded cover always takes precedence over these assets.
 """
 
 PROJECT_COVERS = {
+    "blood-bank-management-system": (
+        "images/innovations/blood-bank-presidential-pitch.jpeg",
+        "Presenter on stage at the Presidential Innovation Challenge and Award Pitching Festival",
+        "Presidential Innovation Challenge participant",
+        "cover",
+    ),
     "upcycled-cotton-hydro-pellets": (
         "images/innovations/upcycled-cotton-hydro-pellets.png",
         "Recipient holding an award certificate at the World Entrepreneurs Investment Forum",

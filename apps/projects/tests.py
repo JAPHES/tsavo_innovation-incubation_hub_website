@@ -54,9 +54,19 @@ class PresentationProjectTests(TestCase):
             with self.subTest(slug=slug):
                 project = InnovationProject.objects.get(slug=slug)
                 self.assertTrue(project.is_published)
-                self.assertTrue(project.is_featured)
+                self.assertEqual(project.is_featured, slug != "ai-multilingual-learning-platform")
                 self.assertEqual(project.development_stage, "")
                 self.assertContains(self.client.get(project.get_absolute_url()), title)
+
+    def test_blood_bank_is_featured_and_education_remains_in_catalogue(self):
+        blood_bank = InnovationProject.objects.get(slug="blood-bank-management-system")
+        self.assertTrue(blood_bank.is_published)
+        self.assertTrue(blood_bank.is_featured)
+        self.assertEqual(blood_bank.homepage_order, 20)
+        self.assertEqual(blood_bank.category, "health")
+        self.assertEqual(blood_bank.development_stage, "")
+        self.assertContains(self.client.get(blood_bank.get_absolute_url()), "Presidential Innovation Challenge")
+        self.assertContains(self.client.get(reverse("projects:list")), "AI-Powered Multilingual Learning Platform")
 
     def test_blue_bin_shows_only_confirmed_information(self):
         project = InnovationProject.objects.get(slug="blue-bin")

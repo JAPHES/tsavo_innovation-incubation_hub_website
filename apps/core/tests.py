@@ -34,8 +34,11 @@ class CorePageTests(TestCase):
         self.assertIn("What TIIH Does", html)
         self.assertIn("Dr. Mwakio Mwagandi", html)
         self.assertIn("Upcycled Cotton Hydro-Pellets", html)
-        self.assertIn("AI-Powered Multilingual Learning Platform", html)
+        self.assertIn("Blood Bank Management System", html)
         self.assertIn("Blue Bin", html)
+        self.assertNotIn("AI-Powered Multilingual Learning Platform", html)
+        self.assertLess(html.index("Upcycled Cotton Hydro-Pellets"), html.index("Blood Bank Management System"))
+        self.assertLess(html.index("Blood Bank Management System"), html.index("Blue Bin"))
         self.assertIn("Innovation Pitch &amp; Partnership Forum", html)
         self.assertIn('class="section innovation-section" id="innovations"', html)
         self.assertNotIn('class="section dark-section" id="innovations"', html)
@@ -118,6 +121,7 @@ class CorePageTests(TestCase):
             "images/team/chair_dr_mwakio_mwagandi.jpg",
             "images/branding/tiih_logo_round.png",
             "images/innovations/upcycled-cotton-hydro-pellets.png",
+            "images/innovations/blood-bank-presidential-pitch.jpeg",
             "images/innovations/multilingual-learning-platform.svg",
             "images/innovations/blue-bin-pwani-innovation-week.png",
         ]:

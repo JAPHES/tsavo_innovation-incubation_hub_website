@@ -74,7 +74,7 @@ python manage.py seed_initial_data
 
 The command is idempotent and does not overwrite administrator edits. It creates the database-backed site settings and six page banners. The Chair's message, values, focus areas, programmes, and services are intentionally fixed in source code rather than stored in database tables. The unused achievement storage model is also absent, and the website does not invent unverified achievements. Use `--reset` only when you intentionally want to restore the seeded settings and banners.
 
-Database migrations also add the three innovation projects identified in the supplied TIIH presentation. They are published and featured on the homepage and Innovations page. Their stage is left unset because the presentation does not state one; Blue Bin also has no stated focus area or technical description. Later administrator edits are preserved.
+Database migrations add the three innovation projects identified in the supplied TIIH presentation, plus Blood Bank Management System from the subsequent project brief. The homepage features Hydro-Pellets, Blood Bank Management System, and Blue Bin in that order. The multilingual learning project remains published in the Innovations catalogue. Development stages are left unset where no stage was supplied; Blue Bin also has no stated focus area or technical description. Project details can be updated in the admin.
 
 Optional layout-only project records can be created with:
 
@@ -90,7 +90,7 @@ Sign in at `/admin/` with a Django superuser.
 
 - **Site settings:** contact details, vision, mission, location, verified social links, and optional verified map URL.
 - **Page banners:** text, alt text, and optional uploaded image. Uploads override named static fallbacks.
-- **Innovation projects:** review the three presentation projects and add project information, cover, gallery, stage, category, approved public team information, and publishing/featured flags. Uploaded covers replace the bundled project images.
+- **Innovation projects:** review the four project profiles and add project information, cover, gallery, stage, category, approved public team information, and publishing/featured flags. The homepage order field controls featured-card placement. Uploaded covers replace the bundled project images.
 - **Team members:** add approved profiles and contact links, including an optional LinkedIn URL. Dr. Mwakio Mwagandi's chair profile appears first, using the bundled portrait until a team photo is uploaded.
 - **Events:** add upcoming activities and control their publication status.
 - **Homepage content:** published, featured innovation projects appear on the homepage. If none are available, the showcase has an empty state. When no future events are published, three illustrative upcoming activities fill the events layout.

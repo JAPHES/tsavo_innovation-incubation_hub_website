@@ -21,7 +21,7 @@ from .models import SiteSettings
 
 def home(request):
     featured_projects = list(
-        InnovationProject.objects.filter(is_published=True, is_featured=True)[:3]
+        InnovationProject.objects.filter(is_published=True, is_featured=True).order_by("homepage_order", "-created_at")[:3]
     )
     upcoming_events = list(
         Event.objects.filter(is_published=True, start_datetime__gte=timezone.now())[:3]

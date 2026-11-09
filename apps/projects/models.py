@@ -40,6 +40,7 @@ class InnovationProject(models.Model):
     external_url = models.URLField(blank=True)
     cover_image = models.ImageField(upload_to="projects/", blank=True, max_length=500, validators=[validate_image_upload])
     is_featured = models.BooleanField(default=False, db_index=True)
+    homepage_order = models.PositiveSmallIntegerField(default=100, db_index=True, help_text="Lower numbers appear first in the homepage showcase.")
     is_published = models.BooleanField(default=False, db_index=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
