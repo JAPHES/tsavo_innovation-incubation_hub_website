@@ -50,9 +50,13 @@ class CorePageTests(TestCase):
 
     def test_banner_static_fallback_renders(self):
         response = self.client.get(reverse("core:about"))
-        self.assertContains(response, "images/banners/about_banner.jpg")
+        self.assertContains(response, "images/banners/tiih_outreach_about.jpeg")
         self.assertContains(response, "Where Innovation Takes Root")
         self.assertNotContains(response, "TIIH: Where Innovation Takes Root")
+
+        for route in ("core:home", "services:list", "projects:list", "team:list", "contact:contact"):
+            with self.subTest(route=route):
+                self.assertContains(self.client.get(reverse(route)), "images/banners/tiih_training_hero.png")
 
     def test_about_foundation_and_values_layout(self):
         html = self.client.get(reverse("core:about")).content.decode()
@@ -107,7 +111,9 @@ class CorePageTests(TestCase):
         for asset in [
             "css/main.css",
             "js/main.js",
-            "images/banners/home_hero.jpg",
+            "images/banners/tiih_training_hero.png",
+            "images/banners/tiih_outreach_about.jpeg",
+            "images/home/tiih_ideas_enterprise.png",
             "images/placeholders/project_default.jpg",
             "images/team/chair_dr_mwakio_mwagandi.jpg",
             "images/branding/tiih_logo_round.png",

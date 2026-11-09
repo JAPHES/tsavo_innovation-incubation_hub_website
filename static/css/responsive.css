@@ -58,6 +58,7 @@
     background-size: cover;
     transform: none;
   }
+  .page-banner-about::before { background-position: right top; }
   .page-banner::after,
   .page-banner.home-hero::after,
   .project-hero::after {

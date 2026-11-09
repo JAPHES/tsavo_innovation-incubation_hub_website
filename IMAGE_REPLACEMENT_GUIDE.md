@@ -1,18 +1,14 @@
 # TIIH Image Replacement Guide
 
-Most bundled photographs are temporary, AI-generated, non-institutional images. Exceptions include the supplied Chair portrait and the award photograph and competition graphic taken from the supplied TIIH presentation. The TIIH logo was supplied by the Hub and is used as the website's hub identity; the TTU logo remains an explicitly labelled placeholder.
+The banner, homepage introduction, and project photographs listed below come directly from the supplied TIIH presentation. Their original pixels are retained. Some unused older placeholders and generic fallback images remain in the repository. The TIIH logo was supplied by the Hub and is used as the website's identity; the TTU logo remains an explicitly labelled placeholder.
 
-Replace a file with an approved image using the same filename to avoid changing Python or template code. For banners, keep the main subject away from the left side because page headings are placed there. Export photographs as optimized sRGB JPEGs; use PNG for logos requiring transparency.
+Replace a file with an approved image using the same filename to avoid changing Python or template code. Banner text sits over a CSS gradient for readability; the source photographs are not retouched. Export any future photographs as optimized sRGB JPEGs; use PNG for logos requiring transparency.
 
 | File | Recommended size | Appears on | Replacement notes |
 |---|---:|---|---|
-| `static/images/banners/home_hero.jpg` | 1920 × 900 | Homepage hero | Wide approved innovation or collaboration photograph; leave space on the left. |
-| `static/images/banners/about_banner.jpg` | 1920 × 650 | About Us banner | Approved hub collaboration or facility photograph. |
-| `static/images/banners/services_banner.jpg` | 1920 × 650 | Services banner | Approved training, mentoring, or prototyping photograph. |
-| `static/images/banners/projects_banner.jpg` | 1920 × 650 | Projects banner | Approved innovation or field-testing photograph. |
-| `static/images/banners/team_banner.jpg` | 1920 × 650 | Team banner | Approved group photograph, with consent from everyone shown. |
-| `static/images/banners/contact_banner.jpg` | 1920 × 650 | Contact banner | Approved TIIH or TTU location photograph. |
-| `static/images/home/about_hub.jpg` | 1400 × 1050 | Homepage About the Hub section | Approved photograph of the hub, students, or facility. |
+| `static/images/banners/tiih_training_hero.png` | 1279 × 670 | Home, Services, Projects, Team, and Contact banners | Original workshop photograph from the supplied presentation. |
+| `static/images/banners/tiih_outreach_about.jpeg` | 3712 × 2475 | About Us banner | Original outreach photograph from the supplied presentation. |
+| `static/images/home/tiih_ideas_enterprise.png` | 772 × 291 | Homepage “Where ideas meet enterprise” section | Original two-scene image from the supplied presentation, displayed without cropping. |
 | `static/images/team/chair_dr_mwakio_mwagandi.jpg` | 900 × 1125 | Homepage Chair message and Team page | Supplied photograph of Dr. Mwakio Mwagandi, used until a team profile photo is uploaded. |
 | `static/images/placeholders/project_default.jpg` | 1200 × 800 | Project cards and details without uploads | Keep as a neutral fallback or replace with an approved generic innovation image. |
 | `static/images/placeholders/team_member_default.jpg` | 800 × 1000 | Team profiles without uploads | Keep neutral; individual admin uploads take priority. |

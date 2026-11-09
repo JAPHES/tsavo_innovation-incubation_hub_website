@@ -2,7 +2,7 @@
 
 A complete Django 5.2 institutional website for the Tsavo Innovation & Incubation Hub (TIIH), operating under Taita Taveta University. The public site has six principal pages, a searchable project showcase, a secure inquiry form, SEO basics, and responsive local imagery.
 
-The design uses the project brief's preliminary green and blue palette. It is visually connected to TTU's current public website but does not claim these colours or the bundled system font stack are certified brand standards. The supplied TIIH logo is integrated in the header, footer, and browser icon; replace the remaining temporary photography and TTU placeholder with approved institutional assets before launch.
+The design uses the project brief's preliminary green and blue palette. It is visually connected to TTU's current public website but does not claim these colours or the bundled system font stack are certified brand standards. The supplied TIIH logo is integrated in the header, footer, and browser icon. The hero and homepage introduction photographs come from the supplied TIIH presentation; replace the remaining temporary imagery and TTU placeholder when approved institutional assets are available.
 
 ## Technology
 

@@ -1,5 +1,5 @@
 {% load static %}
-<section class="page-banner {% if banner_page == 'home' %}home-hero{% endif %}" style="--banner-image:url('{% if banner and banner.background_image %}{{ banner.background_image.url }}{% else %}{% static banner_fallback %}{% endif %}')" aria-label="{{ banner.image_alt_text|default:'Page introduction' }}">
+<section class="page-banner page-banner-{{ banner_page }}{% if banner_page == 'home' %} home-hero{% endif %}" style="--banner-image:url('{% if banner and banner.background_image %}{{ banner.background_image.url }}{% else %}{% static banner_fallback %}{% endif %}')" aria-label="{% if banner and banner.background_image %}{{ banner.image_alt_text }}{% else %}{{ banner_fallback_alt }}{% endif %}">
   <div class="container banner-content">
     {% if banner_page == 'home' %}<span class="eyebrow hero-kicker">Tsavo Innovation &amp; Incubation Hub</span>{% else %}{% include "partials/breadcrumbs.html" %}{% endif %}
     <h1>{{ banner.heading|default:"Tsavo Innovation & Incubation Hub" }}</h1>

@@ -3,9 +3,20 @@ from types import SimpleNamespace
 from .models import PageBanner
 
 BANNER_FALLBACKS = {
-    "home": "images/banners/home_hero.jpg", "about": "images/banners/about_banner.jpg",
-    "services": "images/banners/services_banner.jpg", "projects": "images/banners/projects_banner.jpg",
-    "team": "images/banners/team_banner.jpg", "contact": "images/banners/contact_banner.jpg",
+    "home": "images/banners/tiih_training_hero.png",
+    "about": "images/banners/tiih_outreach_about.jpeg",
+    "services": "images/banners/tiih_training_hero.png",
+    "projects": "images/banners/tiih_training_hero.png",
+    "team": "images/banners/tiih_training_hero.png",
+    "contact": "images/banners/tiih_training_hero.png",
+}
+BANNER_FALLBACK_ALTS = {
+    "home": "Participants working with laptops during a TIIH training session",
+    "about": "A speaker addressing students during a TIIH outreach session",
+    "services": "Participants working with laptops during a TIIH training session",
+    "projects": "Participants working with laptops during a TIIH training session",
+    "team": "Participants working with laptops during a TIIH training session",
+    "contact": "Participants working with laptops during a TIIH training session",
 }
 BANNER_DEFAULTS = {
     "home": ("Cultivating Entrepreneurs", "Empowering innovators, nurturing entrepreneurship, and transforming ideas into sustainable ventures."),
@@ -78,5 +89,6 @@ def banner_context(page):
     return {
         "banner": banner,
         "banner_fallback": BANNER_FALLBACKS[page],
+        "banner_fallback_alt": BANNER_FALLBACK_ALTS[page],
         "banner_page": page,
     }
