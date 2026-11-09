@@ -16,7 +16,8 @@
   .section { padding: 4.5rem 0; }
   .page-banner.home-hero { min-height: 610px; }
   .page-banner::after { background: linear-gradient(90deg, rgba(4,26,15,.94), rgba(5,43,24,.7)); }
-  .split-layout, .chair-layout, .objectives-layout, .contact-layout, .project-detail-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .split-layout, .chair-layout, .objectives-layout, .contact-visit-layout, .project-detail-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .contact-methods { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .split-heading { grid-template-columns: 1fr; gap: 0; }
   .image-panel { max-width: 650px; }
   .image-accent { left: 1rem; }
@@ -86,8 +87,11 @@
   .filter-bar { grid-template-columns: 1fr; }
   .filter-bar > *, .search-field { grid-column: auto; }
   .filter-bar .btn { width: 100%; }
-  .form-grid { grid-template-columns: 1fr; }
-  .form-grid .full { grid-column: auto; }
+  .contact-methods { grid-template-columns: 1fr; }
+  .contact-method { min-height: 0; }
+  .contact-visit-layout { gap: 2rem; }
+  .contact-map-card iframe { height: 360px; }
+  .contact-directions { width: 100%; }
   .gallery-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-grid > :last-child { grid-column: auto; }

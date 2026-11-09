@@ -1,9 +1,55 @@
 {% extends "base.html" %}
-{% block title %}Contact Us | Tsavo Innovation & Incubation Hub{% endblock %}
-{% block meta_description %}Contact TIIH at Taita Taveta University to discuss innovation, entrepreneurship and incubation support.{% endblock %}
+{% block title %}Contact TIIH | Tsavo Innovation & Incubation Hub{% endblock %}
+{% block meta_description %}Reach the Tsavo Innovation & Incubation Hub by email or phone, or visit us at Taita Taveta University, Runda, Room C14.{% endblock %}
 {% block content %}
 {% include "partials/page_banner.html" %}
-<section class="section"><div class="container contact-layout"><div class="contact-copy">{% include "partials/section_heading.html" with eyebrow="Get in touch" heading="Let’s start with your idea" text="Use the form for enquiries about innovation support, entrepreneurship, incubation and hub activities." %}<div class="contact-details"><a href="mailto:{{ site_settings.contact_email|default:'tiih@ttu.ac.ke' }}"><span class="icon-box"><i class="bi bi-envelope" aria-hidden="true"></i></span><span><small>Email the hub</small><b>{{ site_settings.contact_email|default:"tiih@ttu.ac.ke" }}</b></span></a><a href="tel:+254722274257"><span class="icon-box"><i class="bi bi-telephone" aria-hidden="true"></i></span><span><small>Call the hub</small><b>{{ site_settings.contact_phone|default:"+254 722 274257" }}</b></span></a><div><span class="icon-box"><i class="bi bi-building" aria-hidden="true"></i></span><span><small>Institution</small><b>Tsavo Innovation &amp; Incubation Hub<br>Taita Taveta University</b>{% if site_settings.location %}<em>{{ site_settings.location }}</em>{% else %}<em>Exact office location to be confirmed</em>{% endif %}</span></div></div></div>
-<form class="contact-form" method="post" novalidate>{% csrf_token %}<h2>Send an inquiry</h2><p>Fields marked <span aria-hidden="true">*</span> are required.</p>{{ form.website }}{% if form.non_field_errors %}<div class="form-errors">{{ form.non_field_errors }}</div>{% endif %}<div class="form-grid"><div><label for="{{ form.full_name.id_for_label }}">Full name *</label>{{ form.full_name }}{{ form.full_name.errors }}</div><div><label for="{{ form.email.id_for_label }}">Email address *</label>{{ form.email }}{{ form.email.errors }}</div><div><label for="{{ form.phone.id_for_label }}">Phone number <span>(optional)</span></label>{{ form.phone }}{{ form.phone.errors }}</div><div><label for="{{ form.subject.id_for_label }}">Subject *</label>{{ form.subject }}{{ form.subject.errors }}</div><div class="full"><label for="{{ form.message.id_for_label }}">Message *</label>{{ form.message }}{{ form.message.errors }}</div><div class="full consent-field">{{ form.consent }}<label for="{{ form.consent.id_for_label }}">{{ form.consent.label }}</label>{{ form.consent.errors }}</div></div><button class="btn btn-brand btn-lg" type="submit">Send message <i class="bi bi-send" aria-hidden="true"></i></button></form></div></section>
-{% if site_settings.map_embed_url %}<section class="map-section"><iframe src="{{ site_settings.map_embed_url }}" title="Verified TIIH location map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></section>{% endif %}
+
+<section class="section contact-reach-section" aria-labelledby="contact-reach-heading">
+  <div class="container">
+    <div class="contact-intro">
+      <span class="eyebrow">Get in touch</span>
+      <h2 id="contact-reach-heading">Connect with the hub</h2>
+      <p>Whether you have an innovation to explore, a partnership to discuss or a question about TIIH, reach our team directly.</p>
+    </div>
+    <div class="contact-methods">
+      <a class="contact-method" href="mailto:{{ site_settings.contact_email|default:'tiih@ttu.ac.ke' }}">
+        <span class="contact-method-icon"><i class="bi bi-envelope" aria-hidden="true"></i></span>
+        <span class="contact-method-label">Email</span>
+        <strong>{{ site_settings.contact_email|default:"tiih@ttu.ac.ke" }}</strong>
+        <span class="contact-method-action">Write to us <i class="bi bi-arrow-up-right" aria-hidden="true"></i></span>
+      </a>
+      <a class="contact-method" href="tel:{{ site_settings.contact_phone|default:'+254 722 274257'|cut:' ' }}">
+        <span class="contact-method-icon"><i class="bi bi-telephone" aria-hidden="true"></i></span>
+        <span class="contact-method-label">Phone</span>
+        <strong>{{ site_settings.contact_phone|default:"+254 722 274257" }}</strong>
+        <span class="contact-method-action">Call the hub <i class="bi bi-arrow-up-right" aria-hidden="true"></i></span>
+      </a>
+      <div class="contact-method contact-method-institution">
+        <span class="contact-method-icon"><i class="bi bi-buildings" aria-hidden="true"></i></span>
+        <span class="contact-method-label">Institution</span>
+        <strong>Taita Taveta University</strong>
+        <span class="contact-method-detail">Tsavo Innovation &amp; Incubation Hub</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section contact-visit-section" aria-labelledby="contact-visit-heading">
+  <div class="container contact-visit-layout">
+    <div class="contact-visit-copy">
+      <span class="eyebrow">Visit TIIH</span>
+      <h2 id="contact-visit-heading">Find us on campus</h2>
+      <p>We are based at Taita Taveta University's main campus in Voi. Use the map for the campus entrance, then follow the office directions below.</p>
+      <address class="contact-address">
+        <span class="contact-address-icon"><i class="bi bi-geo-alt" aria-hidden="true"></i></span>
+        <span><strong>Tsavo Innovation &amp; Incubation Hub</strong><br>Taita Taveta University<br>Runda, Room C14<br>On the way to the Health Unit<br>Voi–Mwatate Road, Voi, Kenya</span>
+      </address>
+      <a class="btn btn-outline-brand contact-directions" href="https://www.google.com/maps/search/?api=1&amp;query=Taita+Taveta+University%2C+Voi-Mwatate+Road%2C+Voi%2C+Kenya" target="_blank" rel="noopener noreferrer">Get campus directions <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+    </div>
+    <div class="contact-map-card">
+      <iframe src="{% if site_settings.map_embed_url %}{{ site_settings.map_embed_url }}{% else %}https://www.google.com/maps?q=Taita+Taveta+University%2C+Voi-Mwatate+Road%2C+Voi%2C+Kenya&amp;output=embed{% endif %}" title="Map showing Taita Taveta University main campus in Voi" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      <div class="contact-map-caption"><i class="bi bi-info-circle" aria-hidden="true"></i><span>The map shows the university campus, not the exact room. Ask for Runda, Room C14, toward the Health Unit when you arrive.</span></div>
+    </div>
+  </div>
+</section>
 {% endblock %}

@@ -157,9 +157,9 @@ p { margin-top: 0; }
 .association-inner p { max-width: 700px; margin: 0; }
 
 .filter-bar { display: grid; grid-template-columns: 1.5fr 1fr 1fr auto auto; gap: .85rem; align-items: end; padding: 1.3rem; background: var(--color-soft); border: 1px solid var(--color-line); border-radius: var(--radius); }
-.filter-bar label, .contact-form label { display: block; margin-bottom: .35rem; color: var(--color-heading); font-size: .8rem; font-weight: 750; }
-.filter-bar input, .filter-bar select, .contact-form input, .contact-form textarea { width: 100%; min-height: 48px; padding: .7rem .8rem; color: var(--color-heading); background: #fff; border: 1px solid #cbdad0; border-radius: .55rem; }
-.filter-bar input:focus, .filter-bar select:focus, .contact-form input:focus, .contact-form textarea:focus { border-color: var(--color-primary-dark); box-shadow: 0 0 0 3px rgba(0,169,58,.12); outline: 0; }
+.filter-bar label { display: block; margin-bottom: .35rem; color: var(--color-heading); font-size: .8rem; font-weight: 750; }
+.filter-bar input, .filter-bar select { width: 100%; min-height: 48px; padding: .7rem .8rem; color: var(--color-heading); background: #fff; border: 1px solid #cbdad0; border-radius: .55rem; }
+.filter-bar input:focus, .filter-bar select:focus { border-color: var(--color-primary-dark); box-shadow: 0 0 0 3px rgba(0,169,58,.12); outline: 0; }
 .search-field > div { position: relative; }
 .search-field i { position: absolute; top: 50%; left: .9rem; transform: translateY(-50%); }
 .search-field input { padding-left: 2.5rem; }
@@ -191,24 +191,34 @@ p { margin-top: 0; }
 .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 .gallery-grid img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius-sm); }
 
-.contact-layout { display: grid; grid-template-columns: .78fr 1.22fr; gap: clamp(3rem, 8vw, 8rem); align-items: start; }
-.contact-details { display: grid; gap: 1rem; margin-top: 2.5rem; }
-.contact-details > * { display: flex; gap: 1rem; align-items: center; padding: 1rem 0; border-top: 1px solid var(--color-line); }
-.contact-details small, .contact-details b, .contact-details em { display: block; }
-.contact-details small { color: var(--color-muted); font-size: .75rem; }
-.contact-details b { color: var(--color-heading); }
-.contact-details em { margin-top: .2rem; color: var(--color-muted); font-size: .8rem; }
-.contact-form { padding: clamp(1.5rem, 4vw, 3rem); background: var(--color-soft); border: 1px solid var(--color-line); border-radius: var(--radius-lg); }
-.contact-form h2 { font-size: 2rem; }
-.contact-form > p { color: var(--color-muted); font-size: .85rem; }
-.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; margin: 1.75rem 0; }
-.form-grid .full { grid-column: 1 / -1; }
-.contact-form textarea { min-height: 150px; resize: vertical; }
-.consent-field { display: grid; grid-template-columns: auto 1fr; align-items: start; gap: .65rem; }
-.consent-field input { width: 20px; min-height: 20px; margin-top: .15rem; }
-.consent-field label { margin: 0; font-weight: 550; }
-.errorlist { margin: .35rem 0 0; padding: 0; color: #a32222; font-size: .78rem; list-style: none; }
-.map-section iframe { display: block; width: 100%; height: 430px; border: 0; }
+.contact-reach-section { background: #fff; }
+.contact-intro { max-width: 730px; margin-bottom: 2.6rem; }
+.contact-intro h2 { margin: .55rem 0 .9rem; }
+.contact-intro p { max-width: 650px; margin: 0; color: var(--color-muted); font-size: 1.07rem; }
+.contact-methods { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; }
+.contact-method { display: flex; min-height: 235px; flex-direction: column; align-items: flex-start; padding: clamp(1.4rem, 2.5vw, 2rem); color: var(--color-heading); background: #fff; border: 1px solid var(--color-line); border-radius: var(--radius); box-shadow: 0 16px 42px rgba(16,61,38,.06); transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease; }
+a.contact-method:hover { color: var(--color-heading); border-color: #a8cfb3; box-shadow: var(--shadow-card); transform: translateY(-3px); }
+.contact-method-icon, .contact-address-icon { display: grid; flex: 0 0 auto; place-items: center; color: var(--color-primary-dark); background: #e8f5eb; border-radius: .8rem; }
+.contact-method-icon { width: 48px; height: 48px; margin-bottom: 1.3rem; font-size: 1.25rem; }
+.contact-method-label { margin-bottom: .25rem; color: var(--color-muted); font-size: .75rem; font-weight: 760; letter-spacing: .13em; text-transform: uppercase; }
+.contact-method strong { color: var(--color-heading); font-size: clamp(1rem, 1.45vw, 1.25rem); line-height: 1.35; overflow-wrap: anywhere; }
+.contact-method-action, .contact-method-detail { margin-top: auto; padding-top: 1rem; font-size: .86rem; }
+.contact-method-action { color: var(--color-primary-dark); font-weight: 730; }
+.contact-method-action i { margin-left: .2rem; }
+.contact-method-detail { color: var(--color-muted); }
+.contact-method-institution { background: #f5f8fc; border-color: #d9e6f2; }
+.contact-method-institution .contact-method-icon { color: #1769aa; background: #e3f0fa; }
+.contact-visit-section { background: linear-gradient(135deg, #f2f8fb, #f6faf7); border-top: 1px solid #deebec; }
+.contact-visit-layout { display: grid; grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+.contact-visit-copy h2 { margin: .6rem 0 1rem; }
+.contact-visit-copy > p { max-width: 430px; color: var(--color-muted); }
+.contact-address { display: flex; gap: 1rem; margin: 1.8rem 0 2rem; padding: 1.3rem; color: var(--color-text); background: rgba(255,255,255,.8); border: 1px solid #dce9e8; border-radius: var(--radius); font-style: normal; line-height: 1.8; }
+.contact-address strong { color: var(--color-heading); }
+.contact-address-icon { width: 40px; height: 40px; font-size: 1.1rem; }
+.contact-map-card { overflow: hidden; background: #fff; border: 1px solid #d9e7e6; border-radius: var(--radius-lg); box-shadow: var(--shadow-card); }
+.contact-map-card iframe { display: block; width: 100%; height: clamp(340px, 37vw, 460px); border: 0; }
+.contact-map-caption { display: flex; align-items: flex-start; gap: .65rem; padding: 1rem 1.3rem; color: var(--color-muted); border-top: 1px solid var(--color-line); font-size: .81rem; line-height: 1.5; }
+.contact-map-caption i { margin-top: .1rem; color: var(--color-primary-dark); }
 
 .site-footer { padding-top: 5rem; color: rgba(255,255,255,.68); background: #09251a; }
 .footer-grid { display: grid; grid-template-columns: 1.45fr .65fr 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); padding-bottom: 4rem; }
