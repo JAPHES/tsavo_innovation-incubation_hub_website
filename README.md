@@ -1,6 +1,6 @@
 # Tsavo Innovation & Incubation Hub Website
 
-A complete Django 5.2 institutional website for the Tsavo Innovation & Incubation Hub (TIIH), operating under Taita Taveta University. The public site has six principal pages, a searchable project showcase, a secure inquiry form, SEO basics, and responsive local imagery.
+A complete Django 5.2 institutional website for the Tsavo Innovation & Incubation Hub (TIIH), operating under Taita Taveta University. The public site has six principal pages, a searchable project showcase, direct contact information, SEO basics, and responsive local imagery.
 
 The design uses the project brief's preliminary green and blue palette. It is visually connected to TTU's current public website but does not claim these colours or the bundled system font stack are certified brand standards. The supplied TIIH logo is integrated in the header, footer, and browser icon. The hero and homepage introduction photographs come from the supplied TIIH presentation; replace the remaining temporary imagery and TTU placeholder when approved institutional assets are available.
 
@@ -18,10 +18,10 @@ The design uses the project brief's preliminary green and blue palette. It is vi
 apps/
   core/       Site settings, banners, and fixed institutional website content
   services/   Fixed presentation of the seven official service categories
-  projects/   Project catalogue, filtering, details, gallery
+  projects/   Project catalogue and temporarily disabled detail pages
   team/       Approved team profiles
   events/     Admin-managed events used on the homepage
-  contact/    Validated private inquiry workflow
+  contact/    Direct contact details and campus directions
 templates/    Shared and page-specific Django templates
 static/       CSS, JavaScript, branding placeholders, and local fallback images
 media/        Runtime uploads (ignored by Git)
@@ -60,7 +60,7 @@ Copy `.env.example` to `.env`. Never commit `.env`. Local development defaults t
 2. Supply a strong `SECRET_KEY`.
 3. Set the deployed host in `ALLOWED_HOSTS` and HTTPS origins in `CSRF_TRUSTED_ORIGINS`.
 4. Set a PostgreSQL `DATABASE_URL`.
-5. Configure SMTP variables and secure-cookie/HTTPS settings.
+5. Configure secure-cookie/HTTPS settings; SMTP is only needed if email functionality is re-enabled.
 6. Set `SITE_ORIGIN` only after the real public domain is confirmed.
 7. Serve collected static files and user uploads through appropriate production storage.
 
@@ -74,7 +74,7 @@ python manage.py seed_initial_data
 
 The command is idempotent and does not overwrite administrator edits. It creates the database-backed site settings and six page banners. The Chair's message, values, focus areas, programmes, and services are intentionally fixed in source code rather than stored in database tables. The unused achievement storage model is also absent, and the website does not invent unverified achievements. Use `--reset` only when you intentionally want to restore the seeded settings and banners.
 
-Database migrations add the three innovation projects identified in the supplied TIIH presentation, plus Blood Bank Management System from the subsequent project brief. The homepage features Hydro-Pellets, Blood Bank Management System, and Blue Bin in that order. The multilingual learning project remains published in the Innovations catalogue. Blue Bin uses the presentation's group photograph on the homepage while its project page retains the runner-up graphic. Development stages are left unset where no stage was supplied; Blue Bin also has no stated focus area or technical description. Project details can be updated in the admin.
+Database migrations add the three innovation projects identified in the supplied TIIH presentation, plus Blood Bank Management System from the subsequent project brief. The homepage features Hydro-Pellets, Blood Bank Management System, and Blue Bin in that order. The multilingual learning project remains published in the Innovations catalogue. Blue Bin uses the presentation's group photograph on the homepage while its project page retains the runner-up graphic. Development stages are left unset where no stage was supplied; Blue Bin also has no stated focus area or technical description. Project details can be updated in the admin. Individual project links and routes are temporarily disabled by default; set `PROJECT_DETAILS_ENABLED=True` when approved profiles are ready to publish.
 
 Optional layout-only project records can be created with:
 
@@ -96,7 +96,7 @@ Sign in at `/admin/` with a Django superuser.
 - **Homepage content:** published, featured innovation projects appear on the homepage. If none are available, the showcase has an empty state. When no future events are published, three illustrative upcoming activities fill the events layout.
 - **Fixed institutional content:** the Chair's message, services, programmes, values, and focus areas are code-managed and do not appear in `/admin/` or the database. Achievements also have no database model; add only approved achievement content directly to the website if it is supplied later.
 - **Chair portrait:** the supplied photograph of Dr. Mwakio Mwagandi is bundled with the website.
-- **Contact messages:** inquiries are private to authorized Django administrators. Mark them read from the list.
+- **Contact messages:** historical inquiries remain private to authorized Django administrators. The public form and submission endpoint are currently disabled.
 
 ## Images
 
@@ -111,7 +111,7 @@ python manage.py test
 python manage.py check --deploy
 ```
 
-The tests cover public pages, homepage order, fallbacks, fixed-content schema removal, project search/filtering/pagination/detail permissions, team ordering, event date handling, inquiry validation/CSRF/PRG duplicate protection/privacy, static assets, sitemap, and robots instructions.
+The tests cover public pages, homepage order, fallbacks, fixed-content schema removal, project search/filtering/pagination and temporary detail blocking, team ordering, event date handling, contact-page details and message privacy, static assets, sitemap, and robots instructions.
 
 ## Deploying to Vercel
 
@@ -155,7 +155,7 @@ SECURE_HSTS_SECONDS=31536000
 
 `DATABASE_URL`, `DATABASE_URL_UNPOOLED`, and `BLOB_READ_WRITE_TOKEN` should come from the connected Vercel resources rather than being entered manually. For a custom domain, add that hostname to `ALLOWED_HOSTS` and its full `https://` origin to `CSRF_TRUSTED_ORIGINS`, separated from existing values with commas.
 
-Configure SMTP before relying on inquiry notifications:
+The public Contact page has no form, so SMTP is not required for it. Configure SMTP only if email functionality is re-enabled:
 
 ```text
 EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
@@ -188,8 +188,8 @@ Never commit `.env`; it is already ignored. Sign in at `/admin/`, upload a small
 
 ### 7. Final verification
 
-Check `/`, `/about/`, `/services/`, `/projects/`, `/team/`, `/contact/`, `/admin/`, and `/sitemap.xml`. Submit one contact inquiry, verify it appears in the admin, and confirm the notification email after SMTP is configured. Add the final custom domain only after the generated Vercel URL is working.
+Check `/`, `/about/`, `/services/`, `/projects/`, `/team/`, `/contact/`, `/admin/`, and `/sitemap.xml`. Confirm project cards do not link to detail pages and the Contact page shows the correct email, phone, campus map and Room C14 directions without a form. Add the final custom domain only after the generated Vercel URL is working.
 
 ## Production notes
 
-Before public launch, confirm the real domain, approved institutional content, office location and map URL, SMTP credentials, database backups, and ownership of the Vercel/Neon resources. Review Vercel and Neon usage limits for the selected plans and run `python manage.py check --deploy` with the production environment.
+Before public launch, confirm the real domain, approved institutional content, office location and campus map, database backups, and ownership of the Vercel/Neon resources. Review Vercel and Neon usage limits for the selected plans and run `python manage.py check --deploy` with the production environment.
