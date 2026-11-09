@@ -47,11 +47,7 @@
 
 <section class="section innovation-section" id="innovations">
   <div class="container">
-    <div class="section-heading">
-      <span class="eyebrow">Innovation showcase</span>
-      <h2>Ideas with potential for real-world impact</h2>
-      <p>Explore selected projects and innovators highlighted by the hub.</p>
-    </div>
+    {% include "partials/section_heading.html" with centered=True eyebrow="Innovation showcase" heading="Ideas for real-world impact" text="Explore projects and innovators featured by TIIH." %}
     {% if featured_projects %}
     <div class="card-grid project-grid{% if featured_projects|length == 2 %} project-grid-pair{% elif featured_projects|length == 1 %} project-grid-single{% endif %}">
       {% for project in featured_projects %}
