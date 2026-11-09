@@ -29,3 +29,12 @@ PROJECT_COVERS = {
         "contain",
     ),
 }
+
+HOMEPAGE_COVERS = {
+    "blue-bin": (
+        "images/innovations/blue-bin-pwani-group.jpeg",
+        "Four people photographed at Pwani Innovation Week 2025",
+        "Pwani Innovation Week 2025",
+        "cover-top",
+    ),
+}

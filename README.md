@@ -74,7 +74,7 @@ python manage.py seed_initial_data
 
 The command is idempotent and does not overwrite administrator edits. It creates the database-backed site settings and six page banners. The Chair's message, values, focus areas, programmes, and services are intentionally fixed in source code rather than stored in database tables. The unused achievement storage model is also absent, and the website does not invent unverified achievements. Use `--reset` only when you intentionally want to restore the seeded settings and banners.
 
-Database migrations add the three innovation projects identified in the supplied TIIH presentation, plus Blood Bank Management System from the subsequent project brief. The homepage features Hydro-Pellets, Blood Bank Management System, and Blue Bin in that order. The multilingual learning project remains published in the Innovations catalogue. Development stages are left unset where no stage was supplied; Blue Bin also has no stated focus area or technical description. Project details can be updated in the admin.
+Database migrations add the three innovation projects identified in the supplied TIIH presentation, plus Blood Bank Management System from the subsequent project brief. The homepage features Hydro-Pellets, Blood Bank Management System, and Blue Bin in that order. The multilingual learning project remains published in the Innovations catalogue. Blue Bin uses the presentation's group photograph on the homepage while its project page retains the runner-up graphic. Development stages are left unset where no stage was supplied; Blue Bin also has no stated focus area or technical description. Project details can be updated in the admin.
 
 Optional layout-only project records can be created with:
 

@@ -76,5 +76,7 @@ class PresentationProjectTests(TestCase):
         response = self.client.get(project.get_absolute_url())
         self.assertContains(response, "Pwani Innovation Week 2025")
         self.assertContains(response, "Pwani Innovation Week 2025 online pitch competition")
+        self.assertContains(response, "images/innovations/blue-bin-pwani-innovation-week.png")
+        self.assertNotContains(response, "images/innovations/blue-bin-pwani-group.jpeg")
         self.assertNotContains(response, "Further information")
         self.assertNotContains(response, "Development stage")

@@ -17,6 +17,7 @@ Replace a file with an approved image using the same filename to avoid changing 
 | `static/images/innovations/upcycled-cotton-hydro-pellets.png` | 497 × 618 | Hydro-pellets project | Award photograph from the supplied TIIH presentation; it shows an award recipient, not the pellets. |
 | `static/images/innovations/blood-bank-presidential-pitch.jpeg` | 719 × 537 | Blood Bank Management System | Original pitching-festival photograph from the supplied presentation. |
 | `static/images/innovations/blue-bin-pwani-innovation-week.png` | 387 × 337 | Blue Bin project | Competition graphic from the supplied TIIH presentation. |
+| `static/images/innovations/blue-bin-pwani-group.jpeg` | 1600 × 1384 | Blue Bin homepage card | Original group photograph from the supplied presentation. The runner-up graphic remains on the project detail page and catalogue card. |
 | `static/images/innovations/multilingual-learning-platform.svg` | 1200 × 800 | Multilingual learning project | Concept illustration, not a screenshot of the platform. Replace with an approved product visual when available. |
 | `static/images/branding/ttu_logo.png` | 600 × 600 transparent PNG | Reserved institutional asset | Replace with the authentic TTU logo when supplied and approved for this site. |
 

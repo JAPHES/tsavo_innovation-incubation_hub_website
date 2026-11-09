@@ -39,6 +39,8 @@ class CorePageTests(TestCase):
         self.assertNotIn("AI-Powered Multilingual Learning Platform", html)
         self.assertLess(html.index("Upcycled Cotton Hydro-Pellets"), html.index("Blood Bank Management System"))
         self.assertLess(html.index("Blood Bank Management System"), html.index("Blue Bin"))
+        self.assertIn("images/innovations/blue-bin-pwani-group.jpeg", html)
+        self.assertNotIn("images/innovations/blue-bin-pwani-innovation-week.png", html)
         self.assertIn("Innovation Pitch &amp; Partnership Forum", html)
         self.assertIn('class="section innovation-section" id="innovations"', html)
         self.assertNotIn('class="section dark-section" id="innovations"', html)
@@ -124,6 +126,7 @@ class CorePageTests(TestCase):
             "images/innovations/blood-bank-presidential-pitch.jpeg",
             "images/innovations/multilingual-learning-platform.svg",
             "images/innovations/blue-bin-pwani-innovation-week.png",
+            "images/innovations/blue-bin-pwani-group.jpeg",
         ]:
             self.assertIsNotNone(finders.find(asset), asset)
 

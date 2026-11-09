@@ -55,7 +55,7 @@
     {% if featured_projects %}
     <div class="card-grid project-grid{% if featured_projects|length == 2 %} project-grid-pair{% elif featured_projects|length == 1 %} project-grid-single{% endif %}">
       {% for project in featured_projects %}
-        {% include "partials/project_card.html" %}
+        {% include "partials/project_card.html" with cover=project.homepage_cover %}
       {% endfor %}
     </div>
     {% else %}

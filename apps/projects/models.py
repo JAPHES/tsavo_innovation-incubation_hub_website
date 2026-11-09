@@ -4,7 +4,7 @@ from django.urls import reverse
 
 from apps.core.validators import validate_image_upload
 
-from .static_covers import PROJECT_COVERS
+from .static_covers import HOMEPAGE_COVERS, PROJECT_COVERS
 
 
 class InnovationProject(models.Model):
@@ -80,6 +80,17 @@ class InnovationProject(models.Model):
         if self.cover_image:
             return "cover"
         return PROJECT_COVERS.get(self.slug, ("", "", "", "cover"))[3]
+
+    @property
+    def card_cover(self):
+        return {"url": self.cover_url, "alt": self.cover_alt, "label": self.cover_label, "fit": self.cover_fit}
+
+    @property
+    def homepage_cover(self):
+        if self.cover_image or self.slug not in HOMEPAGE_COVERS:
+            return self.card_cover
+        path, alt, label, fit = HOMEPAGE_COVERS[self.slug]
+        return {"url": static(path), "alt": alt, "label": label, "fit": fit}
 
     @property
     def feature_list(self):
