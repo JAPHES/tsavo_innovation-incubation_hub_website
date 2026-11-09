@@ -1,5 +1,7 @@
+from django.conf import settings
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 
 from apps.core.content import banner_context
@@ -30,5 +32,7 @@ def project_list(request):
 
 
 def project_detail(request, slug):
+    if not settings.PROJECT_DETAILS_ENABLED:
+        raise Http404("Project details are temporarily unavailable.")
     project = get_object_or_404(InnovationProject.objects.prefetch_related("gallery"), slug=slug, is_published=True)
     return render(request, "projects/detail.html", {"project": project})

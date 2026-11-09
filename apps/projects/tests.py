@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.urls import reverse
 
 from .models import InnovationProject
@@ -20,6 +20,7 @@ class ProjectPageTests(TestCase):
             full_description="Draft", category="mining", development_stage="idea", is_published=False,
         )
 
+    @override_settings(PROJECT_DETAILS_ENABLED=True)
     def test_listing_and_detail_routes_work(self):
         self.assertEqual(self.client.get(reverse("projects:list")).status_code, 200)
         project = InnovationProject.objects.filter(is_published=True).first()
@@ -43,8 +44,21 @@ class ProjectPageTests(TestCase):
         response = self.client.get(reverse("projects:detail", kwargs={"slug": "private-draft"}))
         self.assertEqual(response.status_code, 404)
 
+    def test_detail_links_and_routes_are_temporarily_disabled(self):
+        project = InnovationProject.objects.filter(is_published=True).first()
+        self.assertEqual(self.client.get(project.get_absolute_url()).status_code, 404)
+        listing = self.client.get(reverse("projects:list"))
+        self.assertNotContains(listing, "View project")
+        self.assertNotContains(listing, f'href="{project.get_absolute_url()}"')
+        homepage = self.client.get(reverse("core:home"))
+        self.assertNotContains(homepage, "View project")
+        self.assertNotContains(homepage, f'href="{project.get_absolute_url()}"')
+        sitemap = self.client.get("/sitemap.xml")
+        self.assertNotContains(sitemap, project.get_absolute_url())
+
 
 class PresentationProjectTests(TestCase):
+    @override_settings(PROJECT_DETAILS_ENABLED=True)
     def test_presentation_projects_are_published_and_have_detail_pages(self):
         for slug, title in (
             ("upcycled-cotton-hydro-pellets", "Upcycled Cotton Hydro-Pellets"),
@@ -58,6 +72,7 @@ class PresentationProjectTests(TestCase):
                 self.assertEqual(project.development_stage, "")
                 self.assertContains(self.client.get(project.get_absolute_url()), title)
 
+    @override_settings(PROJECT_DETAILS_ENABLED=True)
     def test_blood_bank_is_featured_and_education_remains_in_catalogue(self):
         blood_bank = InnovationProject.objects.get(slug="blood-bank-management-system")
         self.assertTrue(blood_bank.is_published)
@@ -68,6 +83,7 @@ class PresentationProjectTests(TestCase):
         self.assertContains(self.client.get(blood_bank.get_absolute_url()), "Presidential Innovation Challenge")
         self.assertContains(self.client.get(reverse("projects:list")), "AI-Powered Multilingual Learning Platform")
 
+    @override_settings(PROJECT_DETAILS_ENABLED=True)
     def test_blue_bin_shows_only_confirmed_information(self):
         project = InnovationProject.objects.get(slug="blue-bin")
         self.assertEqual(project.category, "")

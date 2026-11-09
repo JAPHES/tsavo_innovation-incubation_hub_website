@@ -99,6 +99,7 @@ CONTACT_NOTIFICATION_EMAIL = os.getenv("CONTACT_NOTIFICATION_EMAIL", "tiih@ttu.a
 vercel_origin_host = os.getenv("VERCEL_PROJECT_PRODUCTION_URL") or os.getenv("VERCEL_URL", "")
 SITE_ORIGIN = os.getenv("SITE_ORIGIN", f"https://{vercel_origin_host}" if vercel_origin_host else "").rstrip("/")
 CONTACT_RATE_LIMIT = int(os.getenv("CONTACT_RATE_LIMIT", "5"))
+PROJECT_DETAILS_ENABLED = env_bool("PROJECT_DETAILS_ENABLED", False)
 MAX_IMAGE_UPLOAD_SIZE = int(os.getenv("MAX_IMAGE_UPLOAD_SIZE", str(5 * 1024 * 1024)))
 
 SECURE_SSL_REDIRECT = env_bool("SECURE_SSL_REDIRECT", not DEBUG)

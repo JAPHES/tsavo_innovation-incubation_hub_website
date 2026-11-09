@@ -20,7 +20,7 @@
 .project-image-contain img { padding: .6rem; object-fit: contain; background: #e9f2ee; }
 .project-image-cover-top img { object-position: center 18%; }
 .project-image-cover-top .project-image-caption { top: auto; bottom: .8rem; }
-.project-card:hover .project-image img { transform: scale(1.035); }
+.project-card:hover a.project-image img { transform: scale(1.035); }
 .project-image-caption { position: absolute; top: .8rem; left: .8rem; padding: .3rem .65rem; color: #17472f; background: rgba(255,255,255,.94); border-radius: 999px; font-size: .68rem; font-weight: 800; }
 .stage-badge { display: inline-flex; align-items: center; padding: .35rem .65rem; color: var(--color-primary-deep); background: #dff6e4; border-radius: 999px; font-size: .7rem; font-weight: 800; }
 .project-image .stage-badge { position: absolute; right: 1rem; bottom: 1rem; }

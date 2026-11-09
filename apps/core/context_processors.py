@@ -9,4 +9,8 @@ def site_context(request):
         site_settings = SiteSettings.objects.first()
     except (OperationalError, ProgrammingError):
         site_settings = None
-    return {"site_settings": site_settings, "site_origin": settings.SITE_ORIGIN}
+    return {
+        "site_settings": site_settings,
+        "site_origin": settings.SITE_ORIGIN,
+        "project_details_enabled": settings.PROJECT_DETAILS_ENABLED,
+    }
