@@ -9,6 +9,7 @@ from django.test import TestCase
 from django.urls import reverse
 from django.utils import timezone
 
+from apps.core.models import SiteSettings
 from apps.events.models import Event
 
 
@@ -20,6 +21,23 @@ class CorePageTests(TestCase):
     def test_homepage_and_about_return_200(self):
         self.assertEqual(self.client.get(reverse("core:home")).status_code, 200)
         self.assertEqual(self.client.get(reverse("core:about")).status_code, 200)
+
+    def test_chair_whatsapp_button_appears_on_public_pages(self):
+        for page in ("core:home", "contact:contact"):
+            with self.subTest(page=page):
+                response = self.client.get(reverse(page))
+                self.assertContains(response, 'href="https://wa.me/254722274257"')
+                self.assertContains(response, 'aria-label="Chat with Dr. Mwakio Mwagandi, TIIH Chair, on WhatsApp')
+
+    def test_chair_whatsapp_button_can_be_changed_or_hidden(self):
+        site_settings = SiteSettings.objects.get(pk=1)
+        site_settings.chair_whatsapp_number = "+254700123456"
+        site_settings.save(update_fields=["chair_whatsapp_number"])
+        self.assertContains(self.client.get(reverse("core:home")), 'href="https://wa.me/254700123456"')
+
+        site_settings.chair_whatsapp_number = ""
+        site_settings.save(update_fields=["chair_whatsapp_number"])
+        self.assertNotContains(self.client.get(reverse("core:home")), "https://wa.me/")
 
     def test_homepage_section_order(self):
         html = self.client.get(reverse("core:home")).content.decode()

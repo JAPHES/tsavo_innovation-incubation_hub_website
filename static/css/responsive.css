@@ -96,4 +96,5 @@
   .footer-grid { grid-template-columns: 1fr; }
   .footer-grid > :last-child { grid-column: auto; }
   .footer-bottom { flex-direction: column; gap: .2rem; }
+  .chair-whatsapp-button { right: 1rem; bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); width: 56px; height: 56px; font-size: 1.7rem; }
 }

@@ -88,7 +88,7 @@ They are labelled `[DEMO]` and remain unpublished.
 
 Sign in at `/admin/` with a Django superuser.
 
-- **Site settings:** contact details, vision, mission, location, verified social links, and optional verified map URL.
+- **Site settings:** contact details, the chair's public WhatsApp number, vision, mission, location, verified social links, and optional verified map URL. Clear the WhatsApp number to hide the floating button.
 - **Page banners:** text, alt text, and optional uploaded image. Uploads override named static fallbacks.
 - **Innovation projects:** review the four project profiles and add project information, cover, gallery, stage, category, approved public team information, and publishing/featured flags. The homepage order field controls featured-card placement. Uploaded covers replace the bundled project images.
 - **Team members:** add approved profiles and contact links, including an optional LinkedIn URL. Dr. Mwakio Mwagandi's chair profile appears first, using the bundled portrait until a team photo is uploaded.
