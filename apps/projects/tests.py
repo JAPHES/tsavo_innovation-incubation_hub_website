@@ -34,6 +34,11 @@ class ProjectPageTests(TestCase):
         response = self.client.get(reverse("projects:list"), {"category": "ict", "stage": "research"})
         self.assertTrue(all(item.category == "ict" and item.development_stage == "research" for item in response.context["page_obj"]))
 
+    def test_long_anonymous_search_terms_are_bounded(self):
+        response = self.client.get(reverse("projects:list"), {"q": "x" * 1000})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.context["query"]), 120)
+
     def test_pagination_and_filter_preservation(self):
         response = self.client.get(reverse("projects:list"), {"page": 2, "category": "agriculture"})
         self.assertEqual(response.status_code, 200)

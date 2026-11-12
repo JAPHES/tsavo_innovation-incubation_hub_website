@@ -11,7 +11,9 @@ from .models import InnovationProject
 
 def project_list(request):
     projects = InnovationProject.objects.filter(is_published=True)
-    query = request.GET.get("q", "").strip()
+    # Keep anonymous searches bounded so a very long term cannot force an
+    # unnecessarily expensive database scan on every request.
+    query = request.GET.get("q", "").strip()[:120]
     category = request.GET.get("category", "").strip()
     stage = request.GET.get("stage", "").strip()
     if query:
