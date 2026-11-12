@@ -133,11 +133,11 @@ In Vercel, select **Add New > Project**, import `JAPHES/tsavo_innovation-incubat
 
 ### 2. Connect PostgreSQL before the first successful deployment
 
-Open the Vercel project, go to **Storage/Marketplace**, add **Neon Postgres**, and connect it to Production and Preview. Confirm that Vercel has added `DATABASE_URL` and `DATABASE_URL_UNPOOLED`. The build hook deliberately stops with a clear error when no PostgreSQL URL exists, preventing an accidental production SQLite deployment.
+Open the Vercel project, go to **Storage/Marketplace**, and add **Neon Postgres**. If Preview deployments are enabled, connect them to a separate Neon branch/database, not the Production database. Confirm that Vercel has added `DATABASE_URL` and `DATABASE_URL_UNPOOLED` in the intended environments. The build hook deliberately stops with a clear error when no PostgreSQL URL exists, preventing an accidental production SQLite deployment.
 
 ### 3. Create persistent image storage
 
-From the project's **Storage** tab, create a **Blob** store with **Public** access and connect it to Production and Preview. Public access is intentional because these uploads are website banners, team portraits, event images, and innovation-gallery images. Vercel injects `BLOB_READ_WRITE_TOKEN`; when that variable is present, Django automatically uses `VercelBlobStorage`. Local development continues to use `media/`.
+From the project's **Storage** tab, create a **Blob** store with **Public** access for Production. If Preview deployments need uploads, use a different Preview store and write token. Public access is intentional because these uploads are website banners, team portraits, event images, and innovation-gallery images. Vercel injects `BLOB_READ_WRITE_TOKEN`; when that variable is present, Django automatically uses `VercelBlobStorage`. Local development continues to use `media/`.
 
 ### 4. Add production environment variables
 
@@ -146,8 +146,8 @@ In **Project Settings > Environment Variables**, add these to Production and Pre
 ```text
 DJANGO_DEBUG=False
 DJANGO_SECRET_KEY=<a long unique random value>
-ALLOWED_HOSTS=.vercel.app
-CSRF_TRUSTED_ORIGINS=https://*.vercel.app
+ALLOWED_HOSTS=tiih.secora.dev,<your-project>.vercel.app
+CSRF_TRUSTED_ORIGINS=https://tiih.secora.dev,https://<your-project>.vercel.app
 SITE_ORIGIN=https://<your-production-domain>
 SECURE_SSL_REDIRECT=True
 SESSION_COOKIE_SECURE=True
@@ -155,7 +155,9 @@ CSRF_COOKIE_SECURE=True
 SECURE_HSTS_SECONDS=31536000
 ```
 
-`DATABASE_URL`, `DATABASE_URL_UNPOOLED`, and `BLOB_READ_WRITE_TOKEN` should come from the connected Vercel resources rather than being entered manually. For a custom domain, add that hostname to `ALLOWED_HOSTS` and its full `https://` origin to `CSRF_TRUSTED_ORIGINS`, separated from existing values with commas.
+`DATABASE_URL`, `DATABASE_URL_UNPOOLED`, and `BLOB_READ_WRITE_TOKEN` should come from the connected Vercel resources rather than being entered manually. For a custom domain, add that hostname to `ALLOWED_HOSTS` and its full `https://` origin to `CSRF_TRUSTED_ORIGINS`, separated from existing values with commas. The build now stops on Django deployment-check warnings before applying database migrations.
+
+The admin requires an authenticator-app second factor after deployment. Existing staff are guided through setup on first sign-in. Read [SECURITY.md](SECURITY.md) before deploying, especially the Preview/Production resource separation and account-recovery guidance.
 
 The public Contact page has no form, so SMTP is not required for it. Configure SMTP only if email functionality is re-enabled:
 
