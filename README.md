@@ -2,7 +2,7 @@
 
 A complete Django 5.2 institutional website for the Tsavo Innovation & Incubation Hub (TIIH), operating under Taita Taveta University. The public site has six principal pages, a searchable project showcase, direct contact information, SEO basics, and responsive local imagery.
 
-The design uses the project brief's preliminary green and blue palette. It is visually connected to TTU's current public website but does not claim these colours or the bundled system font stack are certified brand standards. The supplied TIIH logo is integrated in the header, footer, and browser icon. The hero and homepage introduction photographs come from the supplied TIIH presentation; replace the remaining temporary imagery and TTU placeholder when approved institutional assets are available.
+The design uses the project brief's preliminary green and blue palette. It is visually connected to TTU's current public website but does not claim these colours or the bundled system font stack are certified brand standards. The supplied TIIH logo is integrated in the header, footer, and browser icon. The hero and homepage introduction photographs come from the supplied TIIH presentation; replace any remaining temporary imagery when approved institutional assets are available.
 
 ## Technology
 
@@ -23,7 +23,7 @@ apps/
   events/     Admin-managed events used on the homepage
   contact/    Direct contact details and campus directions
 templates/    Shared and page-specific Django templates
-static/       CSS, JavaScript, branding placeholders, and local fallback images
+static/       CSS, JavaScript, official branding, and local fallback images
 media/        Runtime uploads (ignored by Git)
 tsavo_hub/    Project settings and root URLs
 ```
@@ -100,7 +100,9 @@ Sign in at `/admin/` with a Django superuser.
 
 ## Images
 
-See [IMAGE_REPLACEMENT_GUIDE.md](IMAGE_REPLACEMENT_GUIDE.md) for every temporary filename, recommended dimensions, location, and replacement workflow. Administrator uploads live under `media/`; do not copy them into `static/`.
+See [IMAGE_REPLACEMENT_GUIDE.md](IMAGE_REPLACEMENT_GUIDE.md) for every temporary filename, recommended dimensions, location, and replacement workflow. Local administrator uploads live under `media/`; do not copy them into `static/`.
+
+Tracked fallback images in `static/images/` must exist in the local checkout to appear locally, even when a clean Vercel deployment still has them. Local development uses `media/` for administrator uploads; the deployed site uses Vercel Blob, so production uploads do not automatically appear in a local `media/` folder. After pulling changes, apply migrations to the intended local database and run the static-asset test before troubleshooting missing images.
 
 ## Tests and checks
 

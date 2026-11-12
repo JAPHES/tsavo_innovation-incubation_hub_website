@@ -1,6 +1,6 @@
 # TIIH Image Replacement Guide
 
-The banner, homepage introduction, and project photographs listed below come directly from the supplied TIIH presentation. Their original pixels are retained. Some unused older placeholders and generic fallback images remain in the repository. The TIIH logo was supplied by the Hub and is used as the website's identity; the TTU logo remains an explicitly labelled placeholder.
+The banner, homepage introduction, and project photographs listed below come directly from the supplied TIIH presentation. Their original pixels are retained. Older unused image placeholders have been removed. The TIIH logo was supplied by the Hub and is used as the website's identity.
 
 Replace a file with an approved image using the same filename to avoid changing Python or template code. Banner text sits over a CSS gradient for readability; the source photographs are not retouched. Export any future photographs as optimized sRGB JPEGs; use PNG for logos requiring transparency.
 
@@ -19,11 +19,10 @@ Replace a file with an approved image using the same filename to avoid changing 
 | `static/images/innovations/blue-bin-pwani-innovation-week.png` | 387 × 337 | Blue Bin project | Competition graphic from the supplied TIIH presentation. |
 | `static/images/innovations/blue-bin-pwani-group.jpeg` | 1600 × 1384 | Blue Bin homepage card | Original group photograph from the supplied presentation. The runner-up graphic remains on the project detail page and catalogue card. |
 | `static/images/innovations/multilingual-learning-platform.svg` | 1200 × 800 | Multilingual learning project | Concept illustration, not a screenshot of the platform. Replace with an approved product visual when available. |
-| `static/images/branding/ttu_logo.png` | 600 × 600 transparent PNG | Reserved institutional asset | Replace with the authentic TTU logo when supplied and approved for this site. |
 
 ## Admin-uploaded images
 
-Uploaded images belong under `media/`, never `static/`:
+Locally, administrator-uploaded images belong under `media/`, never `static/`. Production uploads use Vercel Blob instead:
 
 - Page banners: `media/banners/`
 - Projects: `media/projects/`
