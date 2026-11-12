@@ -54,6 +54,8 @@ AUTHENTICATION_BACKENDS = [
     "axes.backends.AxesStandaloneBackend",
     "django.contrib.auth.backends.ModelBackend",
 ]
+LOGIN_URL = "/admin/login/"
+LOGIN_REDIRECT_URL = "/admin/"
 AXES_ONLY_ADMIN_SITE = True
 AXES_LOCKOUT_PARAMETERS = ["username", "ip_address"]
 AXES_CLIENT_IP_CALLABLE = "tsavo_hub.security.trusted_client_ip"

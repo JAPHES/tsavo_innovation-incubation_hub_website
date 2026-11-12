@@ -27,6 +27,11 @@ class AdminExperienceTests(TestCase):
         self.assertContains(response, 'name="remember_me"')
         self.assertNotContains(response, "autofocus")
 
+    def test_mfa_setup_sends_anonymous_visitors_to_admin_login(self):
+        response = self.client.get(reverse("mfa:security_settings"))
+        self.assertEqual(response.status_code, 302)
+        self.assertTrue(response.url.startswith(reverse("admin:login")))
+
     def test_admin_login_session_expires_with_browser_by_default(self):
         response = self.client.post(
             reverse("admin:login"),
