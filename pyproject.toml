@@ -10,6 +10,8 @@ dependencies = [
     "dj-database-url>=2,<4",
     "psycopg[binary]>=3.2,<4",
     "vercel>=0.12,<1",
+    "django-axes==9.0.0",
+    "django-mfa==4.6.1",
 ]
 
 [tool.vercel]

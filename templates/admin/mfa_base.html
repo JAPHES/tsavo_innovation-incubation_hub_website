@@ -1,0 +1,14 @@
+{% extends "django_mfa/base.html" %}
+{% load static %}
+
+{% block nav_menu %}
+<header class="mfa-header">
+  <div class="mfa-header__inner">
+    <span class="mfa-brand">TIIH Admin Portal · Two-factor security</span>
+    <form method="post" action="{% url 'admin_sign_out' %}">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-default btn-sm">Sign out</button>
+    </form>
+  </div>
+</header>
+{% endblock %}

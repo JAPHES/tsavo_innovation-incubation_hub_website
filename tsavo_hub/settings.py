@@ -1,6 +1,7 @@
 """Django settings for the Tsavo Innovation & Incubation Hub website."""
 
 import os
+from datetime import timedelta
 from pathlib import Path
 
 import dj_database_url
@@ -17,6 +18,8 @@ def env_bool(name: str, default: bool = False) -> bool:
 
 IS_VERCEL = env_bool("VERCEL", False)
 DEBUG = env_bool("DJANGO_DEBUG", not IS_VERCEL)
+if IS_VERCEL and DEBUG:
+    raise ImproperlyConfigured("DJANGO_DEBUG must be False on Vercel deployments.")
 SECRET_KEY = os.getenv("SECRET_KEY") or os.getenv("DJANGO_SECRET_KEY")
 if not SECRET_KEY:
     if DEBUG:
@@ -24,8 +27,9 @@ if not SECRET_KEY:
     else:
         raise ImproperlyConfigured("SECRET_KEY must be set when DEBUG=False.")
 
-default_hosts = "127.0.0.1,localhost,.vercel.app" if IS_VERCEL else "127.0.0.1,localhost"
-default_csrf_origins = "https://*.vercel.app" if IS_VERCEL else ""
+vercel_hosts = [os.getenv("VERCEL_URL", ""), os.getenv("VERCEL_PROJECT_PRODUCTION_URL", "")]
+default_hosts = ",".join(["127.0.0.1", "localhost", *[host for host in vercel_hosts if host]])
+default_csrf_origins = ""
 ALLOWED_HOSTS = [host.strip() for host in os.getenv("ALLOWED_HOSTS", default_hosts).split(",") if host.strip()]
 CSRF_TRUSTED_ORIGINS = [origin.strip() for origin in os.getenv("CSRF_TRUSTED_ORIGINS", default_csrf_origins).split(",") if origin.strip()]
 
@@ -35,14 +39,40 @@ INSTALLED_APPS = [
     "django.contrib.sitemaps", "apps.core.apps.CoreConfig", "apps.services.apps.ServicesConfig",
     "apps.projects.apps.ProjectsConfig", "apps.team.apps.TeamConfig",
     "apps.events.apps.EventsConfig", "apps.contact.apps.ContactConfig",
+    "axes", "django_mfa",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware", "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware", "django.middleware.csrf.CsrfViewMiddleware",
-    "django.contrib.auth.middleware.AuthenticationMiddleware", "django.contrib.messages.middleware.MessageMiddleware",
-    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware", "django_mfa.middleware.MfaMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware", "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "tsavo_hub.security.PublicContentSecurityPolicyMiddleware", "axes.middleware.AxesMiddleware",
 ]
+
+AUTHENTICATION_BACKENDS = [
+    "axes.backends.AxesStandaloneBackend",
+    "django.contrib.auth.backends.ModelBackend",
+]
+AXES_ONLY_ADMIN_SITE = True
+AXES_LOCKOUT_PARAMETERS = ["username", "ip_address"]
+AXES_CLIENT_IP_CALLABLE = "tsavo_hub.security.trusted_client_ip"
+AXES_FAILURE_LIMIT = 5
+AXES_COOLOFF_TIME = timedelta(minutes=15)
+AXES_RESET_COOLOFF_ON_FAILURE_DURING_LOCKOUT = False
+AXES_ENABLE_ACCESS_FAILURE_LOG = True
+AXES_ACCESS_FAILURE_LOG_PER_USER_LIMIT = 100
+AXES_NEVER_LOCKOUT_GET = True
+AXES_ENABLE_RETRY_AFTER_HEADER = True
+
+MFA_FACTORS = ["totp", "recovery_codes"]
+MFA_ISSUER_NAME = "Tsavo Innovation & Incubation Hub"
+MFA_PROTECT_ADMIN = True
+MFA_BASE_TEMPLATE = "admin/mfa_base.html"
+MFA_EXEMPT_PATHS = ["/sign-out/"]
+MFA_RATE_LIMIT_BACKEND = "database"
+MFA_RATE_LIMIT_FAIL_OPEN = False
+MFA_CLIENT_IP_RESOLVER = "tsavo_hub.security.trusted_client_ip"
 
 ROOT_URLCONF = "tsavo_hub.urls"
 TEMPLATES = [{
@@ -67,6 +97,9 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
+
+# A remembered admin login expires after one working day, not Django's 14-day default.
+SESSION_COOKIE_AGE = 8 * 60 * 60
 
 LANGUAGE_CODE = "en-gb"
 TIME_ZONE = "Africa/Nairobi"

@@ -18,6 +18,7 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.auth.views import LogoutView
 from django.contrib.sitemaps.views import sitemap
 from django.urls import include, path
 
@@ -30,6 +31,8 @@ admin.site.site_title = "TIIH Admin"
 admin.site.index_title = "Manage website content"
 
 urlpatterns = [
+    path("sign-out/", LogoutView.as_view(next_page="admin:login"), name="admin_sign_out"),
+    path("mfa/", include("django_mfa.urls")),
     path("admin/", admin.site.urls),
     path("", include("apps.core.urls")),
     path("services/", include("apps.services.urls")),

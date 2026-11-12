@@ -19,6 +19,10 @@
 
 {% block nav-global %}{% endblock %}
 
+{% block userlinks %}
+  <a href="{% url 'mfa:security_settings' %}">Two-factor security</a> / {{ block.super }}
+{% endblock %}
+
 {% block footer %}
   <div class="tiih-admin-footer">
     <span>Tsavo Innovation &amp; Incubation Hub</span>
