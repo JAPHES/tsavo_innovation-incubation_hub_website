@@ -22,6 +22,12 @@ class CorePageTests(TestCase):
         self.assertEqual(self.client.get(reverse("core:home")).status_code, 200)
         self.assertEqual(self.client.get(reverse("core:about")).status_code, 200)
 
+    def test_public_pages_use_round_tab_logo(self):
+        for page in ("core:home", "services:list"):
+            with self.subTest(page=page):
+                response = self.client.get(reverse(page))
+                self.assertContains(response, 'rel="icon" type="image/png" href="/static/images/branding/tiih_logo_round.png?v=20261116-1"')
+
     def test_chair_whatsapp_button_appears_on_public_pages(self):
         for page in ("core:home", "contact:contact"):
             with self.subTest(page=page):
