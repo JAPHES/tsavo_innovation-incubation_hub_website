@@ -16,6 +16,5 @@ def site_context(request):
     return {
         "site_settings": site_settings,
         "site_origin": settings.SITE_ORIGIN,
-        "project_details_enabled": settings.PROJECT_DETAILS_ENABLED,
         "chair_whatsapp_digits": chair_whatsapp_digits,
     }

@@ -42,6 +42,7 @@ class InnovationProject(models.Model):
     is_featured = models.BooleanField(default=False, db_index=True)
     homepage_order = models.PositiveSmallIntegerField(default=100, db_index=True, help_text="Lower numbers appear first in the homepage showcase.")
     is_published = models.BooleanField(default=False, db_index=True)
+    details_public = models.BooleanField(default=False, help_text="Show the View project link and allow visitors to open this project's detail page.")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

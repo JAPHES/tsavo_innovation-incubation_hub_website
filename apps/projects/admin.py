@@ -13,9 +13,9 @@ class ProjectImageInline(admin.TabularInline):
 
 @admin.register(InnovationProject)
 class InnovationProjectAdmin(admin.ModelAdmin):
-    list_display = ("title", "category", "development_stage", "homepage_order", "is_featured", "is_published", "updated_at")
-    list_editable = ("homepage_order", "is_featured", "is_published")
-    list_filter = ("is_published", "is_featured", "category", "development_stage", "created_at")
+    list_display = ("title", "category", "development_stage", "homepage_order", "is_featured", "is_published", "details_public", "updated_at")
+    list_editable = ("homepage_order", "is_featured", "is_published", "details_public")
+    list_filter = ("is_published", "details_public", "is_featured", "category", "development_stage", "created_at")
     search_fields = ("title", "short_description", "full_description")
     prepopulated_fields = {"slug": ("title",)}
     readonly_fields = ("created_at", "updated_at", "cover_preview")
@@ -26,7 +26,7 @@ class InnovationProjectAdmin(admin.ModelAdmin):
         ("Innovation details", {"fields": ("category", "development_stage", "problem_statement", "proposed_solution", "key_features")}),
         ("Approved public information", {"fields": ("team_information", "external_url")}),
         ("Media", {"fields": ("cover_image", "cover_preview")}),
-        ("Publishing", {"fields": ("is_featured", "homepage_order", "is_published", "created_at", "updated_at")}),
+        ("Publishing", {"fields": ("is_featured", "homepage_order", "is_published", "details_public", "created_at", "updated_at")}),
     )
 
     @admin.display(description="Cover preview")

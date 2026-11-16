@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
 
@@ -21,9 +20,7 @@ class ProjectSitemap(Sitemap):
     priority = 0.6
 
     def items(self):
-        if not settings.PROJECT_DETAILS_ENABLED:
-            return InnovationProject.objects.none()
-        return InnovationProject.objects.filter(is_published=True)
+        return InnovationProject.objects.filter(is_published=True, details_public=True)
 
     def lastmod(self, item):
         return item.updated_at

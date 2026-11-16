@@ -1,4 +1,4 @@
-from django.test import TestCase, override_settings
+from django.test import TestCase
 from django.urls import reverse
 
 from .models import InnovationProject
@@ -20,10 +20,11 @@ class ProjectPageTests(TestCase):
             full_description="Draft", category="mining", development_stage="idea", is_published=False,
         )
 
-    @override_settings(PROJECT_DETAILS_ENABLED=True)
     def test_listing_and_detail_routes_work(self):
-        self.assertEqual(self.client.get(reverse("projects:list")).status_code, 200)
-        project = InnovationProject.objects.filter(is_published=True).first()
+        listing = self.client.get(reverse("projects:list"))
+        self.assertEqual(listing.status_code, 200)
+        self.assertEqual(listing.context["page_obj"][0].slug, "upcycled-cotton-hydro-pellets")
+        project = InnovationProject.objects.get(slug="upcycled-cotton-hydro-pellets")
         response = self.client.get(project.get_absolute_url())
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, project.title)
@@ -46,25 +47,37 @@ class ProjectPageTests(TestCase):
         self.assertContains(filtered, "q=Published")
 
     def test_unpublished_project_is_not_public(self):
+        InnovationProject.objects.filter(slug="private-draft").update(details_public=True)
         response = self.client.get(reverse("projects:detail", kwargs={"slug": "private-draft"}))
         self.assertEqual(response.status_code, 404)
 
-    def test_detail_links_and_routes_are_temporarily_disabled(self):
-        project = InnovationProject.objects.filter(is_published=True).first()
-        self.assertEqual(self.client.get(project.get_absolute_url()).status_code, 404)
+    def test_only_hydro_pellets_has_a_public_detail_link(self):
+        project = InnovationProject.objects.get(slug="upcycled-cotton-hydro-pellets")
+        closed_project = InnovationProject.objects.get(slug="blood-bank-management-system")
+        self.assertEqual(self.client.get(project.get_absolute_url()).status_code, 200)
+        self.assertEqual(self.client.get(closed_project.get_absolute_url()).status_code, 404)
         listing = self.client.get(reverse("projects:list"))
-        self.assertNotContains(listing, "View project")
-        self.assertNotContains(listing, f'href="{project.get_absolute_url()}"')
+        self.assertContains(listing, "View project", count=1)
+        self.assertContains(listing, f'href="{project.get_absolute_url()}"')
+        self.assertNotContains(listing, f'href="{closed_project.get_absolute_url()}"')
         homepage = self.client.get(reverse("core:home"))
-        self.assertNotContains(homepage, "View project")
-        self.assertNotContains(homepage, f'href="{project.get_absolute_url()}"')
+        self.assertContains(homepage, "View project", count=1)
+        self.assertContains(homepage, f'href="{project.get_absolute_url()}"')
+        self.assertNotContains(homepage, f'href="{closed_project.get_absolute_url()}"')
         sitemap = self.client.get("/sitemap.xml")
-        self.assertNotContains(sitemap, project.get_absolute_url())
+        self.assertContains(sitemap, project.get_absolute_url())
+        self.assertNotContains(sitemap, closed_project.get_absolute_url())
+
+    def test_another_project_can_be_opened_individually_later(self):
+        project = InnovationProject.objects.get(slug="blood-bank-management-system")
+        project.details_public = True
+        project.save(update_fields=["details_public"])
+        self.assertContains(self.client.get(reverse("projects:list")), "View project", count=2)
+        self.assertEqual(self.client.get(project.get_absolute_url()).status_code, 200)
 
 
 class PresentationProjectTests(TestCase):
-    @override_settings(PROJECT_DETAILS_ENABLED=True)
-    def test_presentation_projects_are_published_and_have_detail_pages(self):
+    def test_only_hydro_pellets_presentation_detail_is_public(self):
         for slug, title in (
             ("upcycled-cotton-hydro-pellets", "Upcycled Cotton Hydro-Pellets"),
             ("ai-multilingual-learning-platform", "AI-Powered Multilingual Learning Platform"),
@@ -75,9 +88,13 @@ class PresentationProjectTests(TestCase):
                 self.assertTrue(project.is_published)
                 self.assertEqual(project.is_featured, slug != "ai-multilingual-learning-platform")
                 self.assertEqual(project.development_stage, "")
-                self.assertContains(self.client.get(project.get_absolute_url()), title)
+                self.assertEqual(project.details_public, slug == "upcycled-cotton-hydro-pellets")
+                response = self.client.get(project.get_absolute_url())
+                if project.details_public:
+                    self.assertContains(response, title)
+                else:
+                    self.assertEqual(response.status_code, 404)
 
-    @override_settings(PROJECT_DETAILS_ENABLED=True)
     def test_blood_bank_is_featured_and_education_remains_in_catalogue(self):
         blood_bank = InnovationProject.objects.get(slug="blood-bank-management-system")
         self.assertTrue(blood_bank.is_published)
@@ -85,15 +102,18 @@ class PresentationProjectTests(TestCase):
         self.assertEqual(blood_bank.homepage_order, 20)
         self.assertEqual(blood_bank.category, "health")
         self.assertEqual(blood_bank.development_stage, "")
-        self.assertContains(self.client.get(blood_bank.get_absolute_url()), "Presidential Innovation Challenge")
+        self.assertFalse(blood_bank.details_public)
+        self.assertEqual(self.client.get(blood_bank.get_absolute_url()).status_code, 404)
         self.assertContains(self.client.get(reverse("projects:list")), "AI-Powered Multilingual Learning Platform")
 
-    @override_settings(PROJECT_DETAILS_ENABLED=True)
     def test_blue_bin_shows_only_confirmed_information(self):
         project = InnovationProject.objects.get(slug="blue-bin")
         self.assertEqual(project.category, "")
         self.assertEqual(project.problem_statement, "")
         self.assertEqual(project.proposed_solution, "")
+        self.assertEqual(self.client.get(project.get_absolute_url()).status_code, 404)
+        project.details_public = True
+        project.save(update_fields=["details_public"])
         response = self.client.get(project.get_absolute_url())
         self.assertContains(response, "Pwani Innovation Week 2025")
         self.assertContains(response, "Pwani Innovation Week 2025 online pitch competition")
