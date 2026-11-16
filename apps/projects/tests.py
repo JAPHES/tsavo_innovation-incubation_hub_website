@@ -23,6 +23,7 @@ class ProjectPageTests(TestCase):
     def test_listing_and_detail_routes_work(self):
         listing = self.client.get(reverse("projects:list"))
         self.assertEqual(listing.status_code, 200)
+        self.assertNotContains(listing, "projects found")
         self.assertEqual(listing.context["page_obj"][0].slug, "upcycled-cotton-hydro-pellets")
         project = InnovationProject.objects.get(slug="upcycled-cotton-hydro-pellets")
         response = self.client.get(project.get_absolute_url())
