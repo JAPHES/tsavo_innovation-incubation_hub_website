@@ -12,6 +12,8 @@ class ServicePageTests(TestCase):
         self.assertEqual(len(response.context["services"]), 7)
         self.assertContains(response, "Shared Infrastructure")
         self.assertContains(response, "Research and Development")
+        self.assertContains(response, 'class="bi bi-clipboard-data"')
+        self.assertNotContains(response, 'class="bi bi-flask"')
 
     def test_services_are_static_and_have_no_database_table(self):
         self.assertEqual(list(apps.get_app_config("services").get_models()), [])

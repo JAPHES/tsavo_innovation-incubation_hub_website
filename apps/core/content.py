@@ -49,7 +49,7 @@ SERVICES = (
     SimpleNamespace(name="People Connectivity", slug="people-connectivity", description="Mentorship, coaching, peer exchange, entrepreneurial networks and connections to relevant markets and value-chain participants.", icon="bi-people"),
     SimpleNamespace(name="Customized Training", slug="customized-training", description="Targeted technical, business-management and personal entrepreneurial skills development for innovators and venture teams.", icon="bi-mortarboard"),
     SimpleNamespace(name="Ideation and Business Modeling", slug="ideation-and-business-modeling", description="Structured support for problem discovery, idea development, business-model refinement and venture planning.", icon="bi-diagram-3"),
-    SimpleNamespace(name="Research and Development", slug="research-and-development", description="Research-driven innovation, responsible prototyping and product-development support at an appropriate stage.", icon="bi-flask"),
+    SimpleNamespace(name="Research and Development", slug="research-and-development", description="Research-driven innovation, responsible prototyping and product-development support at an appropriate stage.", icon="bi-clipboard-data"),
 )
 
 CORE_VALUES = (
