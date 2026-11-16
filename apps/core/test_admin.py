@@ -34,7 +34,7 @@ class AdminExperienceTests(TestCase):
         self.assertContains(response, "images/branding/tiih_logo_round.png")
         self.assertContains(response, "Authorized personnel only. All access is logged.")
         self.assertContains(response, 'name="remember_me"')
-        self.assertContains(response, "css/tiih-admin.css?v=20261116-1")
+        self.assertContains(response, "css/tiih-admin.css?v=20261116-2")
         self.assertNotContains(response, "autofocus")
 
     def test_mfa_route_is_no_longer_available(self):
