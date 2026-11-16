@@ -28,7 +28,6 @@ sitemaps = {"static": StaticViewSitemap, "projects": ProjectSitemap}
 admin.site.site_header = "TIIH Website Administration"
 admin.site.site_title = "TIIH Admin"
 admin.site.index_title = "Manage website content"
-admin.site.enable_nav_sidebar = False
 
 urlpatterns = [
     path("admin/", admin.site.urls),

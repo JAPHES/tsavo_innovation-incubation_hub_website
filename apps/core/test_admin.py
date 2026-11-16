@@ -31,8 +31,10 @@ class AdminExperienceTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Admin Portal")
         self.assertContains(response, "Tsavo Innovation &amp; Incubation Hub")
+        self.assertContains(response, "images/branding/tiih_logo_round.png")
         self.assertContains(response, "Authorized personnel only. All access is logged.")
         self.assertContains(response, 'name="remember_me"')
+        self.assertContains(response, "css/tiih-admin.css?v=20261116-1")
         self.assertNotContains(response, "autofocus")
 
     def test_mfa_route_is_no_longer_available(self):
@@ -46,7 +48,7 @@ class AdminExperienceTests(TestCase):
 
         self.assertRedirects(response, reverse("admin:index"), fetch_redirect_response=False)
         self.assertTrue(self.client.session.get_expire_at_browser_close())
-        self.assertContains(self.client.get(reverse("admin:index")), "Your publishing desk")
+        self.assertContains(self.client.get(reverse("admin:index")), "Manage website content")
 
     def test_remember_me_uses_persistent_session(self):
         response = self.client.post(
@@ -63,20 +65,27 @@ class AdminExperienceTests(TestCase):
         self.assertFalse(self.client.session.get_expire_at_browser_close())
         self.assertEqual(self.client.session.get_expiry_age() // 3600, 8)
 
-    def test_authenticated_admin_lands_on_content_dashboard(self):
+    def test_authenticated_admin_lands_on_standard_django_dashboard(self):
         self.client.force_login(self.superuser)
         response = self.client.get(reverse("admin:index"))
 
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Innovation projects")
-        self.assertContains(response, "Upcoming events")
+        self.assertTrue(any(
+            template.name == "admin/index.html"
+            and "django/contrib/admin/templates/admin/index.html" in template.origin.name.replace("\\", "/")
+            for template in response.templates
+        ))
+        self.assertContains(response, "admin/css/dashboard.css")
+        self.assertContains(response, "Recent actions")
+        self.assertContains(response, "Innovation Projects")
+        self.assertContains(response, "Events")
         self.assertContains(response, reverse("admin:projects_innovationproject_add"))
         self.assertContains(response, reverse("admin:events_event_add"))
         self.assertContains(response, reverse("admin:projects_innovationproject_changelist"))
         self.assertContains(response, reverse("admin:events_event_changelist"))
-        self.assertContains(response, "View live website")
+        self.assertNotContains(response, "Your publishing desk")
+        self.assertNotContains(response, "css/tiih-admin.css")
         self.assertNotContains(response, "Two-factor security")
-        self.assertNotContains(response, "Contact Enquiries")
 
     def test_project_and_event_upload_forms_are_available(self):
         self.client.force_login(self.superuser)
@@ -160,12 +169,12 @@ class AdminExperienceTests(TestCase):
             project = InnovationProject.objects.get(slug="project-with-approved-image")
             self.assertTrue(project.cover_image.storage.exists(project.cover_image.name))
 
-    def test_dashboard_hides_actions_without_model_permissions(self):
+    def test_standard_dashboard_respects_model_permissions(self):
         staff = get_user_model().objects.create_user(username="limited-staff", password="long-password-only", is_staff=True)
         self.client.force_login(staff)
         response = self.client.get(reverse("admin:index"))
-        self.assertContains(response, "Project access has not been assigned")
-        self.assertContains(response, "Event access has not been assigned")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context["app_list"], [])
         self.assertNotContains(response, reverse("admin:projects_innovationproject_add"))
         self.assertNotContains(response, reverse("admin:events_event_add"))
 
