@@ -86,7 +86,7 @@ They are labelled `[DEMO]` and remain unpublished.
 
 ## Managing content
 
-Sign in at `/admin/` with a Django superuser.
+Sign in at `/admin/` with an authorized Django staff account. The dashboard currently highlights only **Innovation Projects** and **Upcoming Events**, with direct Add and Manage actions. Projects can have a cover and gallery; event records can include an image and registration link. Leave **Published** unchecked while preparing content. Only published events with a future start time appear on the homepage. Other existing Django admin models remain registered for authorized maintenance but are not featured on this dashboard; future publishing sections can be added when needed. Administrator sign-in currently uses a password only; see [SECURITY.md](SECURITY.md) for the risk and safeguards.
 
 - **Site settings:** contact details, the chair's public WhatsApp number, vision, mission, location, verified social links, and optional verified map URL. Clear the WhatsApp number to hide the floating button.
 - **Page banners:** text, alt text, and optional uploaded image. Uploads override named static fallbacks.
@@ -113,7 +113,7 @@ python manage.py test
 python manage.py check --deploy
 ```
 
-The tests cover public pages, homepage order, fallbacks, fixed-content schema removal, project search/filtering/pagination and temporary detail blocking, team ordering, event date handling, contact-page details and message privacy, static assets, sitemap, and robots instructions.
+The tests cover public pages, homepage order, fallbacks, fixed-content schema removal, project search/filtering/pagination and per-project detail publication, administrator project/image and event publishing, password-only admin sign-in and login throttling, team ordering, event date handling, contact-page details and message privacy, static assets, sitemap, and robots instructions.
 
 ## Deploying to Vercel
 

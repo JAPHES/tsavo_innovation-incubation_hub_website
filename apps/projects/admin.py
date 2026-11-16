@@ -13,6 +13,7 @@ class ProjectImageInline(admin.TabularInline):
 
 @admin.register(InnovationProject)
 class InnovationProjectAdmin(admin.ModelAdmin):
+    save_on_top = True
     list_display = ("title", "category", "development_stage", "homepage_order", "is_featured", "is_published", "details_public", "updated_at")
     list_editable = ("homepage_order", "is_featured", "is_published", "details_public")
     list_filter = ("is_published", "details_public", "is_featured", "category", "development_stage", "created_at")

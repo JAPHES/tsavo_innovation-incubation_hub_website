@@ -39,13 +39,13 @@ INSTALLED_APPS = [
     "django.contrib.sitemaps", "apps.core.apps.CoreConfig", "apps.services.apps.ServicesConfig",
     "apps.projects.apps.ProjectsConfig", "apps.team.apps.TeamConfig",
     "apps.events.apps.EventsConfig", "apps.contact.apps.ContactConfig",
-    "axes", "django_mfa",
+    "axes",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware", "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware", "django.middleware.csrf.CsrfViewMiddleware",
-    "django.contrib.auth.middleware.AuthenticationMiddleware", "django_mfa.middleware.MfaMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware", "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "tsavo_hub.security.PublicContentSecurityPolicyMiddleware", "axes.middleware.AxesMiddleware",
 ]
@@ -67,15 +67,6 @@ AXES_ACCESS_FAILURE_LOG_PER_USER_LIMIT = 100
 AXES_NEVER_LOCKOUT_GET = True
 AXES_ENABLE_RETRY_AFTER_HEADER = True
 
-MFA_FACTORS = ["totp", "recovery_codes"]
-MFA_ISSUER_NAME = "Tsavo Innovation & Incubation Hub"
-MFA_PROTECT_ADMIN = True
-MFA_BASE_TEMPLATE = "admin/mfa_base.html"
-MFA_EXEMPT_PATHS = ["/sign-out/"]
-MFA_RATE_LIMIT_BACKEND = "database"
-MFA_RATE_LIMIT_FAIL_OPEN = False
-MFA_CLIENT_IP_RESOLVER = "tsavo_hub.security.trusted_client_ip"
-
 ROOT_URLCONF = "tsavo_hub.urls"
 TEMPLATES = [{
     "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -95,7 +86,7 @@ DATABASES["default"]["DISABLE_SERVER_SIDE_CURSORS"] = env_bool("DISABLE_SERVER_S
 
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator", "OPTIONS": {"min_length": 12}},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]

@@ -35,7 +35,7 @@ _PUBLIC_POLICY = (
     + "; frame-src https://www.google.com https://maps.google.com"
 )
 
-# Django admin and django-mfa currently include small inline scripts. Keep their
+# Django admin currently includes small inline scripts. Keep its
 # policy separate so the stricter public policy does not break content editing.
 _ADMIN_POLICY = (
     _COMMON_DIRECTIVES
@@ -52,7 +52,7 @@ class PublicContentSecurityPolicyMiddleware:
 
     def __call__(self, request):
         response = self.get_response(request)
-        admin_page = request.path.startswith(("/admin/", "/mfa/")) or request.path == "/sign-out/"
+        admin_page = request.path.startswith("/admin/")
         response.setdefault("Content-Security-Policy", _ADMIN_POLICY if admin_page else _PUBLIC_POLICY)
         response.setdefault("Permissions-Policy", "camera=(), microphone=(), geolocation=()")
         if admin_page:

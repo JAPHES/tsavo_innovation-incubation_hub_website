@@ -113,6 +113,37 @@ body.tiih-login { min-width: 0; padding: 0; background: #052f1e; }
 .tiih-dashboard-hero p { max-width: 740px; margin: 0; color: rgba(255,255,255,.78); font-size: .95rem; line-height: 1.65; }
 .tiih-view-site { display: inline-flex; align-items: center; justify-content: center; gap: .55rem; min-width: max-content; padding: .8rem 1rem; color: #183825 !important; background: #fff; border-radius: 8px; font-size: .8rem; font-weight: 800; text-decoration: none; }
 .tiih-view-site:hover { background: #f4cf68; }
+.tiih-publisher { margin-top: clamp(1.75rem, 3vw, 2.5rem); }
+.tiih-publisher-heading { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-bottom: 1.2rem; }
+.tiih-publisher-heading h2 { margin: .35rem 0 0; color: #163b27; font-size: clamp(1.5rem, 2.4vw, 2rem); letter-spacing: -.03em; }
+.tiih-publisher-heading > p { max-width: 380px; margin: 0; color: #63736a; font-size: .83rem; line-height: 1.6; }
+.tiih-publisher-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+.tiih-publisher-card { position: relative; display: flex; flex-direction: column; min-height: 380px; overflow: hidden; padding: clamp(1.4rem, 2.5vw, 2rem); background: #fff; border: 1px solid #dce7e0; border-radius: 16px; box-shadow: 0 14px 34px rgba(11,61,36,.07); }
+.tiih-publisher-card::before { position: absolute; inset: 0 0 auto; height: 5px; background: #0a6a3b; content: ""; }
+.tiih-events-card::before { background: #d5a12e; }
+.tiih-publisher-card-top { display: flex; align-items: center; gap: .8rem; margin-bottom: 1.2rem; }
+.tiih-publisher-number { display: grid; width: 44px; height: 44px; place-items: center; color: #fff; background: #0a6a3b; border-radius: 11px; font-size: .78rem; font-weight: 800; }
+.tiih-events-card .tiih-publisher-number { color: #61460b; background: #f9e8b9; }
+.tiih-publisher-type { color: #61766a; font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.tiih-publisher-card h3 { margin: 0 0 .55rem; color: #143c29; font-size: 1.55rem; letter-spacing: -.025em; }
+.tiih-publisher-card > p { max-width: 590px; margin: 0; color: #5d7064; font-size: .84rem; line-height: 1.65; }
+.tiih-publisher-card ul { display: grid; gap: .65rem; margin: 1.35rem 0 0; padding: 0; list-style: none; }
+.tiih-publisher-card li { position: relative; padding-left: 1.15rem; color: #3f5a4a; font-size: .78rem; }
+.tiih-publisher-card li::before { position: absolute; top: .55rem; left: 0; width: 6px; height: 6px; background: #0a6a3b; border-radius: 50%; content: ""; }
+.tiih-events-card li::before { background: #c69422; }
+.tiih-publisher-actions { display: flex; align-items: center; flex-wrap: wrap; gap: .75rem; margin-top: auto; padding-top: 1.7rem; }
+.tiih-publisher-actions a { display: inline-flex; align-items: center; justify-content: center; gap: .65rem; min-height: 44px; padding: .65rem 1rem; border-radius: 8px; font-size: .76rem; font-weight: 800; text-decoration: none; }
+.tiih-publisher-actions .tiih-primary-action { color: #fff; background: #0a6a3b; }
+.tiih-publisher-actions .tiih-primary-action:hover { color: #fff; background: #07552f; }
+.tiih-publisher-actions .tiih-secondary-action { color: #0a6a3b; background: #e9f4ed; }
+.tiih-publisher-actions .tiih-secondary-action:hover { background: #d9ecdf; }
+.tiih-access-note { color: #805b20; font-size: .77rem; }
+.tiih-dashboard-bottom { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; align-items: start; margin-top: 1.25rem; }
+.tiih-dashboard-bottom .tiih-side-card { min-height: 100%; padding: 1.5rem; }
+.tiih-dashboard-bottom .tiih-recent-actions ol { max-height: 300px; overflow-y: auto; }
+body.app-projects.change-form #content-main, body.app-events.change-form #content-main { max-width: 1120px; }
+body.app-projects.change-form input[type="file"], body.app-events.change-form input[type="file"] { max-width: 100%; padding: .85rem; background: #f5faf6; border: 1px dashed #a8c8b1; border-radius: 8px; }
+body.app-projects.change-form textarea, body.app-events.change-form textarea { max-width: 100%; }
 .tiih-dashboard-guides { display: grid; grid-template-columns: repeat(3, 1fr); margin: 1.25rem 0 2rem; overflow: hidden; background: #fff; border: 1px solid #dce7e0; border-radius: 14px; }
 .tiih-dashboard-guides article { display: flex; align-items: flex-start; gap: .9rem; padding: 1.25rem; }
 .tiih-dashboard-guides article + article { border-left: 1px solid #e2ebe5; }
@@ -172,6 +203,8 @@ body.tiih-login { min-width: 0; padding: 0; background: #052f1e; }
   .tiih-dashboard-guides { grid-template-columns: 1fr; }
   .tiih-dashboard-guides article + article { border-top: 1px solid #e2ebe5; border-left: 0; }
   .tiih-app-grid { grid-template-columns: 1fr; }
+  .tiih-publisher-heading { align-items: flex-start; flex-direction: column; gap: .5rem; }
+  .tiih-publisher-grid, .tiih-dashboard-bottom { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 580px) {
@@ -187,6 +220,9 @@ body.tiih-login { min-width: 0; padding: 0; background: #052f1e; }
   .tiih-login-options { align-items: flex-start; flex-direction: column; gap: .65rem; }
   .tiih-dashboard-hero { padding: 1.4rem; border-radius: 13px; }
   .tiih-view-site { width: 100%; }
+  .tiih-publisher-card { min-height: 0; }
+  .tiih-publisher-actions { align-items: stretch; flex-direction: column; }
+  .tiih-publisher-actions a { width: 100%; }
   .tiih-section-heading { flex-direction: column; gap: .25rem; }
   .tiih-model-row { align-items: flex-start; flex-direction: column; }
   .tiih-model-actions { width: 100%; }

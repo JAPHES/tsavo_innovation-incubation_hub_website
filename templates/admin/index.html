@@ -10,96 +10,88 @@
 {% block content %}
 <section class="tiih-dashboard-hero">
   <div>
-    <span class="tiih-admin-kicker">Content control centre</span>
-    <h1>Welcome, {% firstof user.get_short_name user.get_username %}.</h1>
-    <p>Manage changing information such as innovations, events, team profiles, banners and enquiries. Saved published records appear on the live site without a code deployment.</p>
+    <span class="tiih-admin-kicker">TIIH publishing workspace</span>
+    <h1>Welcome back, {% firstof user.get_short_name user.get_username %}.</h1>
+    <p>Add innovation projects, keep upcoming events current, and decide when each item is ready to appear on the public website.</p>
   </div>
-  <a class="tiih-view-site" href="{{ site_url|default:'/' }}" target="_blank" rel="noopener">View live website <span aria-hidden="true">↗</span></a>
+  <a class="tiih-view-site" href="{{ site_url|default:'/' }}" target="_blank" rel="noopener">View live website <span aria-hidden="true">&nearr;</span></a>
 </section>
 
-<section class="tiih-dashboard-guides" aria-label="Administration guidance">
-  <article><span>01</span><div><strong>Keep information current</strong><p>Review dates, contacts and project details before publishing.</p></div></article>
-  <article><span>02</span><div><strong>Use approved media</strong><p>Add clear image descriptions and upload only authorized photographs.</p></div></article>
-  <article><span>03</span><div><strong>Control visibility</strong><p>Use published and active switches to decide what appears publicly.</p></div></article>
-</section>
-
-<div class="tiih-dashboard-layout">
-  <main class="tiih-workspace" aria-labelledby="content-workspace-title">
-    <div class="tiih-section-heading">
-      <div><span class="tiih-admin-kicker">Administration tools</span><h2 id="content-workspace-title">Content workspace</h2></div>
-      <p>Choose a section to review existing records or add new content.</p>
+<section class="tiih-publisher" aria-labelledby="publishing-title">
+  <div class="tiih-publisher-heading">
+    <div>
+      <span class="tiih-admin-kicker">Your publishing desk</span>
+      <h2 id="publishing-title">What would you like to update?</h2>
     </div>
+    <p>Choose a content area below. You can save a draft first, review it, and publish when it is ready.</p>
+  </div>
 
-    {% if app_list %}
-      <div class="tiih-app-grid">
-        {% for app in app_list %}
-          <section class="tiih-app-card app-{{ app.app_label }}">
-            <header>
-              <span class="tiih-app-initial" aria-hidden="true">{{ app.name|slice:":1" }}</span>
-              <div>
-                <h3><a href="{{ app.app_url }}">{{ app.name }}</a></h3>
-                <p>
-                  {% if app.app_label == 'core' %}Site identity, contact settings and page banners.
-                  {% elif app.app_label == 'projects' %}Innovation profiles, project media and publication status.
-                  {% elif app.app_label == 'team' %}Approved team profiles, roles and display order.
-                  {% elif app.app_label == 'events' %}Upcoming workshops, forums and hub activities.
-                  {% elif app.app_label == 'contact' %}Private enquiries submitted through the website.
-                  {% elif app.app_label == 'auth' %}Administrator accounts, groups and access permissions.
-                  {% else %}Manage records and publication settings for this section.
-                  {% endif %}
-                </p>
-              </div>
-            </header>
-            <div class="tiih-model-list">
-              {% for model in app.models %}
-                <div class="tiih-model-row">
-                  <div><strong>{{ model.name }}</strong><small>{% if model.view_only %}View permitted records{% else %}Review and update records{% endif %}</small></div>
-                  <div class="tiih-model-actions">
-                    {% if model.add_url %}<a class="tiih-action-add" href="{{ model.add_url }}">Add new</a>{% endif %}
-                    {% if model.admin_url %}<a href="{{ model.admin_url }}">{% if model.view_only %}View{% else %}Manage{% endif %}</a>{% endif %}
-                  </div>
-                </div>
-              {% endfor %}
-            </div>
-          </section>
-        {% endfor %}
-      </div>
-    {% else %}
-      <div class="tiih-empty-admin"><h3>No administration tools are available</h3><p>Ask a super administrator to assign the appropriate content permissions to your account.</p></div>
-    {% endif %}
-  </main>
-
-  <aside class="tiih-dashboard-sidebar">
-    <section class="tiih-side-card tiih-publish-checklist">
-      <span class="tiih-admin-kicker">Before publishing</span>
-      <h2>Content checklist</h2>
+  <div class="tiih-publisher-grid">
+    <article class="tiih-publisher-card tiih-projects-card" aria-labelledby="projects-card-title">
+      <div class="tiih-publisher-card-top"><span class="tiih-publisher-number" aria-hidden="true">01</span><span class="tiih-publisher-type">Project library</span></div>
+      <h3 id="projects-card-title">Innovation projects</h3>
+      <p>Add a project profile, upload approved photographs, and manage which projects are featured or have a public detail page.</p>
       <ul>
-        <li>Confirm names, titles and dates.</li>
-        <li>Use approved, appropriately sized images.</li>
-        <li>Add meaningful alternative text.</li>
-        <li>Preview important changes on the live site.</li>
+        <li>Project title, description and focus area</li>
+        <li>Cover image and gallery photographs</li>
+        <li>Publishing and detail-page controls</li>
       </ul>
-    </section>
+      <div class="tiih-publisher-actions">
+        {% if perms.projects.add_innovationproject %}<a class="tiih-primary-action" href="{% url 'admin:projects_innovationproject_add' %}">Add innovation project <span aria-hidden="true">&rarr;</span></a>{% endif %}
+        {% if perms.projects.view_innovationproject or perms.projects.change_innovationproject %}<a class="tiih-secondary-action" href="{% url 'admin:projects_innovationproject_changelist' %}">Manage projects</a>{% endif %}
+        {% if not perms.projects.add_innovationproject and not perms.projects.view_innovationproject and not perms.projects.change_innovationproject %}<span class="tiih-access-note">Project access has not been assigned to this account.</span>{% endif %}
+      </div>
+    </article>
 
-    <section class="tiih-side-card tiih-recent-actions">
-      <div class="tiih-side-heading"><div><span class="tiih-admin-kicker">Audit trail</span><h2>Your recent activity</h2></div></div>
-      {% get_admin_log 8 as admin_log for_user user %}
-      {% if admin_log %}
-        <ol>
-          {% for entry in admin_log %}
-            <li>
-              <span class="tiih-action-marker {% if entry.is_addition %}is-addition{% elif entry.is_deletion %}is-deletion{% else %}is-change{% endif %}" aria-hidden="true"></span>
-              <div>
-                {% if entry.is_deletion or not entry.get_admin_url %}<strong>{{ entry.object_repr }}</strong>{% else %}<a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>{% endif %}
-                <small>{% if entry.content_type %}{{ entry.content_type.name|capfirst }} · {% endif %}{{ entry.action_time|timesince }} ago</small>
-              </div>
-            </li>
-          {% endfor %}
-        </ol>
-      {% else %}
-        <p class="tiih-no-activity">Your saved changes will appear here.</p>
-      {% endif %}
-    </section>
-  </aside>
+    <article class="tiih-publisher-card tiih-events-card" aria-labelledby="events-card-title">
+      <div class="tiih-publisher-card-top"><span class="tiih-publisher-number" aria-hidden="true">02</span><span class="tiih-publisher-type">What is coming up</span></div>
+      <h3 id="events-card-title">Upcoming events</h3>
+      <p>Create workshops, forums and other activities with a confirmed date, venue and clear details for visitors.</p>
+      <ul>
+        <li>Event title, description and venue</li>
+        <li>Start time, optional image and registration link</li>
+        <li>Publish when the details are confirmed</li>
+      </ul>
+      <div class="tiih-publisher-actions">
+        {% if perms.events.add_event %}<a class="tiih-primary-action" href="{% url 'admin:events_event_add' %}">Add upcoming event <span aria-hidden="true">&rarr;</span></a>{% endif %}
+        {% if perms.events.view_event or perms.events.change_event %}<a class="tiih-secondary-action" href="{% url 'admin:events_event_changelist' %}">Manage events</a>{% endif %}
+        {% if not perms.events.add_event and not perms.events.view_event and not perms.events.change_event %}<span class="tiih-access-note">Event access has not been assigned to this account.</span>{% endif %}
+      </div>
+    </article>
+  </div>
+</section>
+
+<div class="tiih-dashboard-bottom">
+  <section class="tiih-side-card tiih-publish-checklist" aria-labelledby="publish-checklist-title">
+    <span class="tiih-admin-kicker">Before publishing</span>
+    <h2 id="publish-checklist-title">A quick content check</h2>
+    <ul>
+      <li>Confirm names, facts, dates and locations.</li>
+      <li>Upload only approved, appropriately sized images.</li>
+      <li>Check whether the Published option is selected.</li>
+      <li>Review the public website after saving.</li>
+    </ul>
+  </section>
+
+  <section class="tiih-side-card tiih-recent-actions" aria-labelledby="recent-activity-title">
+    <span class="tiih-admin-kicker">Audit trail</span>
+    <h2 id="recent-activity-title">Your recent activity</h2>
+    {% get_admin_log 6 as admin_log for_user user %}
+    {% if admin_log %}
+      <ol>
+        {% for entry in admin_log %}
+          <li>
+            <span class="tiih-action-marker {% if entry.is_addition %}is-addition{% elif entry.is_deletion %}is-deletion{% else %}is-change{% endif %}" aria-hidden="true"></span>
+            <div>
+              {% if entry.is_deletion or not entry.get_admin_url %}<strong>{{ entry.object_repr }}</strong>{% else %}<a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>{% endif %}
+              <small>{% if entry.content_type %}{{ entry.content_type.name|capfirst }} &middot; {% endif %}{{ entry.action_time|timesince }} ago</small>
+            </div>
+          </li>
+        {% endfor %}
+      </ol>
+    {% else %}
+      <p class="tiih-no-activity">Your saved changes will appear here.</p>
+    {% endif %}
+  </section>
 </div>
 {% endblock %}
