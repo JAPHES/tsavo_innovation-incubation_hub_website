@@ -80,10 +80,14 @@
 
 <section class="section soft-section" id="events">
   <div class="container">
-    {% include "partials/section_heading.html" with centered=True eyebrow="What's ahead" heading="Upcoming events" text="Join upcoming workshops, forums and hub activities." %}
-    <div class="event-list">
-      {% for event in upcoming_events %}{% include "partials/event_card.html" %}{% endfor %}
-    </div>
+    {% include "partials/section_heading.html" with centered=True eyebrow="What's ahead" heading="Upcoming events" text="Stay tuned for future workshops, forums and hub activities." %}
+    {% if upcoming_events %}
+      <div class="event-list">
+        {% for event in upcoming_events %}{% include "partials/event_card.html" %}{% endfor %}
+      </div>
+    {% else %}
+      {% include "partials/empty_state.html" with icon="bi-calendar-event" title="No upcoming events for now" text="Please check back for future TIIH workshops and activities." %}
+    {% endif %}
   </div>
 </section>
 

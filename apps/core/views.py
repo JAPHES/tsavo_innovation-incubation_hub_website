@@ -1,6 +1,3 @@
-from datetime import timedelta
-from types import SimpleNamespace
-
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils import timezone
@@ -26,30 +23,6 @@ def home(request):
     upcoming_events = list(
         Event.objects.filter(is_published=True, start_datetime__gte=timezone.now())[:3]
     )
-    if not upcoming_events:
-        upcoming_events = [
-            SimpleNamespace(
-                title="Innovation Ideation & Design Sprint",
-                description="A practical session for students and emerging entrepreneurs to define problems, test ideas and shape early solution concepts.",
-                venue="TIIH, Taita Taveta University",
-                start_datetime=timezone.now() + timedelta(days=21),
-                registration_url="",
-            ),
-            SimpleNamespace(
-                title="Startup Readiness & Business Model Clinic",
-                description="An interactive clinic focused on customer discovery, business-model refinement and preparing a clear venture pitch.",
-                venue="TIIH, Taita Taveta University",
-                start_datetime=timezone.now() + timedelta(days=49),
-                registration_url="",
-            ),
-            SimpleNamespace(
-                title="Innovation Pitch & Partnership Forum",
-                description="A showcase connecting emerging innovators with mentors, university partners and enterprise-support networks.",
-                venue="University Auditorium, Taita Taveta University",
-                start_datetime=timezone.now() + timedelta(days=77),
-                registration_url="",
-            ),
-        ]
 
     context = banner_context("home")
     context.update({

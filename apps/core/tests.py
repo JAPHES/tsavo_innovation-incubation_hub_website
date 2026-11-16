@@ -59,7 +59,8 @@ class CorePageTests(TestCase):
         self.assertLess(html.index("Blood Bank Management System"), html.index("Blue Bin"))
         self.assertIn("images/innovations/blue-bin-pwani-group.jpeg", html)
         self.assertNotIn("images/innovations/blue-bin-pwani-innovation-week.png", html)
-        self.assertIn("Innovation Pitch &amp; Partnership Forum", html)
+        self.assertIn("No upcoming events for now", html)
+        self.assertNotIn("Innovation Pitch &amp; Partnership Forum", html)
         self.assertIn('class="section innovation-section" id="innovations"', html)
         self.assertIn('class="section-heading text-center mx-auto"><span class="eyebrow">Innovation showcase', html)
         self.assertIn("Ideas for real-world impact", html)
@@ -132,6 +133,14 @@ class CorePageTests(TestCase):
         response = self.client.get(reverse("core:home"))
         self.assertContains(response, "Future approved event")
         self.assertNotContains(response, "Past approved event")
+
+    def test_no_upcoming_events_shows_empty_state_not_sample_events(self):
+        response = self.client.get(reverse("core:home"))
+        self.assertContains(response, "No upcoming events for now")
+        self.assertContains(response, "Please check back for future TIIH workshops and activities.")
+        self.assertNotContains(response, "Innovation Ideation &amp; Design Sprint")
+        self.assertNotContains(response, "Startup Readiness &amp; Business Model Clinic")
+        self.assertNotContains(response, "Innovation Pitch &amp; Partnership Forum")
 
     def test_required_static_assets_resolve(self):
         for asset in [

@@ -93,7 +93,7 @@ Sign in at `/admin/` with a Django superuser.
 - **Innovation projects:** review the four project profiles and add project information, cover, gallery, stage, category, approved public team information, and publishing/featured flags. The homepage order field controls featured-card placement. Uploaded covers replace the bundled project images.
 - **Team members:** add approved profiles and contact links, including an optional LinkedIn URL. Dr. Mwakio Mwagandi's chair profile appears first, using the bundled portrait until a team photo is uploaded.
 - **Events:** add upcoming activities and control their publication status.
-- **Homepage content:** published, featured innovation projects appear on the homepage. If none are available, the showcase has an empty state. When no future events are published, three illustrative upcoming activities fill the events layout.
+- **Homepage content:** published, featured innovation projects appear on the homepage. If none are available, the showcase has an empty state. When no future events are published, the events section says there are no upcoming events.
 - **Fixed institutional content:** the Chair's message, services, programmes, values, and focus areas are code-managed and do not appear in `/admin/` or the database. Achievements also have no database model; add only approved achievement content directly to the website if it is supplied later.
 - **Chair portrait:** the supplied photograph of Dr. Mwakio Mwagandi is bundled with the website.
 - **Contact messages:** historical inquiries remain private to authorized Django administrators. The public form and submission endpoint are currently disabled.
