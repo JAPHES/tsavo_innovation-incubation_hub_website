@@ -113,18 +113,8 @@ if BLOB_READ_WRITE_TOKEN:
     STORAGES["default"] = {"BACKEND": "tsavo_hub.storage.VercelBlobStorage"}
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-EMAIL_BACKEND = os.getenv("EMAIL_BACKEND", "django.core.mail.backends.console.EmailBackend" if DEBUG else "django.core.mail.backends.smtp.EmailBackend")
-EMAIL_HOST = os.getenv("EMAIL_HOST", "")
-EMAIL_PORT = int(os.getenv("EMAIL_PORT", "587"))
-EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER", "")
-EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", "")
-EMAIL_USE_TLS = env_bool("EMAIL_USE_TLS", True)
-DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL", "web@localhost")
-CONTACT_NOTIFICATION_EMAIL = os.getenv("CONTACT_NOTIFICATION_EMAIL", "tiih@ttu.ac.ke")
-
 vercel_origin_host = os.getenv("VERCEL_PROJECT_PRODUCTION_URL") or os.getenv("VERCEL_URL", "")
 SITE_ORIGIN = os.getenv("SITE_ORIGIN", f"https://{vercel_origin_host}" if vercel_origin_host else "").rstrip("/")
-CONTACT_RATE_LIMIT = int(os.getenv("CONTACT_RATE_LIMIT", "5"))
 MAX_IMAGE_UPLOAD_SIZE = int(os.getenv("MAX_IMAGE_UPLOAD_SIZE", str(5 * 1024 * 1024)))
 
 SECURE_SSL_REDIRECT = env_bool("SECURE_SSL_REDIRECT", not DEBUG)

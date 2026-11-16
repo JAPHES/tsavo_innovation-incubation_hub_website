@@ -46,9 +46,10 @@ def about(request):
 
 
 def robots_txt(request):
-    lines = ["User-agent: *", "Allow: /", "Disallow: /admin/", "Disallow: /media/"]
-    if request.build_absolute_uri("/"):
-        lines.append(f"Sitemap: {request.build_absolute_uri('/sitemap.xml')}")
+    lines = [
+        "User-agent: *", "Allow: /", "Disallow: /admin/", "Disallow: /media/",
+        f"Sitemap: {request.build_absolute_uri('/sitemap.xml')}",
+    ]
     return HttpResponse("\n".join(lines), content_type="text/plain")
 
 

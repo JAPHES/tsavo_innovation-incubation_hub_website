@@ -60,7 +60,7 @@ Copy `.env.example` to `.env`. Never commit `.env`. Local development defaults t
 2. Supply a strong `SECRET_KEY`.
 3. Set the deployed host in `ALLOWED_HOSTS` and HTTPS origins in `CSRF_TRUSTED_ORIGINS`.
 4. Set a PostgreSQL `DATABASE_URL`.
-5. Configure secure-cookie/HTTPS settings; SMTP is only needed if email functionality is re-enabled.
+5. Configure secure-cookie/HTTPS settings.
 6. Set `SITE_ORIGIN` only after the real public domain is confirmed.
 7. Serve collected static files and user uploads through appropriate production storage.
 
@@ -157,20 +157,7 @@ SECURE_HSTS_SECONDS=31536000
 
 `DATABASE_URL`, `DATABASE_URL_UNPOOLED`, and `BLOB_READ_WRITE_TOKEN` should come from the connected Vercel resources rather than being entered manually. For a custom domain, add that hostname to `ALLOWED_HOSTS` and its full `https://` origin to `CSRF_TRUSTED_ORIGINS`, separated from existing values with commas. The build now stops on Django deployment-check warnings before applying database migrations.
 
-The admin requires an authenticator-app second factor after deployment. Existing staff are guided through setup on first sign-in. Read [SECURITY.md](SECURITY.md) before deploying, especially the Preview/Production resource separation and account-recovery guidance.
-
-The public Contact page has no form, so SMTP is not required for it. Configure SMTP only if email functionality is re-enabled:
-
-```text
-EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
-EMAIL_HOST=<smtp-host>
-EMAIL_PORT=587
-EMAIL_HOST_USER=<smtp-user>
-EMAIL_HOST_PASSWORD=<smtp-password>
-EMAIL_USE_TLS=True
-DEFAULT_FROM_EMAIL=<verified-sender>
-CONTACT_NOTIFICATION_EMAIL=tiih@ttu.ac.ke
-```
+Administrator sign-in currently uses passwords only. Read [SECURITY.md](SECURITY.md) for the account safeguards and Preview/Production resource separation. The public Contact page has no form, so it does not send email notifications.
 
 ### 5. Deploy
 
