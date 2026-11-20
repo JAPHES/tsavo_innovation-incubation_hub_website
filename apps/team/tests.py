@@ -41,16 +41,27 @@ class TeamPageTests(TestCase):
                 self.assertEqual(member.role, "")
                 self.assertEqual(member.biography, "")
                 self.assertContains(response, name)
-                self.assertContains(response, f"Portrait not yet available for {name}")
+                if name not in {"Mrs Amina Ndinya", "Ms Anne Nyabuti"}:
+                    self.assertContains(response, f"Portrait not yet available for {name}")
 
-    def test_linkedin_search_is_used_until_a_profile_is_added(self):
+    def test_supplied_member_portraits_are_used(self):
+        response = self.client.get(reverse("team:list"))
+        self.assertContains(response, "images/team/amina_ndinya.jpeg")
+        self.assertContains(response, "images/team/anne_nyabuti.jpeg")
+        self.assertNotContains(response, "Portrait not yet available for Mrs Amina Ndinya")
+        self.assertNotContains(response, "Portrait not yet available for Ms Anne Nyabuti")
+
+    def test_chair_profile_and_temporary_linkedin_contact(self):
         chair = TeamMember.objects.get(full_name="Dr. Mwakio Mwagandi")
         response = self.client.get(reverse("team:list"))
-        self.assertContains(response, "Find on LinkedIn")
-        self.assertContains(response, "https://www.linkedin.com/search/results/people/?keywords=Dr.%20Mwakio%20Mwagandi")
-        chair.linkedin_url = "https://www.linkedin.com/in/example-chair/"
-        chair.save(update_fields=["linkedin_url"])
+        self.assertEqual(chair.linkedin_url, "https://www.linkedin.com/in/dr-mwakio-wa-mwagandi-phd-34b20119/")
+        self.assertContains(response, f'href="{chair.linkedin_url}"')
+        self.assertContains(response, "Temporary LinkedIn contact")
+        self.assertContains(response, 'href="https://www.linkedin.com/in/japhes-murithi-79178a329/"')
+
+        amina = TeamMember.objects.get(full_name="Mrs Amina Ndinya")
+        amina.linkedin_url = "https://www.linkedin.com/in/example-amina/"
+        amina.save(update_fields=["linkedin_url"])
         response = self.client.get(reverse("team:list"))
-        self.assertContains(response, 'href="https://www.linkedin.com/in/example-chair/"')
+        self.assertContains(response, 'href="https://www.linkedin.com/in/example-amina/"')
         self.assertContains(response, "LinkedIn profile")
-        self.assertNotContains(response, "https://www.linkedin.com/search/results/people/?keywords=Dr.%20Mwakio%20Mwagandi")

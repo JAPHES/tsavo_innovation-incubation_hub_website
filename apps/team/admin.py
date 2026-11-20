@@ -17,7 +17,7 @@ class TeamMemberAdmin(admin.ModelAdmin):
             "Public contact and LinkedIn profile",
             {
                 "fields": ("linkedin_url", "email"),
-                "description": "Add a verified public LinkedIn profile URL when available and approved. Until then, the team card opens a LinkedIn people search for the member's name.",
+                "description": "Add each member's approved LinkedIn profile URL here. Until then, the team card uses the temporary contact link supplied by TIIH.",
             },
         ),
     )

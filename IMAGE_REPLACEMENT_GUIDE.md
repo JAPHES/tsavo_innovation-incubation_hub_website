@@ -10,6 +10,8 @@ Replace a file with an approved image using the same filename to avoid changing 
 | `static/images/banners/tiih_outreach_about.jpeg` | 3712 × 2475 | About Us and Partnerships banners | Original outreach photograph from the supplied presentation. |
 | `static/images/home/tiih_ideas_enterprise.png` | 772 × 291 | Homepage “Where we cultivate entrepreneurs” section | Original two-scene image from the supplied presentation, displayed without cropping. |
 | `static/images/team/chair_dr_mwakio_mwagandi.jpg` | 900 × 1125 | Homepage Chairman message and Team page | Supplied photograph of Dr. Mwakio Mwagandi, used until a team profile photo is uploaded. |
+| `static/images/team/amina_ndinya.jpeg` | 720 × 1136 | Amina Ndinya's Team card | Supplied original photograph, used until a profile photo is uploaded. |
+| `static/images/team/anne_nyabuti.jpeg` | 626 × 622 | Anne Nyabuti's Team card | Supplied original photograph, used until a profile photo is uploaded. |
 | `static/images/placeholders/project_default.jpg` | 1200 × 800 | Project cards and details without uploads | Keep as a neutral fallback or replace with an approved generic innovation image. |
 | `static/images/branding/tiih_logo.png` | Up to 1000 × 1000 PNG | Header and browser icon | Supplied TIIH logo, optimized without distortion. Replace only with a newly approved official version. |
 | `static/images/branding/tiih_logo_round.png` | 420 × 420 transparent PNG | Circular footer logo | Cropped from the supplied official logo for clear display in the footer. |

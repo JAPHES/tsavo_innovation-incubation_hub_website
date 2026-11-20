@@ -5,6 +5,10 @@
     <img src="{{ member.photograph.url }}" alt="Portrait of {{ member.full_name }}" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"{% if forloop.first %} fetchpriority="high"{% endif %}>
     {% elif member.full_name == "Dr. Mwakio Mwagandi" %}
     <img src="{% static 'images/team/chair_dr_mwakio_mwagandi.jpg' %}" alt="Portrait of Dr. Mwakio Mwagandi" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"{% if forloop.first %} fetchpriority="high"{% endif %}>
+    {% elif member.full_name == "Mrs Amina Ndinya" %}
+    <img src="{% static 'images/team/amina_ndinya.jpeg' %}" alt="Portrait of Mrs Amina Ndinya" loading="lazy" width="720" height="1136">
+    {% elif member.full_name == "Ms Anne Nyabuti" %}
+    <img src="{% static 'images/team/anne_nyabuti.jpeg' %}" alt="Portrait of Ms Anne Nyabuti" loading="lazy" width="626" height="622">
     {% else %}
     <div class="team-photo-placeholder" role="img" aria-label="Portrait not yet available for {{ member.full_name }}">
       <span aria-hidden="true">{{ member.initials }}</span>
@@ -20,7 +24,7 @@
     {% if member.linkedin_url %}
       <a class="team-linkedin" href="{{ member.linkedin_url }}" target="_blank" rel="noopener noreferrer" aria-label="View {{ member.full_name }}'s LinkedIn profile (opens in a new tab)"><span class="linkedin-mark" aria-hidden="true">in</span> LinkedIn profile</a>
     {% else %}
-      <a class="team-linkedin" href="https://www.linkedin.com/search/results/people/?keywords={{ member.full_name|urlencode }}" target="_blank" rel="noopener noreferrer" aria-label="Search LinkedIn for {{ member.full_name }} (opens in a new tab)"><span class="linkedin-mark" aria-hidden="true">in</span> Find on LinkedIn</a>
+      <a class="team-linkedin" href="https://www.linkedin.com/in/japhes-murithi-79178a329/" target="_blank" rel="noopener noreferrer" aria-label="Open the temporary LinkedIn contact for {{ member.full_name }}; this is not the member's personal profile (opens in a new tab)"><span class="linkedin-mark" aria-hidden="true">in</span> Temporary LinkedIn contact</a>
     {% endif %}
   </div>
 </article>

@@ -191,6 +191,8 @@ class CorePageTests(TestCase):
             "images/home/tiih_ideas_enterprise.png",
             "images/placeholders/project_default.jpg",
             "images/team/chair_dr_mwakio_mwagandi.jpg",
+            "images/team/amina_ndinya.jpeg",
+            "images/team/anne_nyabuti.jpeg",
             "images/programmes/whitebox-training-2026-flyer.png",
             "images/programmes/whitebox-bootcamp-facilitator.png",
             "images/partners/mbeya-university-logo.jpg",
