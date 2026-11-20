@@ -97,8 +97,6 @@
   .contact-directions { width: 100%; }
   .gallery-grid { grid-template-columns: 1fr; }
   .programme-cards, .partner-grid { grid-template-columns: 1fr; }
-  .team-grid:not(.team-grid-single) .team-card-chair { grid-template-columns: 1fr; }
-  .team-grid:not(.team-grid-single) .team-card-chair .team-photo img { width: 100%; height: auto; aspect-ratio: 11/10; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-grid > :last-child { grid-column: auto; }
   .footer-bottom { flex-direction: column; gap: .2rem; }
