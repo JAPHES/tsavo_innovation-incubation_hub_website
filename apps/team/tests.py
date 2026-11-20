@@ -51,12 +51,13 @@ class TeamPageTests(TestCase):
         self.assertNotContains(response, "Portrait not yet available for Mrs Amina Ndinya")
         self.assertNotContains(response, "Portrait not yet available for Ms Anne Nyabuti")
 
-    def test_chair_profile_and_temporary_linkedin_contact(self):
+    def test_chair_profile_and_fallback_linkedin_contact(self):
         chair = TeamMember.objects.get(full_name="Dr. Mwakio Mwagandi")
         response = self.client.get(reverse("team:list"))
         self.assertEqual(chair.linkedin_url, "https://www.linkedin.com/in/dr-mwakio-wa-mwagandi-phd-34b20119/")
         self.assertContains(response, f'href="{chair.linkedin_url}"')
-        self.assertContains(response, "Temporary LinkedIn contact")
+        self.assertNotContains(response, "Temporary LinkedIn contact")
+        self.assertContains(response, "Open Japhes Murithi's LinkedIn profile")
         self.assertContains(response, 'href="https://www.linkedin.com/in/japhes-murithi-79178a329/"')
 
         amina = TeamMember.objects.get(full_name="Mrs Amina Ndinya")
@@ -64,4 +65,4 @@ class TeamPageTests(TestCase):
         amina.save(update_fields=["linkedin_url"])
         response = self.client.get(reverse("team:list"))
         self.assertContains(response, 'href="https://www.linkedin.com/in/example-amina/"')
-        self.assertContains(response, "LinkedIn profile")
+        self.assertContains(response, "View Mrs Amina Ndinya's LinkedIn profile")

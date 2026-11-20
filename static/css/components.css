@@ -82,8 +82,8 @@
 .team-copy { display: flex; flex: 1; flex-direction: column; padding: 1.6rem; }
 .team-copy h3 { margin: 0 0 .45rem; font-size: 1.3rem; line-height: 1.25; }
 .team-role { display: block; color: var(--color-primary-dark); font-size: .8rem; font-weight: 750; line-height: 1.5; }
-.team-copy p { margin: 1rem 0 0; color: var(--color-muted); font-size: .92rem; line-height: 1.65; }
-.team-linkedin { display: inline-flex; align-items: center; align-self: flex-start; gap: .55rem; margin-top: auto; padding-top: 1.3rem; color: var(--color-primary-dark); font-size: .85rem; font-weight: 750; }
-.linkedin-mark { display: inline-grid; width: 1.35rem; height: 1.35rem; place-items: center; color: #fff; background: #0a66c2; border-radius: .2rem; font-family: Arial, sans-serif; font-size: .85rem; font-weight: 800; line-height: 1; }
+.team-copy p { margin: 1rem 0 .75rem; color: var(--color-muted); font-size: .92rem; line-height: 1.65; }
+.team-linkedin { display: inline-grid; width: 44px; height: 44px; place-items: center; align-self: flex-start; margin-top: auto; color: var(--color-primary-dark); border-radius: .4rem; }
+.linkedin-mark { display: inline-grid; width: 1.5rem; height: 1.5rem; place-items: center; color: #fff; background: #0a66c2; border-radius: .2rem; font-family: Arial, sans-serif; font-size: .9rem; font-weight: 800; line-height: 1; }
 .team-linkedin:hover { color: var(--color-heading); }
 .team-linkedin:focus-visible { outline: 2px solid var(--color-primary-dark); outline-offset: 4px; }

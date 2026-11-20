@@ -22,9 +22,9 @@
     {% if member.role %}<span class="team-role">{{ member.role }}</span>{% endif %}
     {% if member.biography %}<p>{{ member.biography }}</p>{% endif %}
     {% if member.linkedin_url %}
-      <a class="team-linkedin" href="{{ member.linkedin_url }}" target="_blank" rel="noopener noreferrer" aria-label="View {{ member.full_name }}'s LinkedIn profile (opens in a new tab)"><span class="linkedin-mark" aria-hidden="true">in</span> LinkedIn profile</a>
+      <a class="team-linkedin" href="{{ member.linkedin_url }}" target="_blank" rel="noopener noreferrer" aria-label="View {{ member.full_name }}'s LinkedIn profile (opens in a new tab)"><span class="linkedin-mark" aria-hidden="true">in</span></a>
     {% else %}
-      <a class="team-linkedin" href="https://www.linkedin.com/in/japhes-murithi-79178a329/" target="_blank" rel="noopener noreferrer" aria-label="Open the temporary LinkedIn contact for {{ member.full_name }}; this is not the member's personal profile (opens in a new tab)"><span class="linkedin-mark" aria-hidden="true">in</span> Temporary LinkedIn contact</a>
+      <a class="team-linkedin" href="https://www.linkedin.com/in/japhes-murithi-79178a329/" target="_blank" rel="noopener noreferrer" aria-label="Open Japhes Murithi's LinkedIn profile, provided as a contact for {{ member.full_name }} (opens in a new tab)"><span class="linkedin-mark" aria-hidden="true">in</span></a>
     {% endif %}
   </div>
 </article>

@@ -17,7 +17,7 @@ class TeamMemberAdmin(admin.ModelAdmin):
             "Public contact and LinkedIn profile",
             {
                 "fields": ("linkedin_url", "email"),
-                "description": "Add each member's approved LinkedIn profile URL here. Until then, the team card uses the temporary contact link supplied by TIIH.",
+                "description": "Add each member's approved LinkedIn profile URL here. Until then, the team card uses the Japhes Murithi contact link supplied by TIIH.",
             },
         ),
     )
