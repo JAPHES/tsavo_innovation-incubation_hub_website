@@ -1,5 +1,5 @@
 {% load static %}
-<article class="team-card{% if member.is_chair %} team-card-chair{% elif not member.photograph %} team-card-unpictured{% endif %}" aria-labelledby="team-member-{{ member.pk }}">
+<article class="team-card{% if member.is_chair %} team-card-chair{% endif %}" aria-labelledby="team-member-{{ member.pk }}">
   <div class="team-photo">
     {% if member.photograph %}
     <img src="{{ member.photograph.url }}" alt="Portrait of {{ member.full_name }}" loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"{% if forloop.first %} fetchpriority="high"{% endif %}>
@@ -17,6 +17,10 @@
     <h3 id="team-member-{{ member.pk }}">{{ member.full_name }}</h3>
     {% if member.role %}<span class="team-role">{{ member.role }}</span>{% endif %}
     {% if member.biography %}<p>{{ member.biography }}</p>{% endif %}
-    {% if member.linkedin_url %}<a class="team-linkedin" href="{{ member.linkedin_url }}" target="_blank" rel="noopener noreferrer" aria-label="{{ member.full_name }} on LinkedIn"><i class="bi bi-linkedin" aria-hidden="true"></i> LinkedIn profile <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>{% endif %}
+    {% if member.linkedin_url %}
+      <a class="team-linkedin" href="{{ member.linkedin_url }}" target="_blank" rel="noopener noreferrer" aria-label="View {{ member.full_name }}'s LinkedIn profile (opens in a new tab)"><span class="linkedin-mark" aria-hidden="true">in</span> LinkedIn profile</a>
+    {% else %}
+      <a class="team-linkedin" href="https://www.linkedin.com/search/results/people/?keywords={{ member.full_name|urlencode }}" target="_blank" rel="noopener noreferrer" aria-label="Search LinkedIn for {{ member.full_name }} (opens in a new tab)"><span class="linkedin-mark" aria-hidden="true">in</span> Find on LinkedIn</a>
+    {% endif %}
   </div>
 </article>

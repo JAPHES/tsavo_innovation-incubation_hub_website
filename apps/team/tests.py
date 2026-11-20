@@ -19,6 +19,7 @@ class TeamPageTests(TestCase):
         self.assertEqual(response.context["members"][0].full_name, "Dr. Mwakio Mwagandi")
         html = response.content.decode()
         self.assertEqual(html.count('<article class="team-card'), len(response.context["members"]))
+        self.assertEqual(html.count('class="team-linkedin"'), len(response.context["members"]))
         self.assertLess(html.index("First Active"), html.index("Second Active"))
 
     def test_chair_is_first_and_uses_supplied_portrait(self):
@@ -42,11 +43,14 @@ class TeamPageTests(TestCase):
                 self.assertContains(response, name)
                 self.assertContains(response, f"Portrait not yet available for {name}")
 
-    def test_chair_linkedin_profile_appears_when_set(self):
+    def test_linkedin_search_is_used_until_a_profile_is_added(self):
         chair = TeamMember.objects.get(full_name="Dr. Mwakio Mwagandi")
-        self.assertNotContains(self.client.get(reverse("team:list")), "LinkedIn profile")
+        response = self.client.get(reverse("team:list"))
+        self.assertContains(response, "Find on LinkedIn")
+        self.assertContains(response, "https://www.linkedin.com/search/results/people/?keywords=Dr.%20Mwakio%20Mwagandi")
         chair.linkedin_url = "https://www.linkedin.com/in/example-chair/"
         chair.save(update_fields=["linkedin_url"])
         response = self.client.get(reverse("team:list"))
         self.assertContains(response, 'href="https://www.linkedin.com/in/example-chair/"')
         self.assertContains(response, "LinkedIn profile")
+        self.assertNotContains(response, "https://www.linkedin.com/search/results/people/?keywords=Dr.%20Mwakio%20Mwagandi")
