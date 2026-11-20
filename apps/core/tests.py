@@ -23,7 +23,7 @@ class CorePageTests(TestCase):
         self.assertEqual(self.client.get(reverse("core:about")).status_code, 200)
 
     def test_public_pages_use_round_tab_logo(self):
-        for page in ("core:home", "services:list"):
+        for page in ("core:home", "services:list", "core:programmes_events", "core:partnerships"):
             with self.subTest(page=page):
                 response = self.client.get(reverse(page))
                 self.assertContains(response, 'rel="icon" type="image/png" href="/static/images/branding/tiih_logo_round.png?v=20261116-1"')
@@ -33,7 +33,7 @@ class CorePageTests(TestCase):
             with self.subTest(page=page):
                 response = self.client.get(reverse(page))
                 self.assertContains(response, 'href="https://wa.me/254722274257"')
-                self.assertContains(response, 'aria-label="Chat with Dr. Mwakio Mwagandi, TIIH Chair, on WhatsApp')
+                self.assertContains(response, 'aria-label="Chat with Dr. Mwakio Mwagandi, TIIH Chairman, on WhatsApp')
 
     def test_chair_whatsapp_button_can_be_changed_or_hidden(self):
         site_settings = SiteSettings.objects.get(pk=1)
@@ -55,6 +55,12 @@ class CorePageTests(TestCase):
     def test_homepage_requested_content_and_navigation_updates(self):
         html = self.client.get(reverse("core:home")).content.decode()
         self.assertIn("About TIIH", html)
+        self.assertIn("Where we cultivate entrepreneurs", html)
+        self.assertIn("TIIH is the organ of Taita Taveta University", html)
+        self.assertIn("Message from the Chairman", html)
+        self.assertIn("Featured Innovations", html)
+        self.assertIn("Programmes &amp; Events", html)
+        self.assertIn("Partnerships", html)
         self.assertIn("What TIIH Does", html)
         self.assertIn("Dr. Mwakio Mwagandi", html)
         self.assertIn("Upcycled Cotton Hydro-Pellets", html)
@@ -93,6 +99,7 @@ class CorePageTests(TestCase):
 
     def test_about_foundation_and_values_layout(self):
         html = self.client.get(reverse("core:about")).content.decode()
+        self.assertIn("TIIH is the organ of Taita Taveta University", html)
         self.assertIn('class="section pillars-section"', html)
         self.assertEqual(html.count('class="vision-card"'), 3)
         self.assertIn('<span class="eyebrow">Vision</span>', html)
@@ -148,6 +155,33 @@ class CorePageTests(TestCase):
         self.assertNotContains(response, "Startup Readiness &amp; Business Model Clinic")
         self.assertNotContains(response, "Innovation Pitch &amp; Partnership Forum")
 
+    def test_programmes_and_partnerships_pages_use_approved_feedback(self):
+        programmes = self.client.get(reverse("core:programmes_events"))
+        self.assertContains(programmes, "Huduma Whitebox Entrepreneurship Boot Camp")
+        self.assertContains(programmes, "29 September 2026")
+        self.assertContains(programmes, "whitebox-bootcamp-facilitator.png")
+        self.assertContains(programmes, "whitebox-training-2026-flyer.png")
+        self.assertContains(programmes, "Youth Entrepreneurship and Innovation Readiness Pilot")
+        self.assertContains(programmes, "African Social Venture Incubation")
+        self.assertContains(programmes, "No upcoming events for now")
+
+        partners = self.client.get(reverse("core:partnerships"))
+        for name in (
+            "Mbeya University of Science and Technology", "Cambridge Centre for Social Innovation",
+            "Africa 2100 NFP", "Coast Innovation Hubs Network",
+            "Government of Taita Taveta County",
+        ):
+            self.assertContains(partners, name)
+        self.assertContains(partners, "CiHN")
+        self.assertContains(partners, "images/partners/mbeya-university-logo.jpg")
+
+    def test_new_programmes_page_shows_only_future_published_events(self):
+        Event.objects.create(title="Future programme", slug="future-programme", description="Future", venue="TTU", start_datetime=timezone.now() + timedelta(days=3), is_published=True)
+        Event.objects.create(title="Past programme", slug="past-programme", description="Past", venue="TTU", start_datetime=timezone.now() - timedelta(days=3), is_published=True)
+        response = self.client.get(reverse("core:programmes_events"))
+        self.assertContains(response, "Future programme")
+        self.assertNotContains(response, "Past programme")
+
     def test_required_static_assets_resolve(self):
         for asset in [
             "css/main.css",
@@ -156,8 +190,14 @@ class CorePageTests(TestCase):
             "images/banners/tiih_outreach_about.jpeg",
             "images/home/tiih_ideas_enterprise.png",
             "images/placeholders/project_default.jpg",
-            "images/placeholders/team_member_default.jpg",
             "images/team/chair_dr_mwakio_mwagandi.jpg",
+            "images/programmes/whitebox-training-2026-flyer.png",
+            "images/programmes/whitebox-bootcamp-facilitator.png",
+            "images/partners/mbeya-university-logo.jpg",
+            "images/partners/cambridge-judge-logo.png",
+            "images/partners/africa-2100-logo.png",
+            "images/partners/taita-taveta-county-logo.png",
+            "images/icons/whatsapp.svg",
             "images/branding/tiih_logo.png",
             "images/branding/tiih_logo_round.png",
             "images/innovations/upcycled-cotton-hydro-pellets.png",
@@ -170,4 +210,7 @@ class CorePageTests(TestCase):
 
     def test_robots_and_sitemap_load(self):
         self.assertEqual(self.client.get(reverse("core:robots")).status_code, 200)
-        self.assertEqual(self.client.get("/sitemap.xml").status_code, 200)
+        sitemap = self.client.get("/sitemap.xml")
+        self.assertEqual(sitemap.status_code, 200)
+        self.assertContains(sitemap, "/programmes-events/")
+        self.assertContains(sitemap, "/partnerships/")

@@ -9,6 +9,8 @@ BANNER_FALLBACKS = {
     "projects": "images/banners/tiih_training_hero.png",
     "team": "images/banners/tiih_training_hero.png",
     "contact": "images/banners/tiih_training_hero.png",
+    "programmes": "images/banners/tiih_training_hero.png",
+    "partners": "images/banners/tiih_outreach_about.jpeg",
 }
 BANNER_FALLBACK_ALTS = {
     "home": "Participants working with laptops during a TIIH training session",
@@ -17,19 +19,23 @@ BANNER_FALLBACK_ALTS = {
     "projects": "Participants working with laptops during a TIIH training session",
     "team": "Participants working with laptops during a TIIH training session",
     "contact": "Participants working with laptops during a TIIH training session",
+    "programmes": "Participants working with laptops during a TIIH training session",
+    "partners": "A speaker addressing students during a TIIH outreach session",
 }
 BANNER_DEFAULTS = {
     "home": ("Cultivating Entrepreneurs", "Empowering innovators, nurturing entrepreneurship, and transforming ideas into sustainable ventures."),
     "about": ("Where Innovation Takes Root", "Discover the purpose, vision and values guiding a hub built to turn ideas into meaningful enterprise and impact."),
     "services": ("Our Services", "Supporting innovators and entrepreneurs from ideas to sustainable ventures."),
-    "projects": ("Innovation Projects", "Discovering ideas and innovations with the potential to create real-world impact."),
+    "projects": ("Featured Innovations", "Discovering ideas and innovations with the potential to create real-world impact."),
     "team": ("Meet Our Team", "The people supporting innovation, entrepreneurship and incubation at TIIH."),
     "contact": ("Contact Us", "Connect with the Tsavo Innovation & Incubation Hub."),
+    "programmes": ("Programmes and Events", "Learning, collaboration and practical experience for emerging entrepreneurs."),
+    "partners": ("Collaborations & Partnerships", "Working with institutions and networks to support innovation and enterprise."),
 }
 
 CHAIR_MESSAGE = SimpleNamespace(
     chair_name="Dr. Mwakio Mwagandi",
-    official_position="Chair, Tsavo Innovation & Incubation Hub",
+    official_position="Chairman, Tsavo Innovation & Incubation Hub",
     photograph=None,
     message=(
         "Welcome to the Tsavo Innovation & Incubation Hub, where ideas are nurtured into "
@@ -74,6 +80,83 @@ PROGRAMS = (
     SimpleNamespace(title="Entrepreneurial Skills Training", description="Practical learning in venture planning, management and personal entrepreneurial capability.", icon="bi-mortarboard", application_url=""),
     SimpleNamespace(title="Ideation and Business Modeling", description="Tools for understanding problems, testing assumptions and shaping viable business models.", icon="bi-bezier2", application_url=""),
     SimpleNamespace(title="Commercialization Support", description="General guidance for preparing appropriate innovations for markets and value-chain connections.", icon="bi-shop-window", application_url=""),
+)
+
+PROGRAMME_HIGHLIGHTS = (
+    SimpleNamespace(
+        title="Huduma Whitebox Entrepreneurship Boot Camp",
+        label="Entrepreneurship training",
+        description=(
+            "On 29 September 2026, Taita Taveta University and TIIH collaborated with the "
+            "ICT Authority to deliver a one-day entrepreneurship boot camp for TTU students. "
+            "The sessions covered entrepreneurship, business modelling, product development "
+            "and market-entry strategy, helping innovators explore how to turn ideas into "
+            "commercially viable products."
+        ),
+        date="29 September 2026",
+        venue="Taita Taveta University",
+    ),
+    SimpleNamespace(
+        title="Youth Entrepreneurship and Innovation Readiness Pilot",
+        label="Africa 2100 partnership",
+        description=(
+            "TIIH has partnered with Africa 2100 NFP, a Chicago-registered public charity, "
+            "to implement a pilot that helps underserved young people build entrepreneurship "
+            "readiness through mobile-first education, mentorship and pathways to opportunity."
+        ),
+        logo="images/partners/africa-2100-logo.png",
+        logo_alt="Africa 2100 logo",
+    ),
+    SimpleNamespace(
+        title="African Social Venture Incubation",
+        label="Online entrepreneurship course",
+        description=(
+            "Working with the Cambridge Centre for Social Innovation and Mbeya University "
+            "of Science and Technology, TIIH offered an online course for entrepreneurs in "
+            "Kenya and Tanzania developing purpose-driven ventures that respond to societal "
+            "challenges. The course was funded by the Mastercard Foundation."
+        ),
+        logo="images/partners/cambridge-judge-logo.png",
+        logo_alt="University of Cambridge Judge Business School logo",
+    ),
+)
+
+PARTNERS = (
+    SimpleNamespace(
+        name="Mbeya University of Science and Technology",
+        location="Tanzania",
+        logo="images/partners/mbeya-university-logo.jpg",
+        logo_alt="Mbeya University of Science and Technology emblem",
+        url="https://must.ac.tz/",
+    ),
+    SimpleNamespace(
+        name="Cambridge Centre for Social Innovation",
+        location="Cambridge Judge Business School, UK",
+        logo="images/partners/cambridge-judge-logo.png",
+        logo_alt="Cambridge Judge Business School logo",
+        url="https://www.jbs.cam.ac.uk/centres/social-innovation/",
+    ),
+    SimpleNamespace(
+        name="Africa 2100 NFP",
+        location="United States",
+        logo="images/partners/africa-2100-logo.png",
+        logo_alt="Africa 2100 logo",
+        url="https://www.africa2100.org/",
+    ),
+    SimpleNamespace(
+        name="Coast Innovation Hubs Network",
+        location="Kenya",
+        logo="",
+        logo_alt="",
+        url="",
+    ),
+    SimpleNamespace(
+        name="Government of Taita Taveta County",
+        location="Kenya",
+        logo="images/partners/taita-taveta-county-logo.png",
+        logo_alt="Taita Taveta County Government emblem",
+        url="https://www.taitataveta.go.ke/",
+    ),
 )
 
 def banner_context(page):

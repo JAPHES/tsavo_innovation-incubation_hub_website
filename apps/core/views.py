@@ -9,7 +9,9 @@ from .content import (
     CHAIR_MESSAGE,
     CORE_VALUES,
     FOCUS_AREAS,
+    PARTNERS,
     PROGRAMS,
+    PROGRAMME_HIGHLIGHTS,
     SERVICES,
     banner_context,
 )
@@ -43,6 +45,23 @@ def about(request):
         "focus_areas": FOCUS_AREAS,
     })
     return render(request, "core/about.html", context)
+
+
+def programmes_events(request):
+    context = banner_context("programmes")
+    context.update({
+        "programme_highlights": PROGRAMME_HIGHLIGHTS,
+        "upcoming_events": Event.objects.filter(
+            is_published=True, start_datetime__gte=timezone.now()
+        )[:6],
+    })
+    return render(request, "core/programmes_events.html", context)
+
+
+def partnerships(request):
+    context = banner_context("partners")
+    context["partners"] = PARTNERS
+    return render(request, "core/partnerships.html", context)
 
 
 def robots_txt(request):

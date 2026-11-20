@@ -7,7 +7,7 @@
 <section class="section about-intro" id="about-hub">
   <div class="container split-layout align-items-center">
     <div class="reveal">
-      {% include "partials/section_heading.html" with eyebrow="About TIIH" heading="Where ideas meet enterprise" text="Tsavo Innovation & Incubation Hub supports innovation, business incubation, entrepreneurship, mentoring, training and the commercialization of innovations under Taita Taveta University." %}
+      {% include "partials/section_heading.html" with eyebrow="About TIIH" heading="Where we cultivate entrepreneurs" text="TIIH is the organ of Taita Taveta University that supports innovation, business incubation, entrepreneurship, mentoring, training and the commercialization of innovations." %}
       <p>We create practical pathways for students, staff and community innovators to refine ideas, strengthen ventures and connect with relevant knowledge and networks.</p>
       <a class="btn btn-brand" href="{% url 'core:about' %}">Discover our purpose <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
     </div>
@@ -25,11 +25,11 @@
     </div>
     <div class="chair-copy reveal">
       <span class="quote-mark" aria-hidden="true">“</span>
-      {% include "partials/section_heading.html" with eyebrow="Welcome" heading="Message from the Chair" %}
+      {% include "partials/section_heading.html" with eyebrow="Welcome" heading="Message from the Chairman" %}
       <blockquote>{% if chair_message %}{{ chair_message.message|linebreaksbr }}{% else %}Welcome to the Tsavo Innovation & Incubation Hub, where ideas are nurtured into practical solutions and sustainable ventures. TIIH brings together students, researchers, entrepreneurs, industry partners and communities to learn, experiment and build with purpose. Through mentorship, skills development and collaborative networks, we help innovators move confidently from concept to impact. Whether you are shaping a new idea, strengthening an enterprise or seeking partnership, we invite you to engage with TIIH and help build an innovative, inclusive and enterprising future.{% endif %}</blockquote>
       <div class="chair-credit">
         <b>{{ chair_message.chair_name|default:"Dr. Mwakio Mwagandi" }}</b>
-        <span>{{ chair_message.official_position|default:"Chair, Tsavo Innovation & Incubation Hub" }}</span>
+        <span>{{ chair_message.official_position|default:"Chairman, Tsavo Innovation & Incubation Hub" }}</span>
       </div>
     </div>
   </div>
@@ -63,7 +63,7 @@
 
 <section class="section programs-section" id="programs">
   <div class="container">
-    {% include "partials/section_heading.html" with centered=True eyebrow="Programs & opportunities" heading="Ways the hub can support your journey" text="Explore focused support designed to help innovators build capability, refine ideas and prepare ventures for sustainable growth." %}
+    {% include "partials/section_heading.html" with centered=True eyebrow="Programmes & opportunities" heading="Ways the hub can support your journey" text="Explore focused support designed to help innovators build capability, refine ideas and prepare ventures for sustainable growth." %}
     <div class="card-grid services-grid programs-grid">
       {% for program in programs %}
       <article class="service-card program-card">
@@ -75,6 +75,7 @@
       </article>
       {% endfor %}
     </div>
+    <div class="section-action"><a class="btn btn-outline-brand" href="{% url 'core:programmes_events' %}">Explore programmes and events <i class="bi bi-arrow-right" aria-hidden="true"></i></a></div>
   </div>
 </section>
 

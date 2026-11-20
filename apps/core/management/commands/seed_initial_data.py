@@ -19,7 +19,7 @@ class Command(BaseCommand):
             "contact_email": "tiih@ttu.ac.ke",
             "contact_phone": "+254 722 274257",
             "chair_whatsapp_number": "+254722274257",
-            "description": "TIIH operates under Taita Taveta University and supports innovation, business incubation, entrepreneurship, mentoring, training and the commercialization of innovations.",
+            "description": "TIIH is the organ of Taita Taveta University that supports innovation, business incubation, entrepreneurship, mentoring, training and the commercialization of innovations.",
             "vision": "A flourishing society powered by innovation and entrepreneurship",
             "mission": "To create an environment that nurtures the spawning of a dynamic community of entrepreneurs who produce sustainable ventures that positively impact livelihoods",
             "main_objective": "To create entrepreneurs through innovation, business incubation, and development.",
@@ -30,9 +30,11 @@ class Command(BaseCommand):
             "home": ("Cultivating Entrepreneurs", "Empowering innovators, nurturing entrepreneurship, and transforming ideas into sustainable ventures.", "Participants working with laptops during a TIIH training session"),
             "about": ("Where Innovation Takes Root", "Discover the purpose, vision and values guiding a hub built to turn ideas into meaningful enterprise and impact.", "A speaker addressing students during a TIIH outreach session"),
             "services": ("Our Services", "Supporting innovators and entrepreneurs from ideas to sustainable ventures.", "Participants working with laptops during a TIIH training session"),
-            "projects": ("Innovation Projects", "Discovering ideas and innovations with the potential to create real-world impact.", "Participants working with laptops during a TIIH training session"),
+            "projects": ("Featured Innovations", "Discovering ideas and innovations with the potential to create real-world impact.", "Participants working with laptops during a TIIH training session"),
             "team": ("Meet Our Team", "The people supporting innovation, entrepreneurship and incubation at TIIH.", "Participants working with laptops during a TIIH training session"),
             "contact": ("Contact Us", "Connect with the Tsavo Innovation & Incubation Hub.", "Participants working with laptops during a TIIH training session"),
+            "programmes": ("Programmes and Events", "Learning, collaboration and practical experience for emerging entrepreneurs.", "Participants working with laptops during a TIIH training session"),
+            "partners": ("Collaborations & Partnerships", "Working with institutions and networks to support innovation and enterprise.", "A speaker addressing students during a TIIH outreach session"),
         }
         for page, (heading, text, alt) in banners.items():
             self._seed(PageBanner, {"page": page}, {"heading": heading, "supporting_text": text, "image_alt_text": alt}, reset)

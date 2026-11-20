@@ -1,0 +1,67 @@
+{% extends "base.html" %}{% load static %}
+{% block title %}Programmes and Events | Tsavo Innovation & Incubation Hub{% endblock %}
+{% block meta_description %}Explore TIIH training, entrepreneurship programmes, partnerships and upcoming events at Taita Taveta University.{% endblock %}
+{% block content %}
+{% include "partials/page_banner.html" %}
+
+<section class="section programme-intro">
+  <div class="container">
+    {% include "partials/section_heading.html" with centered=True eyebrow="Learning in action" heading="Practical pathways from ideas to enterprise" text="Explore training and collaborative programmes delivered with partners, and see what is coming next at the hub." %}
+  </div>
+</section>
+
+<section class="section programme-feature-section" id="whitebox-bootcamp" aria-labelledby="whitebox-title">
+  <div class="container">
+    <div class="programme-feature-grid">
+      <div class="programme-feature-copy">
+        <span class="eyebrow">{{ programme_highlights.0.label }}</span>
+        <h2 id="whitebox-title">{{ programme_highlights.0.title }}</h2>
+        <p>{{ programme_highlights.0.description }}</p>
+        <div class="programme-facts">
+          <span><i class="bi bi-calendar-event" aria-hidden="true"></i> {{ programme_highlights.0.date }}</span>
+          <span><i class="bi bi-geo-alt" aria-hidden="true"></i> {{ programme_highlights.0.venue }}</span>
+        </div>
+      </div>
+      <figure class="programme-feature-photo">
+        <img src="{% static 'images/programmes/whitebox-bootcamp-facilitator.png' %}" alt="Jacqueline Macharia of ICT Authority facilitating a training session" loading="lazy" width="425" height="490">
+      </figure>
+    </div>
+    <details class="programme-flyer">
+      <summary>View the original 2026 Whitebox training flyer</summary>
+      <img src="{% static 'images/programmes/whitebox-training-2026-flyer.png' %}" alt="Whitebox County Innovation Training flyer for 29 September 2026 at Taita Taveta University" loading="lazy" width="495" height="739">
+    </details>
+  </div>
+</section>
+
+<section class="section programme-collaborations" aria-labelledby="collaboration-programmes-title">
+  <div class="container">
+    <div class="section-heading text-center mx-auto">
+      <span class="eyebrow">Collaborative learning</span>
+      <h2 id="collaboration-programmes-title">Programmes delivered with partners</h2>
+      <p>Entrepreneurship support that connects local innovators with wider expertise and networks.</p>
+    </div>
+    <div class="programme-cards">
+      {% for programme in programme_highlights %}{% if not forloop.first %}
+      <article class="programme-card">
+        <span class="programme-card-logo"><img src="{% static programme.logo %}" alt="{{ programme.logo_alt }}" loading="lazy"></span>
+        <span class="eyebrow">{{ programme.label }}</span>
+        <h3>{{ programme.title }}</h3>
+        <p>{{ programme.description }}</p>
+      </article>
+      {% endif %}{% endfor %}
+    </div>
+    <div class="section-action"><a class="btn btn-outline-brand" href="{% url 'core:partnerships' %}">Meet our collaborators <i class="bi bi-arrow-right" aria-hidden="true"></i></a></div>
+  </div>
+</section>
+
+<section class="section soft-section" id="upcoming-events">
+  <div class="container">
+    {% include "partials/section_heading.html" with centered=True eyebrow="What's ahead" heading="Upcoming events" text="New workshops and hub activities will appear here when their details are confirmed." %}
+    {% if upcoming_events %}
+      <div class="event-list">{% for event in upcoming_events %}{% include "partials/event_card.html" %}{% endfor %}</div>
+    {% else %}
+      {% include "partials/empty_state.html" with icon="bi-calendar-event" title="No upcoming events for now" text="Please check back for future TIIH workshops and activities." %}
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

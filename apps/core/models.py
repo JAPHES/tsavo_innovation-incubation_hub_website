@@ -50,8 +50,12 @@ class SiteSettings(SingletonModel):
 
 
 class PageBanner(models.Model):
-    PAGE_CHOICES = [("home", "Home"), ("about", "About Us"), ("services", "Our Services"),
-                    ("projects", "Innovation Projects"), ("team", "Our Team"), ("contact", "Contact Us")]
+    PAGE_CHOICES = [
+        ("home", "Home"), ("about", "About Us"), ("services", "Our Services"),
+        ("projects", "Featured Innovations"), ("programmes", "Programmes and Events"),
+        ("partners", "Collaborations & Partnerships"), ("team", "Our Team"),
+        ("contact", "Contact Us"),
+    ]
     page = models.CharField(max_length=20, choices=PAGE_CHOICES, unique=True)
     heading = models.CharField(max_length=160)
     supporting_text = models.CharField(max_length=280)

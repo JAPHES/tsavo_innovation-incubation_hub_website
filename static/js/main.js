@@ -17,7 +17,7 @@
     document.body.classList.toggle('nav-open', !open);
   });
   menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
-  window.addEventListener('resize', () => { if (window.innerWidth > 1080) closeMenu(); });
+  window.addEventListener('resize', () => { if (window.innerWidth > 1280) closeMenu(); });
   window.addEventListener('scroll', () => header?.classList.toggle('scrolled', window.scrollY > 8), { passive: true });
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

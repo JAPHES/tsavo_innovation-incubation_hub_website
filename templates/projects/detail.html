@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}{{ project.title }} | TIIH Innovation Projects{% endblock %}
+{% block title %}{{ project.title }} | TIIH Featured Innovations{% endblock %}
 {% block meta_description %}{{ project.short_description }}{% endblock %}
 {% block content %}
 <section class="project-hero{% if project.cover_fit == 'contain' %} project-hero-contain{% endif %}" style="--banner-image:url('{{ project.cover_url }}')"><div class="container"><nav aria-label="Breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="{% url 'core:home' %}">Home</a></li><li class="breadcrumb-item"><a href="{% url 'projects:list' %}">Projects</a></li><li class="breadcrumb-item active" aria-current="page">{{ project.title }}</li></ol></nav><span class="project-category">{% if project.category %}{{ project.get_category_display }}{% else %}Innovation spotlight{% endif %}</span><h1>{{ project.title }}</h1><p>{{ project.short_description }}</p>{% if project.development_stage %}<span class="stage-badge">{{ project.get_development_stage_display }}</span>{% endif %}{% if project.cover_label %}<span class="project-cover-label">{{ project.cover_label }}</span>{% endif %}</div></section>
