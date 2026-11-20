@@ -1,6 +1,6 @@
 # Tsavo Innovation & Incubation Hub Website
 
-A complete Django 5.2 institutional website for the Tsavo Innovation & Incubation Hub (TIIH), operating under Taita Taveta University. The public site has six principal pages, a searchable project showcase, direct contact information, SEO basics, and responsive local imagery.
+A complete Django 5.2 institutional website for the Tsavo Innovation & Incubation Hub (TIIH), an organ of Taita Taveta University. The public site has eight principal pages, a searchable innovation showcase, programme and partnership pages, direct contact information, SEO basics, and responsive local imagery.
 
 The design uses the project brief's preliminary green and blue palette. It is visually connected to TTU's current public website but does not claim these colours or the bundled system font stack are certified brand standards. The supplied TIIH logo is integrated in the header, footer, and browser icon. The hero and homepage introduction photographs come from the supplied TIIH presentation; replace any remaining temporary imagery when approved institutional assets are available.
 
@@ -20,7 +20,7 @@ apps/
   services/   Fixed presentation of the seven official service categories
   projects/   Project catalogue and temporarily disabled detail pages
   team/       Approved team profiles
-  events/     Admin-managed events used on the homepage
+  events/     Admin-managed upcoming events used on the homepage and programmes page
   contact/    Direct contact details and campus directions
 templates/    Shared and page-specific Django templates
 static/       CSS, JavaScript, official branding, and local fallback images
@@ -54,7 +54,7 @@ If PowerShell blocks activation, use the environment's Python directly:
 
 ## Environment configuration
 
-Copy `.env.example` to `.env`. Never commit `.env`. Local development defaults to SQLite and the console email backend. For production:
+Copy `.env.example` to `.env`. Never commit `.env`. Local development defaults to SQLite. For production:
 
 1. Set `DJANGO_DEBUG=False`.
 2. Supply a strong `SECRET_KEY`.
@@ -72,9 +72,11 @@ Run:
 python manage.py seed_initial_data
 ```
 
-The command is idempotent and does not overwrite administrator edits. It creates the database-backed site settings and six page banners. The Chair's message, values, focus areas, programmes, and services are intentionally fixed in source code rather than stored in database tables. The unused achievement storage model is also absent, and the website does not invent unverified achievements. Use `--reset` only when you intentionally want to restore the seeded settings and banners.
+The command is idempotent and does not overwrite administrator edits. It creates the database-backed site settings and eight page banners. The Chairman's message, values, focus areas, programme stories, partnerships, and services are intentionally fixed in source code rather than stored in database tables. The unused achievement storage model is also absent, and the website does not invent unverified achievements. Use `--reset` only when you intentionally want to restore the seeded settings and banners.
 
 Database migrations add the three innovation projects identified in the supplied TIIH presentation, plus Blood Bank Management System from the subsequent project brief. The homepage features Hydro-Pellets, Blood Bank Management System, and Blue Bin in that order; the projects catalogue also lists Hydro-Pellets first. The multilingual learning project remains published in the Innovations catalogue. Blue Bin uses the presentation's group photograph on the homepage while its project page retains the runner-up graphic. Development stages are left unset where no stage was supplied; Blue Bin also has no stated focus area or technical description. Only Hydro-Pellets has a public detail page initially. To open another project's detail page later, review its content and enable **Details public** in the project admin; this adds its View project link and sitemap entry.
+
+The November 2026 chairman feedback adds eight named team members through a data migration. Their roles, biographies, and portraits remain empty until the hub supplies approved details. The same release adds the Programmes and Events and Collaborations & Partnerships pages. The 29 September 2026 Whitebox boot camp is presented as a past activity; only admin-published future events appear under Upcoming events.
 
 Optional layout-only project records can be created with:
 
@@ -88,14 +90,14 @@ They are labelled `[DEMO]` and remain unpublished.
 
 Sign in at `/admin/` with an authorized Django staff account. The branded login leads to Django's standard admin dashboard and model editors. Use **Innovation Projects** and **Events** to add or manage content; staff see only the sections their permissions allow, while a superuser sees all registered models. Projects can have a cover and gallery; event records can include an image and registration link. Leave **Published** unchecked while preparing content. Only published events with a future start time appear on the homepage. Administrator sign-in currently uses a password only; see [SECURITY.md](SECURITY.md) for the risk and safeguards.
 
-- **Site settings:** contact details, the chair's public WhatsApp number, vision, mission, location, verified social links, and optional verified map URL. Clear the WhatsApp number to hide the floating button.
+- **Site settings:** contact details, the chairman's public WhatsApp number, vision, mission, location, verified social links, and optional verified map URL. Clear the WhatsApp number to hide the floating button.
 - **Page banners:** text, alt text, and optional uploaded image. Uploads override named static fallbacks.
 - **Innovation projects:** review the four project profiles and add project information, cover, gallery, stage, category, approved public team information, and publishing/featured flags. The homepage order field controls featured-card placement. Uploaded covers replace the bundled project images.
-- **Team members:** add approved profiles and contact links, including an optional LinkedIn URL. Dr. Mwakio Mwagandi's chair profile appears first, using the bundled portrait until a team photo is uploaded.
-- **Events:** add upcoming activities and control their publication status.
+- **Team members:** add approved profiles and contact links, including an optional LinkedIn URL. Dr. Mwakio Mwagandi's chairman profile appears first, using the bundled portrait until a team photo is uploaded. Eight additional names are preloaded from the chairman's feedback without invented roles or biographies.
+- **Events:** add upcoming activities and control their publication status. Published future events appear on the homepage and Programmes and Events page.
 - **Homepage content:** published, featured innovation projects appear on the homepage. If none are available, the showcase has an empty state. When no future events are published, the events section says there are no upcoming events.
-- **Fixed institutional content:** the Chair's message, services, programmes, values, and focus areas are code-managed and do not appear in `/admin/` or the database. Achievements also have no database model; add only approved achievement content directly to the website if it is supplied later.
-- **Chair portrait:** the supplied photograph of Dr. Mwakio Mwagandi is bundled with the website.
+- **Fixed institutional content:** the Chairman's message, services, programme stories, partnerships, values, and focus areas are code-managed and do not appear in `/admin/` or the database. Achievements also have no database model; add only approved achievement content directly to the website if it is supplied later.
+- **Chairman portrait:** the supplied photograph of Dr. Mwakio Mwagandi is bundled with the website.
 - **Contact messages:** historical inquiries remain private to authorized Django administrators. The public form and submission endpoint are currently disabled.
 
 ## Images

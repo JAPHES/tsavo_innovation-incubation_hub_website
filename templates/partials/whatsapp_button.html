@@ -1,5 +1,5 @@
-{% if chair_whatsapp_digits %}
-<a class="chair-whatsapp-button" href="https://wa.me/{{ chair_whatsapp_digits }}" target="_blank" rel="noopener noreferrer" aria-label="Chat with Dr. Mwakio Mwagandi, TIIH Chair, on WhatsApp (opens in a new tab)" title="WhatsApp the TIIH Chair">
-  <i class="bi bi-whatsapp" aria-hidden="true"></i>
+{% load static %}{% if chair_whatsapp_digits %}
+<a class="chair-whatsapp-button" href="https://wa.me/{{ chair_whatsapp_digits }}" target="_blank" rel="noopener noreferrer" aria-label="Chat with Dr. Mwakio Mwagandi, TIIH Chairman, on WhatsApp (opens in a new tab)" title="WhatsApp the TIIH Chairman">
+  <img src="{% static 'images/icons/whatsapp.svg' %}" alt="" width="30" height="30" aria-hidden="true">
 </a>
 {% endif %}
