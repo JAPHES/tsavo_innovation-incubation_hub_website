@@ -72,9 +72,15 @@
 .team-card { display: flex; min-width: 0; flex-direction: column; overflow: hidden; background: #fff; border: 1px solid var(--color-line); border-radius: var(--radius); box-shadow: 0 12px 32px rgba(10, 55, 32, .07); transition: transform .25s ease, box-shadow .25s ease; }
 .team-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(10, 55, 32, .12); }
 .team-card-chair { border-color: #b4d9bf; }
+.team-grid:not(.team-grid-single) .team-card-chair { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(270px, .72fr) 1.28fr; }
 .team-photo { position: relative; overflow: hidden; background: #dfe9e2; }
 .team-photo img { display: block; width: 100%; aspect-ratio: 11/12; object-fit: cover; object-position: center 28%; }
 .team-card-chair .team-photo img { object-position: center 20%; }
+.team-grid:not(.team-grid-single) .team-card-chair .team-photo img { height: 100%; max-height: 480px; aspect-ratio: auto; }
+.team-card-unpictured .team-photo { aspect-ratio: 11/7; }
+.team-photo-placeholder { display: flex; width: 100%; height: 100%; flex-direction: column; align-items: center; justify-content: center; gap: .35rem; color: #125437; background: radial-gradient(circle at 65% 25%, rgba(164,226,185,.5), transparent 36%), linear-gradient(145deg, #edf7ef, #dceee2); }
+.team-photo-placeholder > span { display: grid; width: 84px; height: 84px; place-items: center; background: #fff; border: 2px solid #c5e1cd; border-radius: 50%; font-size: 1.6rem; font-weight: 800; letter-spacing: .03em; }
+.team-photo-placeholder small { color: #52705e; font-size: .72rem; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; }
 .team-leadership-badge { position: absolute; bottom: 1rem; left: 1rem; padding: .4rem .8rem; color: #fff; background: var(--color-primary-deep); border-radius: 999px; font-size: .72rem; font-weight: 800; letter-spacing: .03em; }
 .team-copy { display: flex; flex: 1; flex-direction: column; padding: 1.6rem; }
 .team-copy h3 { margin: 0 0 .45rem; font-size: 1.3rem; line-height: 1.25; }

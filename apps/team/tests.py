@@ -15,18 +15,32 @@ class TeamPageTests(TestCase):
         response = self.client.get(reverse("team:list"))
         self.assertEqual(response.status_code, 200)
         self.assertNotContains(response, "Inactive Person")
-        self.assertEqual(len(response.context["members"]), 3)
+        self.assertEqual(len(response.context["members"]), TeamMember.objects.filter(is_active=True).count())
         self.assertEqual(response.context["members"][0].full_name, "Dr. Mwakio Mwagandi")
         html = response.content.decode()
-        self.assertEqual(html.count('<article class="team-card'), 3)
+        self.assertEqual(html.count('<article class="team-card'), len(response.context["members"]))
         self.assertLess(html.index("First Active"), html.index("Second Active"))
 
     def test_chair_is_first_and_uses_supplied_portrait(self):
         response = self.client.get(reverse("team:list"))
         html = response.content.decode()
         self.assertLess(html.index("Dr. Mwakio Mwagandi"), html.index("First Active"))
-        self.assertContains(response, "Chair, Tsavo Innovation &amp; Incubation Hub")
+        self.assertContains(response, "Chairman, Tsavo Innovation &amp; Incubation Hub")
         self.assertContains(response, "images/team/chair_dr_mwakio_mwagandi.jpg")
+
+    def test_feedback_members_appear_without_invented_profiles(self):
+        response = self.client.get(reverse("team:list"))
+        for name in (
+            "Mrs Amina Ndinya", "Mr. Edwin Kirui", "Prof. Bernard Alunda",
+            "Ms Belinda Owala", "Dr Rehema Swalehe", "Ms Leah Andisi",
+            "Mr. Thomas Makungu", "Ms Anne Nyabuti",
+        ):
+            with self.subTest(name=name):
+                member = TeamMember.objects.get(full_name=name)
+                self.assertEqual(member.role, "")
+                self.assertEqual(member.biography, "")
+                self.assertContains(response, name)
+                self.assertContains(response, f"Portrait not yet available for {name}")
 
     def test_chair_linkedin_profile_appears_when_set(self):
         chair = TeamMember.objects.get(full_name="Dr. Mwakio Mwagandi")
