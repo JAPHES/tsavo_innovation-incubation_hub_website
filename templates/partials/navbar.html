@@ -8,14 +8,26 @@
       </div>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-menu" data-nav-toggle><span class="visually-hidden">Toggle navigation</span><span aria-hidden="true">&#9776;</span></button>
       <div class="nav-menu" id="site-menu" data-nav-menu>
-        <a class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'core:home' %}">Home</a>
-        <a class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'core:about' %}">About Us</a>
-        <a class="{% if request.resolver_match.namespace == 'services' %}active{% endif %}" href="{% url 'services:list' %}">Our Services</a>
-        <a class="{% if request.resolver_match.namespace == 'projects' %}active{% endif %}" href="{% url 'projects:list' %}">Featured Innovations</a>
-        <a class="{% if request.resolver_match.url_name == 'programmes_events' %}active{% endif %}" href="{% url 'core:programmes_events' %}">Programmes &amp; Events</a>
-        <a class="{% if request.resolver_match.url_name == 'partnerships' %}active{% endif %}" href="{% url 'core:partnerships' %}">Partnerships</a>
-        <a class="{% if request.resolver_match.namespace == 'team' %}active{% endif %}" href="{% url 'team:list' %}">Our Team</a>
-        <a class="{% if request.resolver_match.namespace == 'contact' %}active{% endif %}" href="{% url 'contact:contact' %}">Contact Us</a>
+        {% with route=request.resolver_match %}
+        <a class="{% if route.url_name == 'home' %}active{% endif %}" href="{% url 'core:home' %}"{% if route.url_name == 'home' %} aria-current="page"{% endif %}>Home</a>
+        <details class="nav-dropdown{% if route.url_name == 'about' or route.namespace == 'team' or route.url_name == 'partnerships' %} active{% endif %}" data-nav-dropdown>
+          <summary>About TIIH <span class="nav-chevron" aria-hidden="true"></span></summary>
+          <div class="nav-dropdown-menu">
+            <a class="{% if route.url_name == 'about' %}active{% endif %}" href="{% url 'core:about' %}"{% if route.url_name == 'about' %} aria-current="page"{% endif %}>About Us</a>
+            <a class="{% if route.namespace == 'team' %}active{% endif %}" href="{% url 'team:list' %}"{% if route.namespace == 'team' %} aria-current="page"{% endif %}>Our Team</a>
+            <a class="{% if route.url_name == 'partnerships' %}active{% endif %}" href="{% url 'core:partnerships' %}"{% if route.url_name == 'partnerships' %} aria-current="page"{% endif %}>Partnerships</a>
+          </div>
+        </details>
+        <details class="nav-dropdown{% if route.namespace == 'services' or route.namespace == 'projects' or route.url_name == 'programmes_events' %} active{% endif %}" data-nav-dropdown>
+          <summary>Explore <span class="nav-chevron" aria-hidden="true"></span></summary>
+          <div class="nav-dropdown-menu">
+            <a class="{% if route.namespace == 'services' %}active{% endif %}" href="{% url 'services:list' %}"{% if route.namespace == 'services' %} aria-current="page"{% endif %}>Our Services</a>
+            <a class="{% if route.namespace == 'projects' %}active{% endif %}" href="{% url 'projects:list' %}"{% if route.namespace == 'projects' %} aria-current="page"{% endif %}>Featured Innovations</a>
+            <a class="{% if route.url_name == 'programmes_events' %}active{% endif %}" href="{% url 'core:programmes_events' %}"{% if route.url_name == 'programmes_events' %} aria-current="page"{% endif %}>Programmes &amp; Events</a>
+          </div>
+        </details>
+        <a class="{% if route.namespace == 'contact' %}active{% endif %}" href="{% url 'contact:contact' %}"{% if route.namespace == 'contact' %} aria-current="page"{% endif %}>Contact Us</a>
+        {% endwith %}
         <a href="https://ttu.ac.ke/" target="_blank" rel="noopener" aria-label="Visit Taita Taveta University (opens in a new tab)">Visit TTU</a>
       </div>
     </div>
