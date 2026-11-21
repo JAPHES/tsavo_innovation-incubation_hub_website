@@ -3,6 +3,7 @@
   const toggle = document.querySelector('[data-nav-toggle]');
   const menu = document.querySelector('[data-nav-menu]');
   const dropdowns = [...(menu?.querySelectorAll('[data-nav-dropdown]') || [])];
+  const desktopHover = window.matchMedia('(min-width: 1081px) and (hover: hover) and (pointer: fine)');
   const closeDropdowns = () => dropdowns.forEach((dropdown) => { dropdown.open = false; });
 
   const closeMenu = () => {
@@ -23,6 +24,14 @@
   dropdowns.forEach((dropdown) => dropdown.addEventListener('toggle', () => {
     if (dropdown.open) dropdowns.filter((item) => item !== dropdown).forEach((item) => { item.open = false; });
   }));
+  dropdowns.forEach((dropdown) => {
+    dropdown.addEventListener('pointerenter', (event) => {
+      if (desktopHover.matches && event.pointerType === 'mouse') dropdown.open = true;
+    });
+    dropdown.addEventListener('pointerleave', (event) => {
+      if (desktopHover.matches && event.pointerType === 'mouse') dropdown.open = false;
+    });
+  });
   menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
   document.addEventListener('click', (event) => { if (!header?.contains(event.target)) closeMenu(); });
   document.addEventListener('keydown', (event) => {
