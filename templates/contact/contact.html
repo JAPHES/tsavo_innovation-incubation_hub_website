@@ -12,12 +12,14 @@
       <p>Whether you have an innovation to explore, a partnership to discuss or a question about TIIH, reach our team directly.</p>
     </div>
     <div class="contact-methods">
-      <a class="contact-method" href="mailto:{{ site_settings.contact_email|default:'tiih@ttu.ac.ke' }}">
+      <div class="contact-method contact-method-email">
         <span class="contact-method-icon"><i class="bi bi-envelope" aria-hidden="true"></i></span>
         <span class="contact-method-label">Email</span>
-        <strong>{{ site_settings.contact_email|default:"tiih@ttu.ac.ke" }}</strong>
-        <span class="contact-method-action">Write to us <i class="bi bi-arrow-up-right" aria-hidden="true"></i></span>
-      </a>
+        <div class="contact-email-list">
+          <div><span class="contact-email-role">Hub office</span><a href="mailto:{{ site_settings.contact_email|default:'tiih@ttu.ac.ke' }}">{{ site_settings.contact_email|default:"tiih@ttu.ac.ke" }}</a></div>
+          <div><span class="contact-email-role">Chairman</span><a href="mailto:mwakiomwagandi@ttu.ac.ke">mwakiomwagandi@ttu.ac.ke</a></div>
+        </div>
+      </div>
       <a class="contact-method" href="tel:{{ site_settings.contact_phone|default:'+254 722 274257'|cut:' ' }}">
         <span class="contact-method-icon"><i class="bi bi-telephone" aria-hidden="true"></i></span>
         <span class="contact-method-label">Phone</span>

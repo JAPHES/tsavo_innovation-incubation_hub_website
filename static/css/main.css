@@ -248,6 +248,12 @@ a.contact-method:hover { color: var(--color-heading); border-color: #a8cfb3; box
 .contact-method-icon { width: 48px; height: 48px; margin-bottom: 1.3rem; font-size: 1.25rem; }
 .contact-method-label { margin-bottom: .25rem; color: var(--color-muted); font-size: .75rem; font-weight: 760; letter-spacing: .13em; text-transform: uppercase; }
 .contact-method strong { color: var(--color-heading); font-size: clamp(1rem, 1.45vw, 1.25rem); line-height: 1.35; overflow-wrap: anywhere; }
+.contact-email-list { display: grid; width: 100%; gap: .75rem; }
+.contact-email-list > div { display: grid; gap: .1rem; }
+.contact-email-list > div + div { padding-top: .7rem; border-top: 1px solid var(--color-line); }
+.contact-email-role { color: var(--color-muted); font-size: .74rem; font-weight: 720; text-transform: uppercase; letter-spacing: .06em; }
+.contact-email-list a { color: var(--color-heading); font-size: clamp(.94rem, 1.2vw, 1.1rem); font-weight: 730; line-height: 1.35; overflow-wrap: anywhere; }
+.contact-email-list a:hover { color: var(--color-primary-dark); text-decoration: underline; }
 .contact-method-action, .contact-method-detail { margin-top: auto; padding-top: 1rem; font-size: .86rem; }
 .contact-method-action { color: var(--color-primary-dark); font-weight: 730; }
 .contact-method-action i { margin-left: .2rem; }
