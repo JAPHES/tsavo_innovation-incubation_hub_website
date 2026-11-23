@@ -135,7 +135,12 @@ p { margin-top: 0; }
 .program-card .text-link { margin-top: 1rem; font-size: .82rem; }
 
 .programme-intro { padding-bottom: 3.5rem; }
+.programme-intro .section-heading, .programme-collaborations .section-heading { max-width: 1100px; }
 .programme-intro .section-heading { margin-bottom: 0; }
+.programme-intro .section-heading p, .programme-collaborations .section-heading p { margin-inline: auto; }
+@media (min-width: 821px) {
+  .programme-intro .section-heading h2, .programme-collaborations .section-heading h2 { white-space: nowrap; }
+}
 .programme-feature-section { background: linear-gradient(135deg, #f0f8f2, #f9fbf7); border-block: 1px solid #dce9df; }
 .programme-feature-grid { display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: clamp(2rem, 6vw, 5rem); }
 .programme-feature-copy h2 { margin: .8rem 0 1.3rem; }
