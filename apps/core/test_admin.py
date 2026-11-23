@@ -187,11 +187,16 @@ class AdminExperienceTests(TestCase):
         admin = self.client.get(reverse("admin:login"))
 
         self.assertIn("Content-Security-Policy", public)
-        self.assertIn("script-src 'self' https://cdn.jsdelivr.net", public["Content-Security-Policy"])
-        self.assertNotIn("'unsafe-inline'", public["Content-Security-Policy"].split("script-src ")[1].split(";")[0])
+        self.assertIn("base-uri 'none'", public["Content-Security-Policy"])
+        self.assertIn("script-src 'self'; style-src 'self'; font-src 'self'", public["Content-Security-Policy"])
+        self.assertNotIn("'unsafe-inline'", public["Content-Security-Policy"])
+        self.assertNotIn("cdn.jsdelivr.net", public["Content-Security-Policy"])
         self.assertIn("script-src 'self' 'unsafe-inline'", admin["Content-Security-Policy"])
         self.assertIn("no-store", admin["Cache-Control"])
-        self.assertContains(public, 'integrity="sha384-')
+        self.assertContains(public, "/static/vendor/bootstrap/bootstrap.min.css")
+        self.assertContains(public, "/static/vendor/bootstrap-icons/bootstrap-icons.min.css")
+        self.assertNotContains(public, "cdn.jsdelivr.net")
+        self.assertNotContains(public, "style=")
 
     def test_repeated_admin_password_failures_are_rate_limited(self):
         login_url = reverse("admin:login")

@@ -22,16 +22,16 @@ def trusted_client_ip(request):
 
 
 _COMMON_DIRECTIVES = (
-    "default-src 'self'; base-uri 'self'; object-src 'none'; "
+    "default-src 'self'; base-uri 'none'; object-src 'none'; "
     "frame-ancestors 'none'; form-action 'self'; connect-src 'self'; "
     "img-src 'self' data: https://*.blob.vercel-storage.com"
 )
 
 _PUBLIC_POLICY = (
     _COMMON_DIRECTIVES
-    + "; script-src 'self' https://cdn.jsdelivr.net"
-    + "; style-src 'self' https://cdn.jsdelivr.net 'unsafe-inline'"
-    + "; font-src 'self' data: https://cdn.jsdelivr.net"
+    + "; script-src 'self'"
+    + "; style-src 'self'"
+    + "; font-src 'self'"
     + "; frame-src https://www.google.com https://maps.google.com"
 )
 

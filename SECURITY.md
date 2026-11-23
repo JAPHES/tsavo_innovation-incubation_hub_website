@@ -18,6 +18,6 @@ For a password lockout, wait for the 15-minute expiry or have an authorized oper
 
 ## Content and dependencies
 
-Uploaded Vercel Blob images are intentionally public. Upload only approved public images, never identity documents or other private files. When changing a CDN URL, update its `integrity` hash and test the page; a mismatch intentionally blocks the asset. The public Content Security Policy allows only the current CDN, Vercel Blob images, and Google Maps frame.
+Uploaded Vercel Blob images are intentionally public. Upload only approved public images, never identity documents or other private files. Public Bootstrap 5.3.3 and Bootstrap Icons 1.11.3 files are pinned and stored in `static/vendor/`; their downloaded CSS matched the integrity hashes previously used by the site. Review upstream releases and re-verify file hashes before replacing these files. Public pages load scripts, styles and fonts only from the site itself. Their Content Security Policy also permits public Vercel Blob images and the Google Maps frame.
 
 GitHub runs tests, Django's deployment checks, and `pip-audit` on pushes, pull requests, and weekly. Dependabot checks Python and GitHub Actions dependencies weekly. Investigate any failed security job before deploying. These checks complement, but do not replace, reviewing Vercel, Neon, GitHub, and domain-account MFA and access permissions.
