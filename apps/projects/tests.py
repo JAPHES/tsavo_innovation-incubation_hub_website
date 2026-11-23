@@ -29,6 +29,8 @@ class ProjectPageTests(TestCase):
         response = self.client.get(project.get_absolute_url())
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, project.title)
+        self.assertContains(response, '<img class="project-hero-image"')
+        self.assertNotContains(response, "style=")
 
     def test_search_and_filters(self):
         response = self.client.get(reverse("projects:list"), {"q": "project 2"})

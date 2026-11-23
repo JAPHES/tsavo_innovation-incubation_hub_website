@@ -59,15 +59,14 @@
   .project-hero {
     background-color: #123c28;
   }
-  .page-banner::before,
-  .project-hero::before {
+  .page-banner-image,
+  .project-hero-image {
     inset: 0;
-    height: auto;
-    background-position: center;
-    background-size: cover;
+    height: 100%;
+    object-position: center;
     transform: none;
   }
-  .page-banner-about::before { background-position: right top; }
+  .page-banner-about .page-banner-image { object-position: right top; }
   .page-banner::after,
   .page-banner.home-hero::after,
   .project-hero::after {
@@ -84,7 +83,7 @@
     padding: 5rem 0 3.5rem;
   }
   .project-hero h1 { font-size: clamp(2.2rem, 10vw, 3.2rem); }
-  .project-hero-contain::before { background-size: contain; background-position: center top; opacity: .3; }
+  .project-hero-contain .project-hero-image { object-fit: contain; object-position: center top; opacity: .3; }
   .hero-actions { width: 100%; }
   .hero-actions .btn { width: 100%; }
   .services-grid, .services-grid.full, .project-grid, .event-list, .focus-grid, .team-grid, .achievement-grid, .values-grid { grid-template-columns: 1fr; }
