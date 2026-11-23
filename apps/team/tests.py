@@ -7,8 +7,8 @@ from .models import TeamMember
 class TeamPageTests(TestCase):
     @classmethod
     def setUpTestData(cls):
-        TeamMember.objects.create(full_name="Second Active", role="Mentor", biography="Approved bio", display_order=2)
-        TeamMember.objects.create(full_name="First Active", role="Coordinator", biography="Approved bio", display_order=1)
+        TeamMember.objects.create(full_name="Second Active", role="Mentor", biography="Approved bio", display_order=91)
+        TeamMember.objects.create(full_name="First Active", role="Coordinator", biography="Approved bio", display_order=90)
         TeamMember.objects.create(full_name="Inactive Person", role="Private", biography="Not public", is_active=False)
 
     def test_active_profiles_only_and_display_order(self):
@@ -21,6 +21,20 @@ class TeamPageTests(TestCase):
         self.assertEqual(html.count('<article class="team-card'), len(response.context["members"]))
         self.assertEqual(html.count('class="team-linkedin"'), len(response.context["members"]))
         self.assertLess(html.index("First Active"), html.index("Second Active"))
+
+    def test_chair_requested_members_then_remaining_members(self):
+        names = [member.full_name for member in self.client.get(reverse("team:list")).context["members"]]
+        self.assertEqual(names[:9], [
+            "Dr. Mwakio Mwagandi",
+            "Prof. Bernard Alunda",
+            "Mrs Amina Ndinya",
+            "Dr Rehema Swalehe",
+            "Mr. Thomas Makungu",
+            "Mr. Edwin Kirui",
+            "Ms Belinda Owala",
+            "Ms Leah Andisi",
+            "Ms Anne Nyabuti",
+        ])
 
     def test_chair_is_first_and_uses_supplied_portrait(self):
         response = self.client.get(reverse("team:list"))
