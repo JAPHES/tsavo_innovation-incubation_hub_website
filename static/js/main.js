@@ -3,6 +3,9 @@
   const toggle = document.querySelector('[data-nav-toggle]');
   const menu = document.querySelector('[data-nav-menu]');
   const dropdowns = [...(menu?.querySelectorAll('[data-nav-dropdown]') || [])];
+  document.querySelectorAll('[data-dismiss-message]').forEach((button) => {
+    button.addEventListener('click', () => button.closest('.alert')?.remove());
+  });
   const desktopHover = window.matchMedia('(min-width: 1081px) and (hover: hover) and (pointer: fine)');
   const closeDropdowns = () => dropdowns.forEach((dropdown) => { dropdown.open = false; });
 

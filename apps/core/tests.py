@@ -186,6 +186,10 @@ class CorePageTests(TestCase):
         for asset in [
             "css/main.css",
             "js/main.js",
+            "vendor/bootstrap/bootstrap.min.css",
+            "vendor/bootstrap-icons/bootstrap-icons.min.css",
+            "vendor/bootstrap-icons/fonts/bootstrap-icons.woff2",
+            "vendor/bootstrap-icons/fonts/bootstrap-icons.woff",
             "images/banners/tiih_training_hero.png",
             "images/banners/tiih_outreach_about.jpeg",
             "images/home/tiih_ideas_enterprise.png",
