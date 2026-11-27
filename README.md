@@ -80,7 +80,7 @@ The November 2026 chairman feedback adds eight named team members through a data
 
 ## Managing content
 
-Sign in at `/admin/` with an authorized Django staff account. The branded login leads to Django's standard admin dashboard and model editors. Use **Innovation Projects** and **Events** to add or manage content; staff see only the sections their permissions allow, while a superuser sees all registered models. Projects can have a cover and gallery; event records can include an image and registration link. Leave **Published** unchecked while preparing content. Only published events with a future start time appear on the homepage. Administrator sign-in currently uses a password only; see [SECURITY.md](SECURITY.md) for the risk and safeguards.
+Sign in at `/admin/` with an authorized Django staff account. The branded login leads to Django's standard admin dashboard and model editors. Use **Innovation Projects** and **Events** to add or manage content; staff see only the sections their permissions allow, while a superuser sees all registered models. Projects can have a cover and gallery; event records can include an image and registration link. Leave **Published** unchecked while preparing content. Only published events with a future start time appear on the homepage. Administrator sign-in currently uses a password only.
 
 - **Site settings:** contact details, the chairman's public WhatsApp number, vision, mission, location, verified social links, and optional verified map URL. Clear the WhatsApp number to hide the floating button.
 - **Page banners:** text, alt text, and optional uploaded image. Uploads override named static fallbacks.
@@ -151,7 +151,7 @@ SECURE_HSTS_SECONDS=31536000
 
 `DATABASE_URL`, `DATABASE_URL_UNPOOLED`, and `BLOB_READ_WRITE_TOKEN` should come from the connected Vercel resources rather than being entered manually. For a custom domain, add that hostname to `ALLOWED_HOSTS` and its full `https://` origin to `CSRF_TRUSTED_ORIGINS`, separated from existing values with commas. The build now stops on Django deployment-check warnings before applying database migrations.
 
-Administrator sign-in currently uses passwords only. Read [SECURITY.md](SECURITY.md) for the account safeguards and Preview/Production resource separation. The public Contact page has no form, so it does not send email notifications.
+Administrator sign-in currently uses passwords only. Keep Preview and Production database and Blob resources separate. The public Contact page has no form, so it does not send email notifications.
 
 ### 5. Deploy
 
