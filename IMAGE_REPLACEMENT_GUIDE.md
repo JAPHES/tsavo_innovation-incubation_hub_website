@@ -26,7 +26,7 @@ Replace a file with an approved image using the same filename to avoid changing 
 | `static/images/partners/cambridge-judge-logo.png` | 235 × 72 | Programmes and Partnerships pages | Official Cambridge Judge Business School logo from its website. |
 | `static/images/partners/africa-2100-logo.png` | 2008 × 467 | Programmes and Partnerships pages | Official Africa 2100 logo from its website. |
 | `static/images/partners/taita-taveta-county-logo.png` | 210 × 218 | Partnerships page | Official county emblem from its website. |
-| `static/images/icons/whatsapp.svg` | 16 × 16 vector | Floating WhatsApp button | Bootstrap Icons asset stored locally so the contact icon stays visible if the icon CDN is unavailable. |
+| `static/images/icons/whatsapp.svg` | 16 × 16 vector | Floating WhatsApp button | Bootstrap Icons asset stored locally with the site. |
 
 Team members without approved portraits use a text monogram. Coast Innovation Hubs Network uses a text wordmark until an approved logo is provided.
 

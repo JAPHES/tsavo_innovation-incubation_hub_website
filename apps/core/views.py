@@ -31,7 +31,7 @@ def home(request):
         "chair_message": CHAIR_MESSAGE,
         "services": SERVICES[:4],
         "featured_projects": featured_projects,
-        "programs": PROGRAMS[:4],
+        "programs": PROGRAMS,
         "upcoming_events": upcoming_events,
     })
     return render(request, "core/home.html", context)

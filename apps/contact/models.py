@@ -1,6 +1,7 @@
 from django.db import models
 
 
+# Historical enquiries remain available to staff; the public form is disabled.
 class ContactMessage(models.Model):
     full_name = models.CharField(max_length=140)
     email = models.EmailField()

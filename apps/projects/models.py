@@ -42,6 +42,7 @@ class InnovationProject(models.Model):
     is_featured = models.BooleanField(default=False, db_index=True)
     homepage_order = models.PositiveSmallIntegerField(default=100, db_index=True, help_text="Lower numbers appear first in the homepage showcase.")
     is_published = models.BooleanField(default=False, db_index=True)
+    # Cards may be public while the full project profile still awaits approval.
     details_public = models.BooleanField(default=False, help_text="Show the View project link and allow visitors to open this project's detail page.")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -60,6 +61,7 @@ class InnovationProject(models.Model):
     def cover_url(self):
         if self.cover_image:
             return self.cover_image.url
+        # Bundled covers keep seeded projects illustrated before an admin upload.
         path, _, _, _ = PROJECT_COVERS.get(self.slug, ("images/placeholders/project_default.jpg", "", "", "cover"))
         return static(path)
 

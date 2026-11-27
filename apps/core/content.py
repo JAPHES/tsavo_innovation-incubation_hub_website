@@ -36,7 +36,6 @@ BANNER_DEFAULTS = {
 CHAIR_MESSAGE = SimpleNamespace(
     chair_name="Dr. Mwakio Mwagandi",
     official_position="Chairman, Tsavo Innovation & Incubation Hub",
-    photograph=None,
     message=(
         "Welcome to the Tsavo Innovation & Incubation Hub, where ideas are nurtured into "
         "practical solutions and sustainable ventures. TIIH brings together students, "
@@ -75,11 +74,10 @@ FOCUS_AREAS = (
 )
 
 PROGRAMS = (
-    SimpleNamespace(title="Innovation Incubation", description="Structured support that helps innovators develop ideas into responsible and sustainable ventures.", icon="bi-boxes", application_url=""),
-    SimpleNamespace(title="Mentorship and Coaching", description="Guidance and reflective support for innovators navigating technical and entrepreneurial decisions.", icon="bi-people", application_url=""),
-    SimpleNamespace(title="Entrepreneurial Skills Training", description="Practical learning in venture planning, management and personal entrepreneurial capability.", icon="bi-mortarboard", application_url=""),
-    SimpleNamespace(title="Ideation and Business Modeling", description="Tools for understanding problems, testing assumptions and shaping viable business models.", icon="bi-bezier2", application_url=""),
-    SimpleNamespace(title="Commercialization Support", description="General guidance for preparing appropriate innovations for markets and value-chain connections.", icon="bi-shop-window", application_url=""),
+    SimpleNamespace(title="Innovation Incubation", description="Structured support that helps innovators develop ideas into responsible and sustainable ventures.", icon="bi-boxes"),
+    SimpleNamespace(title="Mentorship and Coaching", description="Guidance and reflective support for innovators navigating technical and entrepreneurial decisions.", icon="bi-people"),
+    SimpleNamespace(title="Entrepreneurial Skills Training", description="Practical learning in venture planning, management and personal entrepreneurial capability.", icon="bi-mortarboard"),
+    SimpleNamespace(title="Ideation and Business Modeling", description="Tools for understanding problems, testing assumptions and shaping viable business models.", icon="bi-bezier2"),
 )
 
 PROGRAMME_HIGHLIGHTS = (

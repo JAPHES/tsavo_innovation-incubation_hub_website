@@ -25,5 +25,7 @@ from django.core.management import call_command  # noqa: E402
 
 django.setup()
 call_command("check", deploy=True, fail_level="WARNING", verbosity=1)
+# Each build writes to its connected database; previews need an isolated branch.
 call_command("migrate", interactive=False, verbosity=1)
+# Seeding creates missing defaults without replacing edits made in the admin.
 call_command("seed_initial_data", verbosity=1)

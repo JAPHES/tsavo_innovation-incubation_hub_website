@@ -10,6 +10,7 @@ class SingletonModel(models.Model):
         abstract = True
 
     def save(self, *args, **kwargs):
+        # Settings use one stable row; the admin also prevents a second record.
         self.pk = 1
         super().save(*args, **kwargs)
 

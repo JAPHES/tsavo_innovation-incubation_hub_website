@@ -21,15 +21,15 @@
 <section class="section soft-section chair-section" id="chair-message">
   <div class="container chair-layout">
     <div class="chair-photo reveal">
-      <img src="{% if chair_message.photograph %}{{ chair_message.photograph.url }}{% else %}{% static 'images/team/chair_dr_mwakio_mwagandi.jpg' %}{% endif %}" alt="Portrait of {{ chair_message.chair_name|default:'Dr. Mwakio Mwagandi' }}" loading="lazy">
+      <img src="{% static 'images/team/chair_dr_mwakio_mwagandi.jpg' %}" alt="Portrait of {{ chair_message.chair_name }}" loading="lazy">
     </div>
     <div class="chair-copy reveal">
       <span class="quote-mark" aria-hidden="true">“</span>
       {% include "partials/section_heading.html" with eyebrow="Welcome" heading="Message from the Chairman" %}
-      <blockquote>{% if chair_message %}{{ chair_message.message|linebreaksbr }}{% else %}Welcome to the Tsavo Innovation & Incubation Hub, where ideas are nurtured into practical solutions and sustainable ventures. TIIH brings together students, researchers, entrepreneurs, industry partners and communities to learn, experiment and build with purpose. Through mentorship, skills development and collaborative networks, we help innovators move confidently from concept to impact. Whether you are shaping a new idea, strengthening an enterprise or seeking partnership, we invite you to engage with TIIH and help build an innovative, inclusive and enterprising future.{% endif %}</blockquote>
+      <blockquote>{{ chair_message.message|linebreaksbr }}</blockquote>
       <div class="chair-credit">
-        <b>{{ chair_message.chair_name|default:"Dr. Mwakio Mwagandi" }}</b>
-        <span>{{ chair_message.official_position|default:"Chairman, Tsavo Innovation & Incubation Hub" }}</span>
+        <b>{{ chair_message.chair_name }}</b>
+        <span>{{ chair_message.official_position }}</span>
       </div>
     </div>
   </div>
@@ -71,7 +71,6 @@
         <span class="card-number">0{{ forloop.counter }}</span>
         <h3>{{ program.title }}</h3>
         <p>{{ program.description }}</p>
-        {% if program.application_url %}<a class="text-link" href="{{ program.application_url }}" target="_blank" rel="noopener">Official application details <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>{% endif %}
       </article>
       {% endfor %}
     </div>

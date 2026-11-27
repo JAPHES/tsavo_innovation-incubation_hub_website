@@ -78,14 +78,6 @@ Database migrations add the three innovation projects identified in the supplied
 
 The November 2026 chairman feedback adds eight named team members through a data migration. Their roles and biographies remain empty until the hub supplies approved details. Amina Ndinya and Anne Nyabuti now use supplied static portraits; other members without photos use monograms. The same release adds the Programmes and Events and Collaborations & Partnerships pages. The 29 September 2026 Whitebox boot camp is presented as a past activity; only admin-published future events appear under Upcoming events.
 
-Optional layout-only project records can be created with:
-
-```powershell
-python manage.py seed_demo_projects
-```
-
-They are labelled `[DEMO]` and remain unpublished.
-
 ## Managing content
 
 Sign in at `/admin/` with an authorized Django staff account. The branded login leads to Django's standard admin dashboard and model editors. Use **Innovation Projects** and **Events** to add or manage content; staff see only the sections their permissions allow, while a superuser sees all registered models. Projects can have a cover and gallery; event records can include an image and registration link. Leave **Published** unchecked while preparing content. Only published events with a future start time appear on the homepage. Administrator sign-in currently uses a password only; see [SECURITY.md](SECURITY.md) for the risk and safeguards.
@@ -98,7 +90,7 @@ Sign in at `/admin/` with an authorized Django staff account. The branded login 
 - **Homepage content:** published, featured innovation projects appear on the homepage. If none are available, the showcase has an empty state. When no future events are published, the events section says there are no upcoming events.
 - **Fixed institutional content:** the Chairman's message, services, programme stories, partnerships, values, and focus areas are code-managed and do not appear in `/admin/` or the database. Achievements also have no database model; add only approved achievement content directly to the website if it is supplied later.
 - **Chairman portrait:** the supplied photograph of Dr. Mwakio Mwagandi is bundled with the website.
-- **Contact messages:** historical inquiries remain private to authorized Django administrators. The public form and submission endpoint are currently disabled.
+- **Contact messages:** historical inquiries remain private to authorized Django administrators. The public form and submission endpoint are currently disabled. Their model and migrations are retained so existing records remain accessible.
 
 ## Images
 
@@ -181,7 +173,7 @@ Never commit `.env`; it is already ignored. Sign in at `/admin/`, upload a small
 
 ### 7. Final verification
 
-Check `/`, `/about/`, `/services/`, `/projects/`, `/team/`, `/contact/`, `/admin/`, and `/sitemap.xml`. Confirm project cards do not link to detail pages and the Contact page shows the correct email, phone, campus map and Room C14 directions without a form. Add the final custom domain only after the generated Vercel URL is working.
+Check `/`, `/about/`, `/services/`, `/projects/`, `/team/`, `/contact/`, `/admin/`, and `/sitemap.xml`. Confirm only projects with **Details public** enabled link to a detail page, and the Contact page shows the correct email, phone, campus map and Room C14 directions without a form. Add the final custom domain only after the generated Vercel URL is working.
 
 ## Production notes
 

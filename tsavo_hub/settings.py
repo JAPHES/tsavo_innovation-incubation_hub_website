@@ -110,6 +110,7 @@ STORAGES = {
 }
 BLOB_READ_WRITE_TOKEN = os.getenv("BLOB_READ_WRITE_TOKEN", "")
 if BLOB_READ_WRITE_TOKEN:
+    # Vercel's filesystem is temporary; published uploads need persistent Blob storage.
     STORAGES["default"] = {"BACKEND": "tsavo_hub.storage.VercelBlobStorage"}
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
