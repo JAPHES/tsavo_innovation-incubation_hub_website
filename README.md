@@ -94,7 +94,7 @@ Sign in at `/admin/` with an authorized Django staff account. The branded login 
 
 ## Images
 
-See [IMAGE_REPLACEMENT_GUIDE.md](IMAGE_REPLACEMENT_GUIDE.md) for every temporary filename, recommended dimensions, location, and replacement workflow. Local administrator uploads live under `media/`; do not copy them into `static/`.
+Bundled website images live in `static/images/`. Local administrator uploads live under `media/`; do not copy them into `static/`.
 
 Tracked fallback images in `static/images/` must exist in the local checkout to appear locally, even when a clean Vercel deployment still has them. Local development uses `media/` for administrator uploads; the deployed site uses Vercel Blob, so production uploads do not automatically appear in a local `media/` folder. After pulling changes, apply migrations to the intended local database and run the static-asset test before troubleshooting missing images.
 
