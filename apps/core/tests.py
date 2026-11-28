@@ -61,7 +61,7 @@ class CorePageTests(TestCase):
         self.assertIn("Featured Innovations", html)
         self.assertIn("Programmes &amp; Events", html)
         self.assertIn("Partnerships", html)
-        self.assertIn("What TIIH Does", html)
+        self.assertIn("Our Services", html)
         self.assertIn("Dr. Mwakio Mwagandi", html)
         self.assertIn("Upcycled Cotton Hydro-Pellets", html)
         self.assertIn("Blood Bank Management System", html)
