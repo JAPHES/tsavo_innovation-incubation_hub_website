@@ -32,22 +32,36 @@ class ProjectPageTests(TestCase):
         self.assertContains(response, '<img class="project-hero-image"')
         self.assertNotContains(response, "style=")
 
-    def test_search_and_filters(self):
-        response = self.client.get(reverse("projects:list"), {"q": "project 2"})
-        self.assertContains(response, "Published project 2")
+    def test_category_and_stage_filters(self):
         response = self.client.get(reverse("projects:list"), {"category": "ict", "stage": "research"})
+        self.assertContains(response, 'id="category-filter"')
+        self.assertContains(response, 'id="stage-filter"')
+        self.assertNotContains(response, 'name="q"')
         self.assertTrue(all(item.category == "ict" and item.development_stage == "research" for item in response.context["page_obj"]))
 
-    def test_long_anonymous_search_terms_are_bounded(self):
-        response = self.client.get(reverse("projects:list"), {"q": "x" * 1000})
+    def test_old_title_query_is_ignored(self):
+        response = self.client.get(reverse("projects:list"), {"q": "no-such-project"})
+        unfiltered = self.client.get(reverse("projects:list"))
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(response.context["query"]), 120)
+        self.assertEqual(
+            [project.pk for project in response.context["page_obj"]],
+            [project.pk for project in unfiltered.context["page_obj"]],
+        )
+        self.assertNotContains(response, 'name="q"')
+        self.assertNotContains(response, "q=no-such-project")
 
     def test_pagination_and_filter_preservation(self):
-        response = self.client.get(reverse("projects:list"), {"page": 2, "category": "agriculture"})
+        for number in range(10):
+            InnovationProject.objects.create(
+                title=f"Extra project {number}", slug=f"extra-project-{number}",
+                short_description="Approved public project", full_description="Project overview",
+                category="agriculture", development_stage="prototype", is_published=True,
+            )
+        response = self.client.get(reverse("projects:list"), {"page": 2, "category": "agriculture", "stage": "prototype"})
         self.assertEqual(response.status_code, 200)
-        filtered = self.client.get(reverse("projects:list"), {"q": "Published"})
-        self.assertContains(filtered, "q=Published")
+        self.assertEqual(response.context["page_obj"].number, 2)
+        self.assertContains(response, "category=agriculture")
+        self.assertContains(response, "stage=prototype")
 
     def test_unpublished_project_is_not_public(self):
         InnovationProject.objects.filter(slug="private-draft").update(details_public=True)
